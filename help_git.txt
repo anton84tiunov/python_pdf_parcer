@@ -10,11 +10,13 @@ git config --list
 
 git init
 git status
-git add
+git add *
 
+git commit -m "1  мое первое сохранение"
 
+git push  git@github.com:anton84tiunov/python_pdf_parcer
 
-
+git commit -m "1  мое второе сохранение"
 
 
 
