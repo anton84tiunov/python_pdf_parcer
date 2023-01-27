@@ -130,6 +130,14 @@ class ConvertPdfElToModel():
         
         return text_model
 
+#     a = span["ascender]
+# d = span["descender"]
+# r = fitz.Rect(span["bbox"])
+# o = fitz.Point(span["origin"])  # its y-value is the baseline
+# r.y1 = o.y - span["size"] * d / (a - d)
+# r.y0 = r.y1 - span["size"]
+# # r now is a rectangle of height 'fontsize'
+
     def conv_image(self, image):
         image_model = {}
      
@@ -156,6 +164,7 @@ class ConvertPdfElToModel():
         return texts_model
 
     def conv_images(self, images: list):
+        
         images_model = []
         for image in images:
             image_model = self.conv_image(image)

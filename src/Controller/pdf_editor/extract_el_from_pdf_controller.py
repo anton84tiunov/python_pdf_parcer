@@ -12,7 +12,7 @@ class ExtractElFromPdfController():
     def open_pdf(self, path, num_page) -> tuple[list[drawModel.DrawModel], list[textModel.TextModel]]:
         doc = self.extr.get_doc(path)
         page = self.extr.get_page(doc, num_page)
-        el =  self.extr.get_el(page)
+        el =  self.extr.get_el(doc, page)
         el_draw = self.conv.conv_draws(el["draw"])
         el_text = self.conv.conv_texts(el["text"])
         return el_draw, el_text
