@@ -3,6 +3,7 @@ from collections import OrderedDict
 import fitz
 import src.Model.general.draw_model as drawModel
 import src.Model.general.text_model as textModel
+import src.Model.general.image_model as imageModel
 
 
 class ConvertPdfElToModel():
@@ -138,10 +139,27 @@ class ConvertPdfElToModel():
 # r.y0 = r.y1 - span["size"]
 # # r now is a rectangle of height 'fontsize'
 
-    def conv_image(self, image):
-        image_model = {}
-     
-        return image_model
+    def conv_image(self, image) -> imageModel.ImageModel:
+        b_img_model = imageModel.BaseImageModel()
+        img_model = imageModel.ImageModel()
+
+        b_img_model.ext = image.base_image["ext"]
+        b_img_model.bpc = image.base_image["bpc"]
+        b_img_model.smask = image.base_image["smask"]
+        b_img_model.width = image.base_image["width"]
+        b_img_model.height = image.base_image["height"]
+        b_img_model.xres = image.base_image["xres"]
+        b_img_model.yres = image.base_image["yres"]
+        b_img_model.colorspace = image.base_image["colorspace"]
+        b_img_model.cs_name = image.base_image["cs_name"]
+        b_img_model.image = image.base_image["image"]
+
+        img_model.base_image = b_img_model
+        img_model.img = image["img"]
+        img_model.bbox = image["bbox"]
+        img_model.matrix = image["transform"]
+
+        return img_model
 
 
 
@@ -163,9 +181,9 @@ class ConvertPdfElToModel():
             texts_model.append(text_model)
         return texts_model
 
-    def conv_images(self, images: list):
+    def conv_images(self, images: list) -> list[imageModel.ImageModel]:
         
-        images_model = []
+        images_model: list[imageModel.ImageModel] = []
         for image in images:
             image_model = self.conv_image(image)
             images_model.append(image_model)
