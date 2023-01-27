@@ -143,16 +143,17 @@ class ConvertPdfElToModel():
         b_img_model = imageModel.BaseImageModel()
         img_model = imageModel.ImageModel()
 
-        b_img_model.ext = image.base_image["ext"]
-        b_img_model.bpc = image.base_image["bpc"]
-        b_img_model.smask = image.base_image["smask"]
-        b_img_model.width = image.base_image["width"]
-        b_img_model.height = image.base_image["height"]
-        b_img_model.xres = image.base_image["xres"]
-        b_img_model.yres = image.base_image["yres"]
-        b_img_model.colorspace = image.base_image["colorspace"]
-        b_img_model.cs_name = image.base_image["cs_name"]
-        b_img_model.image = image.base_image["image"]
+        # print(image)
+        b_img_model.ext = image['base_image']["ext"]
+        b_img_model.bpc = image["base_image"]["bpc"]
+        b_img_model.smask = image["base_image"]["smask"]
+        b_img_model.width = image["base_image"]["width"]
+        b_img_model.height = image["base_image"]["height"]
+        b_img_model.xres = image["base_image"]["xres"]
+        b_img_model.yres = image["base_image"]["yres"]
+        b_img_model.colorspace = image["base_image"]["colorspace"]
+        b_img_model.cs_name = image["base_image"]["cs-name"]
+        b_img_model.image = image["base_image"]["image"]
 
         img_model.base_image = b_img_model
         img_model.img = image["img"]
@@ -185,6 +186,7 @@ class ConvertPdfElToModel():
         
         images_model: list[imageModel.ImageModel] = []
         for image in images:
+            # print(image)
             image_model = self.conv_image(image)
             images_model.append(image_model)
         return images_model

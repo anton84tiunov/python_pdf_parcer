@@ -112,7 +112,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         self.pdf_path = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf', "",'Pdf(*.pdf);;All(*)' )[0]
         if self.pdf_path != "":
             self.graph_scene.clear()
-            el_draw, el_text = self.controller.open_pdf(self.pdf_path, 0)
+            el_draw, el_text, el_img = self.controller.open_pdf(self.pdf_path, 0)
             for draw in el_draw:
                 # item = GrIt()
                 if draw.items.draw == "re" or draw.items.draw == "qu":

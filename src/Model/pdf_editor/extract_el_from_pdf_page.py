@@ -58,9 +58,9 @@ class ExtractElFromPdf():
             image = {}
             img_xref = img[0]
             img_name = img[7]
-            image.img = img
-            image.base_image = doc.extract_image(img_xref)
-            image.bbox, image.transform = page.get_image_bbox(img_name, transform=True)
+            image["img"] = img
+            image["base_image"] = doc.extract_image(img_xref)
+            image["bbox"], image["transform"] = page.get_image_bbox(img_name, transform=True)
             # image[""]
             # print(img)
             # (10, 0, 4000, 4000, 8, 'DeviceRGB', '', 'FXX1', 'DCTDecode')  
@@ -93,8 +93,9 @@ class ExtractElFromPdf():
             # image_ext = base_image["ext"]
             # image = Image.open(io.BytesIO(image_bytes))
             # image.save(open(f"out_file/image_{image_index}.{image_ext}", "wb"))
+            # print(image)
             list_images.append(image)
-        return image_list
+        return list_images
 
 #         import fitz
 # from icecream import ic

@@ -16,6 +16,7 @@ class ExtractElFromPdfController():
         el_draw = self.conv.conv_draws(el["draw"])
         el_text = self.conv.conv_texts(el["text"])
         el_img = self.conv.conv_images(el["image"])
+        
         return el_draw, el_text, el_img
 
 
