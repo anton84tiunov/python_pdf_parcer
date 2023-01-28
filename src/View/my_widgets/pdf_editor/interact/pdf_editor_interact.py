@@ -193,7 +193,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         item.setPen(pen)
 
             # el_text = list(OrderedDict.fromkeys(el_text))
-            print(len(el_text))
+            # print(len(el_text))
             for text in el_text:
                 # text = list(OrderedDict.fromkeys(text))
                 for line in text.block_lines:
@@ -220,8 +220,19 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         text_item.setDefaultTextColor(QtGui.QColor(*span.span_color))
                         self.graph_scene.addItem(text_item)
           
-     
+            for image in el_img:
+                pix = QtGui.QPixmap()
+                pix.loadFromData(image.base_image.image)
+                # pix = pix.scaled(image.base_image.width / image.base_image.xres, image.base_image.height / image.base_image.yres)
+                pix = pix.scaled(image.bbox[2] - image.bbox[0], image.bbox[3] - image.bbox[1])
+                # pix.scaledToHeight(image.base_image.yres)
+                # pix.scaledToWidth(image.base_image.xres)
+                img_item =  QtWidgets.QGraphicsPixmapItem(pix)
 
+                # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
+                img_item.setPos(image.bbox[0], image.bbox[1])
+                # img_item.setScale
+                self.graph_scene.addItem(img_item)
 
 
 
