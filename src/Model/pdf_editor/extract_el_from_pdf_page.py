@@ -54,6 +54,10 @@ class ExtractElFromPdf():
     def ex_image(self, doc: fitz.Document, page: fitz.Page) -> list:
         list_images = []      
         image_list = page.get_images()
+        # img_info = page.get_image_info()
+        # img_rect = page.get_image_rects()
+        # print(img_info)
+        # print(img_rect)
         for image_index, img in enumerate(image_list, start=1):
             image = {}
             img_xref = img[0]
@@ -62,7 +66,7 @@ class ExtractElFromPdf():
             image["base_image"] = doc.extract_image(img_xref)
             image["bbox"], image["transform"] = page.get_image_bbox(img_name, transform=True)
             # image[""]
-            print(img)
+            # print(img)
             # (10, 0, 4000, 4000, 8, 'DeviceRGB', '', 'FXX1', 'DCTDecode')  
             # print(base_image.keys())
             # dict_keys(['ext', 'smask', 'width', 'height', 'colorspace', 'bpc', 'xres', 'yres', 'cs-name', 'image'])
@@ -76,17 +80,17 @@ class ExtractElFromPdf():
             # img_width = img[2]
             # img_height = img[3]
             # imgrect = fitz.Rect(0,0,img_width,img_height)
-            base_image = doc.extract_image(img_xref)
-            # print(base_image.keys())
-            print("ext", type(base_image["ext"]), base_image["ext"])
-            print("smask", type(base_image["smask"]), base_image["smask"])
-            print("width", type(base_image["width"]), base_image["width"])
-            print("height", type(base_image["height"]), base_image["height"])
-            print("colorspace", type(base_image["colorspace"]), base_image["colorspace"])
-            print("bpc", type(base_image["bpc"]), base_image["bpc"])
-            print("xres", type(base_image["xres"]), base_image["xres"])
-            print("yres", type(base_image["yres"]), base_image["xres"])
-            print("cs-name", type(base_image["cs-name"]), base_image["cs-name"])
+            # base_image = doc.extract_image(img_xref)
+            # # print(base_image.keys())
+            # print("ext", type(base_image["ext"]), base_image["ext"])
+            # print("smask", type(base_image["smask"]), base_image["smask"])
+            # print("width", type(base_image["width"]), base_image["width"])
+            # print("height", type(base_image["height"]), base_image["height"])
+            # print("colorspace", type(base_image["colorspace"]), base_image["colorspace"])
+            # print("bpc", type(base_image["bpc"]), base_image["bpc"])
+            # print("xres", type(base_image["xres"]), base_image["xres"])
+            # print("yres", type(base_image["yres"]), base_image["xres"])
+            # print("cs-name", type(base_image["cs-name"]), base_image["cs-name"])
             # print("image", type(base_image["image"]))
             # dict_keys(['ext', 'smask', 'width', 'height', 'colorspace', 'bpc', 'xres', 'yres', 'cs-name', 'image'])
             # image_bytes = base_image["image"]
@@ -129,6 +133,10 @@ class ExtractElFromPdf():
 # ic(matprop(transform))
 
     def get_el(self, doc: fitz.Document, page: fitz.Page) -> dict[str ,list]:
+        # for box in  page.get_bboxlog
+        # rl = page.search_for("R-01")
+        # box = page.get_textbox(rl[0])
+        # print(rl, box)
         el = {}
         el["draw"] = self.ex_draw(page)
         el["text"] = self.ex_text(page)

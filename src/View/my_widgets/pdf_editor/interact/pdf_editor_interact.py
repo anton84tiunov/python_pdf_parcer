@@ -6,9 +6,12 @@ import src.Controller.pdf_editor.extract_el_from_pdf_controller as extract_el_fr
 import src.View.my_widgets.pdf_editor.graphic.my_pointer_path as my_pointer_path
 import src.View.my_widgets.pdf_editor.graphic.my_polygon as my_polygon
 import src.View.my_widgets.pdf_editor.graphic.my_rectangle as my_rectangle
+import src.View.my_widgets.pdf_editor.graphic.my_image as my_image
 import src.View.my_widgets.pdf_editor.text.my_text_item as my_text_item
 import src.Model.general.draw_model as drawModel
 import src.Model.general.text_model as textModel
+
+
 
 red_style = "background-color: rgb(255, 0, 0);"
 green_style = "background-color: rgb(0, 255, 0);"
@@ -218,6 +221,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         # text_item.setPos(span.span_origin[0], span.span_origin[1] - span.span_size)
                         text_item.setRotation(self.rotate_decompocer(line.line_dir))
                         text_item.setDefaultTextColor(QtGui.QColor(*span.span_color))
+                        text_item.setZValue(text.block_number)
                         self.graph_scene.addItem(text_item)
           
             for image in el_img:
@@ -227,12 +231,14 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 pix = pix.scaled(image.bbox[2] - image.bbox[0], image.bbox[3] - image.bbox[1])
                 # pix.scaledToHeight(image.base_image.yres)
                 # pix.scaledToWidth(image.base_image.xres)
-                img_item =  QtWidgets.QGraphicsPixmapItem(pix)
+                img_item =  my_image.MyImage(self.root, pix)
 
                 # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
                 img_item.setPos(image.bbox[0], image.bbox[1])
                 # img_item.setScale
+                text_item.setZValue(image.img[0])
                 self.graph_scene.addItem(img_item)
+                
 
 
 
