@@ -18,7 +18,7 @@ git push  git@github.com:anton84tiunov/python_pdf_parcer
 
 git commit -m "1  мое второе сохранение"
 
-
+git commit -m "1  мое шестое сохранение"
 
 
 
