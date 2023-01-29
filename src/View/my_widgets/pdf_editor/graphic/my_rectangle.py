@@ -1,6 +1,7 @@
 import math
 from PySide2 import QtWidgets, QtGui,  QtCore 
 
+import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.my_point_rect_rect as my_point_rect_rect
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
@@ -12,10 +13,10 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 class MyRactangle(QtWidgets.QGraphicsRectItem):
 
-    def __init__(self, root: QtWidgets,  rect: QtCore.QRectF):
+    def __init__(self, root: main_window.MainWindow,  rect: QtCore.QRectF):
         super().__init__( rect)
-        self.root = root
-        self.list_point_rect = ["top", "bottom", "left", "right"]
+        self.root: main_window.MainWindow = root
+        self.list_point_rect: list[str] = ["top", "bottom", "left", "right"]
         
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
@@ -147,8 +148,7 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
 
 
     def mouseMoveEvent(self, event):
-        # if self.root.pdf_editor_cursor == "move":
-        if True:
+        if self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "move":
             # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
             orig_cursor_position = event.lastScenePos()
             updated_cursor_position = event.scenePos()

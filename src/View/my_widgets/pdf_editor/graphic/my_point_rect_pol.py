@@ -1,13 +1,15 @@
 from PySide2 import QtWidgets, QtGui,  QtCore 
 
+import src.View.my_window.main_window as main_window
+
 class MyPointRectPol(QtWidgets.QGraphicsRectItem):
     """класс для создания точек изменения координат полегонов графики"""
 
-    def __init__(self, root: QtWidgets, el: QtWidgets, num_point: int, rectF: QtCore.QRectF):
+    def __init__(self, root: main_window.MainWindow, el: QtWidgets, num_point: int, rectF: QtCore.QRectF):
         super().__init__(rectF)
         # self.rectF = rectF
         self.num_point: int = num_point
-        self.root: QtWidgets = root
+        self.root: main_window.MainWindow = root
         self.el: QtWidgets = el
         self.delete_attribute_my_point_rect: bool = True
         self.setZValue(999999999)

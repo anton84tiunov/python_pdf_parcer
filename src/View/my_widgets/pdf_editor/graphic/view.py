@@ -1,25 +1,26 @@
 import sys
 from PySide2 import QtWidgets, QtGui,  QtCore 
 
-
+import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.scene as graphics_scene
 
 class MyGraphicsView(QtWidgets.QGraphicsView):
     """класс переопределяющий  графическую вьюху"""
 
-    def __init__(self, root, scene, **kwargs):
+    def __init__(self, root: main_window.MainWindow, scene: graphics_scene.MyGraphicsScene, **kwargs):
         super().__init__( **kwargs)
         # self.setupUi(self)
-        self.main = root
-        self.enter_event = False
+        self.root: main_window.MainWindow = root
+        self.enter_event: bool = False
         
-        self.scene = scene
+        self.scene: graphics_scene.MyGraphicsScene = scene
         self.setScene(self.scene)
         self.pen = QtGui.QPen(QtCore.Qt.green)
         self.greenBrush = QtGui.QBrush(QtCore.Qt.green)
         self.grayBrush = QtGui.QBrush(QtCore.Qt.gray)
 
-    def zoom_view(self, int_scale):
+    def zoom_view(self, int_scale: int):
+        """функция для масштабирования сцены"""
         scale_scene = 1
         if int_scale > 0:
             scale_scene *= 1.25

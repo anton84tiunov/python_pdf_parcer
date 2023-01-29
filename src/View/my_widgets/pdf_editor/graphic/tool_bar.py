@@ -1,6 +1,6 @@
 import sys, os
 from PySide2 import QtWidgets, QtGui,  QtCore 
-
+import src.View.my_window.main_window as main_window
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
 
 red_style = "background-color: rgb(255, 0, 0);"
@@ -8,8 +8,11 @@ green_style = "background-color: rgb(0, 255, 0);"
 blue_style = "background-color: rgb(0, 0, 255);"
 
 class MyToolBar(QtWidgets.QFrame):
-    def __init__(self, **kwargs):
+    def __init__(self, root: main_window.MainWindow, **kwargs):
         super().__init__( **kwargs)
+        self.root: main_window.MainWindow = root
+        self.tool_cursors: list[str] = ["arrow", "hand", "move", "pencil", "line", "bezier", "polygon", "rect", "circle", "text", "ruler"]
+        self.tool_cursor: str = ""
 
         # self.setStyleSheet(green_style)
 
@@ -24,47 +27,47 @@ class MyToolBar(QtWidgets.QFrame):
         # self.r_btn_cursor_arrow = QtWidgets.QRadioButton()
         self.r_btn_cursor_arrow = radio_buttom.MyRadioButton(self, '8666726_mouse_pointer_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_arrow)
-        self.r_btn_cursor_arrow.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_arrow))
+        self.r_btn_cursor_arrow.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_arrow, "arrow"))
         
         self.r_btn_cursor_hand = radio_buttom.MyRadioButton(self, '8664932_hand_gesture_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_hand)
-        self.r_btn_cursor_hand.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_hand))
+        self.r_btn_cursor_hand.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_hand, "hand"))
         
         self.r_btn_cursor_move = radio_buttom.MyRadioButton(self, '9035986_move_sharp_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_move)
-        self.r_btn_cursor_move.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_move))
+        self.r_btn_cursor_move.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_move, "move"))
         
         self.r_btn_cursor_pencil = radio_buttom.MyRadioButton(self, '9035966_pencil_sharp_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_pencil)
-        self.r_btn_cursor_pencil.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_pencil))
+        self.r_btn_cursor_pencil.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_pencil, "pencil"))
         
         self.r_btn_cursor_line = radio_buttom.MyRadioButton(self, '352898_linearray_lines_shape_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_line)
-        self.r_btn_cursor_line.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_line))
+        self.r_btn_cursor_line.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_line, "line"))
         
         self.r_btn_cursor_bezier = radio_buttom.MyRadioButton(self, '352897_path_shape_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_bezier)
-        self.r_btn_cursor_bezier.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_bezier))
+        self.r_btn_cursor_bezier.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_bezier, "bezier"))
         
         self.r_btn_cursor_polygon = radio_buttom.MyRadioButton(self, '352895_polygon_shape_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_polygon)
-        self.r_btn_cursor_polygon.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_polygon))
+        self.r_btn_cursor_polygon.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_polygon, "polygon"))
         
         self.r_btn_cursor_rect = radio_buttom.MyRadioButton(self, '8664870_square_shape_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_rect)
-        self.r_btn_cursor_rect.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_rect))
+        self.r_btn_cursor_rect.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_rect, "rect"))
         
         self.r_btn_cursor_circle = radio_buttom.MyRadioButton(self, '9035952_radio_button_off_sharp_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_circle)
-        self.r_btn_cursor_circle.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_circle))
+        self.r_btn_cursor_circle.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_circle, "circle"))
         
         self.r_btn_cursor_text = radio_buttom.MyRadioButton(self, '9036041_text_sharp_icon.png')
         self.v_box.addWidget(self.r_btn_cursor_text)
-        self.r_btn_cursor_text.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_text))
+        self.r_btn_cursor_text.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_text, "text"))
         
         self.r_btn_cursor_ruler= radio_buttom.MyRadioButton(self, 'student_ruler_school_brush_learning_stationery_icon_230451.png')
         self.v_box.addWidget(self.r_btn_cursor_ruler)
-        self.r_btn_cursor_ruler.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_ruler))
+        self.r_btn_cursor_ruler.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_ruler, "ruler"))
         
         self.spacer_tool_box = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.v_box.addItem(self.spacer_tool_box)
@@ -103,7 +106,7 @@ class MyToolBar(QtWidgets.QFrame):
         # self.v_box.addWidget(self.tl_box)
         # self.tl_box.setStyleSheet(red_style)
 
-    def disable_checked(self, check_btn):
+    def disable_checked(self, check_btn: radio_buttom.MyRadioButton, cursor: str):
         self.r_btn_cursor_arrow.setChecked(False)
         self.r_btn_cursor_hand.setChecked(False)
         self.r_btn_cursor_move.setChecked(False)
@@ -115,6 +118,9 @@ class MyToolBar(QtWidgets.QFrame):
         self.r_btn_cursor_circle.setChecked(False)
         self.r_btn_cursor_text.setChecked(False)
         self.r_btn_cursor_ruler.setChecked(False)
+        self.tool_cursor = cursor
+        # self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "move"
+        # self.root.tab_pdf_editor.
         check_btn.setChecked(True)
 
 

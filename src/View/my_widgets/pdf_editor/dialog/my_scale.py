@@ -1,5 +1,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
+import src.View.my_window.main_window as main_window
 
 class DialogScalePath(object):
     def setupUi(self, pdf_editor_dialog_scale):
@@ -40,10 +41,10 @@ class DialogScalePath(object):
 
 class MyDialogScalePath(QtWidgets.QDialog, DialogScalePath):
     
-    def __init__(self, root, **kwargs):
+    def __init__(self, root: main_window.MainWindow, **kwargs):
         super().__init__(**kwargs)
         self.setupUi(self)
-        self.main = root
+        self.root: main_window.MainWindow = root
         self.setStyleSheet(self.main.styleSheet())
         self.val_scale = 0
         self.btn_scale_ok.clicked.connect(self.get_value)

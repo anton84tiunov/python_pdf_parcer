@@ -1,5 +1,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
+import src.View.my_window.main_window as main_window
 
 class DialogSettingsPath(object):
     def setupUi(self, PdfEditorDialogSettingsPathItem):
@@ -324,10 +325,10 @@ class DialogSettingsPath(object):
 
 class MyDialogSettingsPath(QtWidgets.QDialog, DialogSettingsPath):
     
-    def __init__(self, root, **kwargs):
+    def __init__(self, root: main_window.MainWindow, **kwargs):
         super().__init__(**kwargs)
         self.setupUi(self)
-        self.root = root
+        self.root: main_window.MainWindow = root
 
     def go_end(self):       
         self.hide()

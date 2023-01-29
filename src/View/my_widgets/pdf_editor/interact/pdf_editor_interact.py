@@ -1,6 +1,7 @@
 import sys, re, math
 from collections import OrderedDict
 from PySide2 import QtWidgets, QtGui,  QtCore 
+import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.tab.pdf_editor_tab as pdf_editor_tab
 import src.Controller.pdf_editor.extract_el_from_pdf_controller as extract_el_from_pdf_controller
 import src.View.my_widgets.pdf_editor.graphic.my_pointer_path as my_pointer_path
@@ -25,15 +26,16 @@ class GrIt(QtWidgets.QGraphicsItem):
 class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
     """класс для dpfbvjltqcndbt c GUI "PDF EDITOR" """
 
-    def __init__(self, root):
+    def __init__(self, root: main_window.MainWindow):
         super().__init__(root)
-        self.root = root
+        self.root: main_window.MainWindow = root
         self.controller = extract_el_from_pdf_controller.ExtractElFromPdfController()
         self.pdf_path = ""
 
         self.frame_menu.btn_open_pdf.clicked.connect(self.open_pdf_to_qt)
     
     def convert_even_odd(self, even_odd: bool) -> QtCore.Qt.FillRule:
+        """функция для преобразования fitz(path.even odd) -> QtCore.Qt.FillRule"""
         if even_odd:
             return QtCore.Qt.FillRule.OddEvenFill
         else:
@@ -41,6 +43,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
 
     def convert_line_join(self, line_join: int)-> QtCore.Qt.PenJoinStyle:
+        """функция для преобразования fitz(path.line join) -> QtCore.Qt.PenJoinStyle"""
         if line_join == 0:
             return QtCore.Qt.PenJoinStyle.BevelJoin
         elif line_join == 1:
@@ -49,6 +52,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
             return QtCore.Qt.PenJoinStyle.MiterJoin
 
     def convert_line_cap(self, line_cap: int) -> QtCore.Qt.PenCapStyle:
+        """функция для преобразования fitz(path.line cap) -> QtCore.Qt.PenCapStyle"""
         if line_cap == 2:
             return QtCore.Qt.PenCapStyle.SquareCap
         elif line_cap == 1:
@@ -57,6 +61,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
             return QtCore.Qt.PenCapStyle.FlatCap
 
     def convert_dashes(self, dashes: str)-> tuple[list[float], int]:
+        """функция для преобразования fitz(path.dashes) -> dashes_pattern, dashes_offset"""
         list_str_dashes_pattern = "[]"
         str_dashes_offset = "0"
         # print(type(dashes), dashes)
@@ -100,6 +105,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         return l
 
     def rotate_decompocer(self, rot: tuple[float, float]) -> int:
+        """функция для преобразования fitz(path.rotation text) -> угловые градусы"""
         if rot == (0.0, 1.0):
             return 90
         elif rot == (0.0, -1.0):
@@ -112,6 +118,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
             return 0
 
     def open_pdf_to_qt(self):
+        """функция для отрисовки компонентов извлеченных и преобразованных из  pdf  на сцене"""
         self.pdf_path = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf', "",'Pdf(*.pdf);;All(*)' )[0]
         if self.pdf_path != "":
             self.graph_scene.clear()
