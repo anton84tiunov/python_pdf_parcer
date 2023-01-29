@@ -1,6 +1,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
-import src.View.my_window.main_window as main_window
+# import src.View.my_window.main_window as main_window
 
 
 class DialogRotatePath(object):
@@ -43,10 +43,10 @@ class DialogRotatePath(object):
 
 class MyDialogRotatePath(QtWidgets.QDialog, DialogRotatePath):
     
-    def __init__(self, root: main_window.MainWindow, **kwargs):
+    def __init__(self, root: QtWidgets, **kwargs):
         super().__init__(**kwargs)
         self.setupUi(self)
-        self.root: main_window.MainWindow = root
+        self.root: QtWidgets = root
         self.setStyleSheet(self.main.styleSheet())
         self.val_rotate = 0
         self.btn_rotate_ok.clicked.connect(self.get_value)

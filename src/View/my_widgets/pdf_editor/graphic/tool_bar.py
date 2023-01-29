@@ -1,6 +1,6 @@
 import sys, os
 from PySide2 import QtWidgets, QtGui,  QtCore 
-import src.View.my_window.main_window as main_window
+# import src.View.my_window.main_window as main_window
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
 
 red_style = "background-color: rgb(255, 0, 0);"
@@ -8,9 +8,9 @@ green_style = "background-color: rgb(0, 255, 0);"
 blue_style = "background-color: rgb(0, 0, 255);"
 
 class MyToolBar(QtWidgets.QFrame):
-    def __init__(self, root: main_window.MainWindow, **kwargs):
+    def __init__(self, root: QtWidgets, **kwargs):
         super().__init__( **kwargs)
-        self.root: main_window.MainWindow = root
+        self.root: QtWidgets = root
         self.tool_cursors: list[str] = ["arrow", "hand", "move", "pencil", "line", "bezier", "polygon", "rect", "circle", "text", "ruler"]
         self.tool_cursor: str = ""
 

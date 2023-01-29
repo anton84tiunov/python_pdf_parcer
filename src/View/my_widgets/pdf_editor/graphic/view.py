@@ -7,10 +7,10 @@ import src.View.my_widgets.pdf_editor.graphic.scene as graphics_scene
 class MyGraphicsView(QtWidgets.QGraphicsView):
     """класс переопределяющий  графическую вьюху"""
 
-    def __init__(self, root: main_window.MainWindow, scene: graphics_scene.MyGraphicsScene, **kwargs):
+    def __init__(self, root, scene: graphics_scene.MyGraphicsScene, **kwargs):
         super().__init__( **kwargs)
         # self.setupUi(self)
-        self.root: main_window.MainWindow = root
+        # self.root: main_window.MainWindow = root
         self.enter_event: bool = False
         
         self.scene: graphics_scene.MyGraphicsScene = scene

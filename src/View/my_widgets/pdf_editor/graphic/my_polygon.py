@@ -1,7 +1,7 @@
 import math
 from PySide2 import QtWidgets, QtGui,  QtCore 
 
-import src.View.my_window.main_window as main_window
+# import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.my_point_rect_pol as my_point_rect_pol
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
@@ -13,9 +13,9 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 class MyPolygon(QtWidgets.QGraphicsPolygonItem):
 
-    def __init__(self, root: main_window.MainWindow,  pol: QtGui.QPolygonF):
+    def __init__(self, root: QtWidgets,  pol: QtGui.QPolygonF):
         super().__init__(pol)
-        self.root: main_window.MainWindow = root
+        self.root: QtWidgets = root
         
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)

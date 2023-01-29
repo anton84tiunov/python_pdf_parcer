@@ -1,6 +1,6 @@
 import sys
 from PySide2 import QtWidgets, QtGui,  QtCore 
-import src.View.my_window.main_window as main_window
+# import src.View.my_window.main_window as main_window
 import src.View.my_widgets.general.tab.base as tab_base
 import src.View.my_widgets.pdf_editor.graphic.scene as scene
 import src.View.my_widgets.pdf_editor.graphic.view as view
@@ -14,9 +14,9 @@ blue_style = "background-color: rgb(0, 0, 255);"
 class TabPdfEditor(tab_base.TabBase):
     """класс для создания вкладки "PDF EDITOR" """
 
-    def __init__(self, root: main_window.MainWindow):
+    def __init__(self, root: QtWidgets):
         super().__init__("pdf_editor")
-        self.root: main_window.MainWindow = root
+        self.root: QtWidgets = root
 
         self.h_box_lay_right_bottom = QtWidgets.QHBoxLayout(self.frame_right_bottom_panel)
         self.h_box_lay_right_bottom.setContentsMargins(0, 0, 0, 0)
@@ -41,8 +41,8 @@ class TabPdfEditor(tab_base.TabBase):
         self.h_box_lay_right_top_right.setContentsMargins(0, 0, 0, 0)
 
         
-        self.graph_scene = scene.MyGraphicsScene()
-        self.graph_view = view.MyGraphicsView(self.rect, self.graph_scene)
+        self.graph_scene = scene.MyGraphicsScene(self.root)
+        self.graph_view = view.MyGraphicsView(self.root, self.graph_scene)
         # self.graph_view.setScene(self.graph_scene)
         self.h_box_lay_right_top_right.addWidget(self.graph_view)
 

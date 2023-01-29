@@ -1,7 +1,7 @@
 import sys, re, math
 from collections import OrderedDict
 from PySide2 import QtWidgets, QtGui,  QtCore 
-import src.View.my_window.main_window as main_window
+# import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.tab.pdf_editor_tab as pdf_editor_tab
 import src.Controller.pdf_editor.extract_el_from_pdf_controller as extract_el_from_pdf_controller
 import src.View.my_widgets.pdf_editor.graphic.my_pointer_path as my_pointer_path
@@ -26,9 +26,9 @@ class GrIt(QtWidgets.QGraphicsItem):
 class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
     """класс для dpfbvjltqcndbt c GUI "PDF EDITOR" """
 
-    def __init__(self, root: main_window.MainWindow):
+    def __init__(self, root: QtWidgets):
         super().__init__(root)
-        self.root: main_window.MainWindow = root
+        self.root: QtWidgets = root
         self.controller = extract_el_from_pdf_controller.ExtractElFromPdfController()
         self.pdf_path = ""
 
