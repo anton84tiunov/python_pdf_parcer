@@ -12,7 +12,8 @@ pip install shapely
 pip install  pymupdf
 
 pip install colormap
-
+pip install loguru
+pip freeze > requirements.txt
 
 
 
