@@ -39,10 +39,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tab_pdf_el = pdf_el_tab.TabPdfEl()
         self.tabWidget.addTab(self.tab_pdf_el, "pdf_el")
         self.setCentralWidget(self.centralwidget)
-        # self.tab_pdf_editor.graph_scene
+        
 
         # self.tab_pdf_editor.graph_scene.addRect(150.0, 150.0, 100.0, 100.0)
-
+        # self.tab_pdf_editor.graph_view.setCursor
 
 
 

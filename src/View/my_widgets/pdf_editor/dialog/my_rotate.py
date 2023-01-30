@@ -47,7 +47,7 @@ class MyDialogRotatePath(QtWidgets.QDialog, DialogRotatePath):
         super().__init__(**kwargs)
         self.setupUi(self)
         self.root: QtWidgets = root
-        self.setStyleSheet(self.main.styleSheet())
+        self.setStyleSheet(self.root.styleSheet())
         self.val_rotate = 0
         self.btn_rotate_ok.clicked.connect(self.get_value)
 

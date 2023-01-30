@@ -1,7 +1,17 @@
 import sys, os
 from PySide2 import QtWidgets, QtGui,  QtCore 
 # import src.View.my_window.main_window as main_window
+import src.View.my_widgets.pdf_editor.graphic.my_pointer_path as my_pointer_path
+import src.View.my_widgets.pdf_editor.graphic.my_polygon as my_polygon
+import src.View.my_widgets.pdf_editor.graphic.my_rectangle as my_rectangle
+import src.View.my_widgets.pdf_editor.graphic.my_image as my_image
+import src.View.my_widgets.pdf_editor.text.my_text_item as my_text_item
+
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
+import my_os_path as my_os_path
+
+icon_dir = my_os_path.icon
+icon_svg_dir = my_os_path.icon_svg
 
 red_style = "background-color: rgb(255, 0, 0);"
 green_style = "background-color: rgb(0, 255, 0);"
@@ -107,6 +117,7 @@ class MyToolBar(QtWidgets.QFrame):
         # self.tl_box.setStyleSheet(red_style)
 
     def disable_checked(self, check_btn: radio_buttom.MyRadioButton, cursor: str):
+        size_cursor = QtCore.QSize(50, 50)
         self.r_btn_cursor_arrow.setChecked(False)
         self.r_btn_cursor_hand.setChecked(False)
         self.r_btn_cursor_move.setChecked(False)
@@ -119,10 +130,96 @@ class MyToolBar(QtWidgets.QFrame):
         self.r_btn_cursor_text.setChecked(False)
         self.r_btn_cursor_ruler.setChecked(False)
         self.tool_cursor = cursor
-        # self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "move"
-        # self.root.tab_pdf_editor.
         check_btn.setChecked(True)
+        
+        if cursor == "move":
+            # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
+            self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+            for item in self.root.tab_pdf_editor.graph_scene.items():
+                # item.setCursor(item.all_size_cursor)
+                item.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
+                # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
+                # if isinstance(item, my_pointer_path.MyPainterPath):
+                #     pass
+                # elif isinstance(item, my_polygon.MyPolygon):
+                #     pass
+                # elif isinstance(item, my_rectangle.MyRactangle):
+                #     pass
+                # elif isinstance(item, my_text_item.MyTextItem):
+                #     pass
+                # elif isinstance(item, my_image.MyImage):
+                #     pass
+                # item.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
+        elif cursor in ["arrow", "hand"]:
+            # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
+            self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+            for item in self.root.tab_pdf_editor.graph_scene.items():
+                # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
+                item.setCursor(item.current_cursor)
 
+        else :
+            # self.root.tab_pdf_editor.graph_scene.blockSignals(True)
+            for item in self.root.tab_pdf_editor.graph_scene.items():
+                
+                # item.setCursor(item.current_cursor)
+                item.unsetCursor()
+
+            # self.cursor_pix = QtGui.QPixmap(icon_dir + "298869_sign_out_icon.png")
+            # self.cursor_scaled_pix = self.cursor_pix.scaled(QtCore.QSize(20, 20), QtCore.Qt.KeepAspectRatio)
+            # self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, -1, -1)
+            # self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+
+            if cursor == "pencil":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_pencil.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "line":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_line.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "bezier":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_curve.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "polygon":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_polygon.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "rect":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_rect.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "circle":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_circle.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "text":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_text.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+            elif cursor == "ruler":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_ruller.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+     
+        # ["arrow", "hand", "move", "pencil", "line", "bezier", "polygon", "rect", "circle", "text", "ruler"]
 
 
 

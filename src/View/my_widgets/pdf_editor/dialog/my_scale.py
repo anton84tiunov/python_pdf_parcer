@@ -45,7 +45,7 @@ class MyDialogScalePath(QtWidgets.QDialog, DialogScalePath):
         super().__init__(**kwargs)
         self.setupUi(self)
         self.root: QtWidgets = root
-        self.setStyleSheet(self.main.styleSheet())
+        self.setStyleSheet(self.root.styleSheet())
         self.val_scale = 0
         self.btn_scale_ok.clicked.connect(self.get_value)
 
