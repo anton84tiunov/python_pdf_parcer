@@ -14,7 +14,10 @@ icon_svg_dir = my_os_path.icon_svg
 
 
 class MyTextItem(QtWidgets.QGraphicsTextItem):
-
+    """Класс переопределяющий QtWidgets.QGraphicsTextItem
+        В классе добавленны функции для взаимодействия пользователя с 
+        отрисованными экземплярами класса на графической сцене
+    """
     def __init__(self, root: QtWidgets,  text: str):
         super().__init__( text)
         self.root = root

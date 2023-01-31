@@ -172,10 +172,10 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
                         current_path += 1
                     # p_item = None
-                    if draw.items.draw == "path":
+                    if draw.items.draw == "pol":
                         item = my_polygon.MyPolygon(self.root, path.toFillPolygon())
                         self.graph_scene.addItem(item)
-                    if draw.items.draw == "pol":
+                    if draw.items.draw == "path":
                         item = my_pointer_path.MyPainterPath(self.root, path)
                         self.graph_scene.addItem(item)
                     # if p_item is not None:

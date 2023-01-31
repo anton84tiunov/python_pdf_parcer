@@ -16,7 +16,10 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 
 class MyRactangle(QtWidgets.QGraphicsRectItem):
-
+    """Класс переопределяющий QtWidgets.QGraphicsRectItem
+        Вклассе добавленны функции для взаимодействия пользователя с 
+        отрисованными экземплярами класса на графической сцене
+    """
     def __init__(self, root: QtWidgets,  rect: QtCore.QRectF):
         super().__init__( rect)
         self.root: QtWidgets = root

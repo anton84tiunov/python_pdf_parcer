@@ -18,6 +18,9 @@ green_style = "background-color: rgb(0, 255, 0);"
 blue_style = "background-color: rgb(0, 0, 255);"
 
 class MyToolBar(QtWidgets.QFrame):
+    """класс для выбора способа взаимодействия с элементами 
+        графической сцены и ей самой."""
+        
     def __init__(self, root: QtWidgets, **kwargs):
         super().__init__( **kwargs)
         self.root: QtWidgets = root

@@ -16,7 +16,10 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 
 class MyPainterPath(QtWidgets.QGraphicsPathItem):
-
+    """Класс переопределяющий QtWidgets.QGraphicsPathItem
+        Вклассе добавленны функции для взаимодействия пользователя с 
+        отрисованными экземплярами класса на графической сцене
+    """
     def __init__(self, root: QtWidgets,  path: QtGui.QPainterPath):
         super().__init__( path)
         self.root: QtWidgets = root

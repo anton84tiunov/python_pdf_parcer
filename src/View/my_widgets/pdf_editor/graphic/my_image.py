@@ -16,7 +16,10 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 
 class MyImage(QtWidgets.QGraphicsPixmapItem):
-
+    """Класс переопределяющий QtWidgets.QGraphicsPixmapItem
+        В классе добавленны функции для взаимодействия пользователя с 
+        отрисованными экземплярами класса на графической сцене
+    """
     def __init__(self, root: QtWidgets,  pix: QtGui.QPixmap):
         super().__init__( pix)
         self.root: QtWidgets = root

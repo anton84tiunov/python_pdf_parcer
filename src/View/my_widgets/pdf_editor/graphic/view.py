@@ -5,7 +5,10 @@ import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.scene as graphics_scene
 
 class MyGraphicsView(QtWidgets.QGraphicsView):
-    """класс переопределяющий  графическую вьюху"""
+    """класс переопределяющий  графическую вьюху
+        В классе реализован механизм масштабирования графической сцены 
+        относительно окна представления.
+    """
 
     def __init__(self, root, scene: graphics_scene.MyGraphicsScene, **kwargs):
         super().__init__( **kwargs)

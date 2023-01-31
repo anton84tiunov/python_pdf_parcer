@@ -46,56 +46,92 @@ class ConvertPdfElToModel():
         draw_model.stroke_opacity = draw["stroke_opacity"]
         draw_model.fill_opacity = draw["fill_opacity"]
         
-        if draw["items"][0][0] == "re" and len(draw["items"]) == 1:
-            draw_model.items.draw = "re"
-            p0 = (draw["items"][0][1][0], draw["items"][0][1][1])
-            p1 = (draw["items"][0][1][2], draw["items"][0][1][1])
-            p2 = (draw["items"][0][1][2], draw["items"][0][1][3])
-            p3 = (draw["items"][0][1][0], draw["items"][0][1][3])
-            if draw["items"][0][2] > 0:
-                draw_model.items.cords.append((p0, p1, p2, p3))
-            elif draw["items"][0][2] < 0:
-                draw_model.items.cords.append((p0, p3, p2, p1))
-        elif draw["items"][0][0] == "qu" and len(draw["items"]) == 1:
-            draw_model.items.draw = "qu"
-            p0 = (draw["items"][0][1][0][0], draw["items"][0][1][1][1])
-            p1 = (draw["items"][0][1][1][0], draw["items"][0][1][1][1])
-            p2 = (draw["items"][0][1][2][0], draw["items"][0][1][2][1])
-            p3 = (draw["items"][0][1][3][0], draw["items"][0][1][3][1])
-            draw_model.items.cords.append((p0, p1, p2, p3))
-        else:
-            draw_model.items.draw = "pol"
-            if draw["closePath"]:
-                draw_model.items.draw = "path"
-            for dr in draw["items"]:
-                if dr[0] == "re":
-                    p0 = (dr[1][0], dr[1][1])
-                    p1 = (dr[1][2], dr[1][1])
-                    p2 = (dr[1][2], dr[1][3])
-                    p3 = (dr[1][0], dr[1][3])
-                    if dr[2] > 0:
-                        draw_model.items.cords.append(("re", (p0, p1, p2, p3)))
-                    elif dr[2] < 0:
-                        draw_model.items.cords.append(("re", (p0, p3, p2, p1)))
-                if dr[0] == "qu":
-                    qu = True
-                    p0 = (dr[1][0][0], dr[1][0][1])
-                    p1 = (dr[1][1][0], dr[1][1][1])
-                    p2 = (dr[1][2][0], dr[1][2][1])
-                    p3 = (dr[1][3][0], dr[1][3][1])
-                    draw_model.items.cords.append(("qu", (p0, p1, p2, p3, p0)))
-                if dr[0] == "l":
-                    l = True
-                    p0 = (dr[1][0], dr[1][1])
-                    p1 = (dr[2][0], dr[2][1])
-                    draw_model.items.cords.append(("l", (p0, p1)))
-                if dr[0] == "c":
-                    c = True
-                    p0 = (dr[1][0], dr[1][1])
-                    p1 = (dr[2][0], dr[2][1])
-                    p2 = (dr[3][0], dr[3][1])
-                    p3 = (dr[4][0], dr[4][1])
-                    draw_model.items.cords.append(("c", (p0, p1, p2, p3)))
+        # if draw["items"][0][0] == "re" and len(draw["items"]) == 1:
+        #     draw_model.items.draw = "re"
+        #     p0 = (draw["items"][0][1][0], draw["items"][0][1][1])
+        #     p1 = (draw["items"][0][1][2], draw["items"][0][1][1])
+        #     p2 = (draw["items"][0][1][2], draw["items"][0][1][3])
+        #     p3 = (draw["items"][0][1][0], draw["items"][0][1][3])
+        #     if draw["items"][0][2] > 0:
+        #         draw_model.items.cords.append((p0, p1, p2, p3))
+        #     elif draw["items"][0][2] < 0:
+        #         draw_model.items.cords.append((p0, p3, p2, p1))
+        # elif draw["items"][0][0] == "qu" and len(draw["items"]) == 1:
+        #     draw_model.items.draw = "qu"
+        #     p0 = (draw["items"][0][1][0][0], draw["items"][0][1][1][1])
+        #     p1 = (draw["items"][0][1][1][0], draw["items"][0][1][1][1])
+        #     p2 = (draw["items"][0][1][2][0], draw["items"][0][1][2][1])
+        #     p3 = (draw["items"][0][1][3][0], draw["items"][0][1][3][1])
+        #     draw_model.items.cords.append((p0, p1, p2, p3))
+        # else:
+        draw_start = 0
+        draw_end = len(draw["items"]) - 1
+        # draw_current = 0
+        point_start = [0, 0]
+        point_end = [0, 0]
+        #     # draw_model.items.draw = "pol"
+        #     # if draw["closePath"]:
+        #     #     draw_model.items.draw = "path"
+        for draw_current, dr in enumerate(draw["items"], start = 0):
+            if dr[0] == "re":
+                p0 = (dr[1][0], dr[1][1])
+                p1 = (dr[1][2], dr[1][1])
+                p2 = (dr[1][2], dr[1][3])
+                p3 = (dr[1][0], dr[1][3])
+                if dr[2] > 0:
+                    if draw_current == draw_start:
+                        point_start = p0
+                    elif draw_current == draw_end:
+                        point_end = p3
+                    draw_model.items.cords.append(("re", (p0, p1, p2, p3)))
+                elif dr[2] < 0:
+                    if draw_current == draw_start:
+                        point_start = p0
+                    elif draw_current == draw_end:
+                        point_end = p1
+                    draw_model.items.cords.append(("re", (p0, p3, p2, p1)))
+            if dr[0] == "qu":
+                qu = True
+                p0 = (dr[1][0][0], dr[1][0][1])
+                p1 = (dr[1][1][0], dr[1][1][1])
+                p2 = (dr[1][2][0], dr[1][2][1])
+                p3 = (dr[1][3][0], dr[1][3][1])
+                if draw_current == draw_start:
+                    point_start = p0
+                elif draw_current == draw_end:
+                    point_end = p3
+                draw_model.items.cords.append(("qu", (p0, p1, p2, p3, p0)))
+            if dr[0] == "l":
+                l = True
+                p0 = (dr[1][0], dr[1][1])
+                p1 = (dr[2][0], dr[2][1])
+                if draw_current == draw_start:
+                    point_start = p0
+                elif draw_current == draw_end:
+                    point_end = p1
+                draw_model.items.cords.append(("l", (p0, p1)))
+            if dr[0] == "c":
+                c = True
+                p0 = (dr[1][0], dr[1][1])
+                p1 = (dr[2][0], dr[2][1])
+                p2 = (dr[3][0], dr[3][1])
+                p3 = (dr[4][0], dr[4][1])
+                if draw_current == draw_start:
+                    point_start = p0
+                elif draw_current == draw_end:
+                    point_end = p3
+                draw_model.items.cords.append(("c", (p0, p1, p2, p3)))
+            
+            draw_current += 1
+
+        draw_model.items.draw = "path"
+            # print(point_start, point_end)
+            # if point_start == point_end or draw["closePath"]:
+            #     draw_model.items.draw = "pol"
+            # else:
+            #     for iii in draw["items"]:
+            #         print(iii)
+     
 
         return draw_model
 

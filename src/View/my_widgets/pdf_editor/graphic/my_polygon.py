@@ -16,7 +16,10 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 
 class MyPolygon(QtWidgets.QGraphicsPolygonItem):
-
+    """Класс переопределяющий QtWidgets.QGraphicsPolygonItem
+        Вклассе добавленны функции для взаимодействия пользователя с 
+        отрисованными экземплярами класса на графической сцене
+    """
     def __init__(self, root: QtWidgets,  pol: QtGui.QPolygonF):
         super().__init__(pol)
         self.root: QtWidgets = root
