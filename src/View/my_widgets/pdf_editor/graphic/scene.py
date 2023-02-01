@@ -2,11 +2,11 @@ import sys
 from PySide2 import QtWidgets, QtGui,  QtCore 
 
 import src.View.my_window.main_window as main_window
-import src.View.my_widgets.pdf_editor.graphic.my_pointer_path as my_pointer_path
-import src.View.my_widgets.pdf_editor.graphic.my_polygon as my_polygon
-import src.View.my_widgets.pdf_editor.graphic.my_rectangle as my_rectangle
-import src.View.my_widgets.pdf_editor.graphic.my_image as my_image
-import src.View.my_widgets.pdf_editor.text.my_text_item as my_text_item
+import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_pointer_path as my_pointer_path
+import src.View.my_widgets.pdf_editor.graphic.polygon.my_polygon as my_polygon
+import src.View.my_widgets.pdf_editor.graphic.rectangle.my_rectangle as my_rectangle
+import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
+import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 
 # import my_os_path as my_os_path
 
@@ -40,7 +40,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.path_line_move_to: QtCore.QPointF = QtCore.QPointF(0.0, 0.0)
         self.path_line_cubic_to: list[QtCore.QPointF] = []
         self.path_line_num: int = 0
-
+        self.pointer_path = QtGui.QPainterPath()
+        self.path_demo_item = QtWidgets.QGraphicsPathItem(self.pointer_path)
+        self.addItem(self.path_demo_item)
         # pointer_path = my_pointer_path.MyPainterPath(self.root, path)
         # переменные для отрисовки полигонов
         self.pol = QtGui.QPolygonF()
@@ -117,9 +119,12 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 if not self.path_line_is_move_to:
                     # self.path_curve_move_to = updated_cursor_position
                     self.path.moveTo(updated_cursor_position)
+                    self.pointer_path.moveTo(updated_cursor_position)
                     self.path_line_is_move_to = True
                 else:
                     self.path.lineTo(updated_cursor_position)
+                    self.pointer_path.lineTo(updated_cursor_position)
+                    self.path_demo_item.setPath(self.pointer_path)
 
             elif cursor == "bezier":
                 # rext_item = my_rectangle.MyRactangle(self.root, QtCore.QRectF(updated_cursor_position.x(), updated_cursor_position.y(), 10.0, 10.0))

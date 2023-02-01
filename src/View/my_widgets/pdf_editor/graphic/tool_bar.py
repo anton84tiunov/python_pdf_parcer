@@ -1,11 +1,11 @@
 import sys, os
 from PySide2 import QtWidgets, QtGui,  QtCore 
 # import src.View.my_window.main_window as main_window
-import src.View.my_widgets.pdf_editor.graphic.my_pointer_path as my_pointer_path
-import src.View.my_widgets.pdf_editor.graphic.my_polygon as my_polygon
-import src.View.my_widgets.pdf_editor.graphic.my_rectangle as my_rectangle
-import src.View.my_widgets.pdf_editor.graphic.my_image as my_image
-import src.View.my_widgets.pdf_editor.text.my_text_item as my_text_item
+import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_pointer_path as my_pointer_path
+import src.View.my_widgets.pdf_editor.graphic.polygon.my_polygon as my_polygon
+import src.View.my_widgets.pdf_editor.graphic.rectangle.my_rectangle as my_rectangle
+import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
+import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
 import my_os_path as my_os_path

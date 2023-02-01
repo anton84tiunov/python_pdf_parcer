@@ -6,7 +6,7 @@ icon_dir = my_os_path.icon
 icon_svg_dir = my_os_path.icon_svg
 
 # import src.View.my_window.main_window as main_window
-import src.View.my_widgets.pdf_editor.graphic.my_point_rect_image as my_point_rect_image
+import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_point_rect_path as my_point_rect_path
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
@@ -15,31 +15,30 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 
 
-class MyImage(QtWidgets.QGraphicsPixmapItem):
-    """Класс переопределяющий QtWidgets.QGraphicsPixmapItem
-        В классе добавленны функции для взаимодействия пользователя с 
+class MyPainterPath(QtWidgets.QGraphicsPathItem):
+    """Класс переопределяющий QtWidgets.QGraphicsPathItem
+        Вклассе добавленны функции для взаимодействия пользователя с 
         отрисованными экземплярами класса на графической сцене
     """
-    def __init__(self, root: QtWidgets,  pix: QtGui.QPixmap):
-        super().__init__( pix)
+    def __init__(self, root: QtWidgets,  path: QtGui.QPainterPath):
+        super().__init__( path)
         self.root: QtWidgets = root
-        self.list_point_rect = ["top", "bottom", "left", "right"]
         
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
-
         # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
         size_cursor = QtCore.QSize(32, 32)
-        self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_image_itemt.png")
+        self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_pointer_payh_itemt.png")
         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
         self.setCursor(self.current_cursor)
 
         all_size_size_cursor = QtCore.QSize(64, 128)
-        self.all_size_cursor_pix = QtGui.QPixmap(icon_svg_dir + "all_size_image_item.png")
+        self.all_size_cursor_pix = QtGui.QPixmap(icon_svg_dir + "all_size_pointer_path_itemt.png")
         self.all_size_cursor_scaled_pix = self.all_size_cursor_pix.scaled(all_size_size_cursor, QtCore.Qt.KeepAspectRatio)
         self.all_size_cursor = QtGui.QCursor(self.all_size_cursor_scaled_pix, -1, -1)
+
 
         self.setAcceptHoverEvents(True)
 
@@ -66,39 +65,23 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         # if self.root.pdf_editor_cursor == "hand":
         if True:
             # print(self.root.pdf_editor_cursor)
-            p = self.boundingRect()
-            x = p.x() 
-            y = p.y()
-            w = p.width()
-            h = p.height()
-            for ii in self.list_point_rect:
-                if ii == "top":
-                    x0 = x + w/2
-                    y0 = y
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_top = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_top)
-                if ii == "bottom":
-                    x0 = x + w/2
-                    y0 = y + h
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_bottom = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_bottom)
-                if ii == "left":
-                    x0 = x
-                    y0 = y + h/2
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_left = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_left)
-                if ii == "right":
-                    x0 = x + w
-                    y0 = y + h/2
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_right = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_right)
-
-                
-     
+            p = self.path()
+            # g = QtWidgets.QGraphicsItemGroup()
+            # g = []
+            # self.setGroup
+            for ii in range(self.path().elementCount()):
+                x = p.elementAt(ii).x
+                y = p.elementAt(ii).y
+                it = QtCore.QRectF(x - 5, y - 5, 10, 10)
+                # g.append(it)
+                # rect_it = QtWidgets.QGraphicsRectItem()
+                it_r = my_point_rect_path.MyPointRectPath(self.root, self, ii, it)
+                self.root.tab_pdf_editor.graph_scene.addItem(it_r)
+                # p.addRect(it)
+                # self.ch group().childItems
+            # self.root.pdf_editor_scene.createItemGroup(g)
+            # self.setGroup(g)
+            # self.setPath(p)
 
     def contextMenuEvent(self, event):
         # event.scenePos
@@ -129,7 +112,7 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
+            settings =  my_dialog_settings_path.NyDialogSettingsPath(self.root)
             settings.exec()
 
         elif selected_action == action_rotate:
@@ -142,6 +125,12 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
             scl =  my_scale.MyDialogScalePath(self.root)
             if scl.exec_():
                 self.scale_centr(scl.val_scale)
+
+        elif selected_action == action_flip_vertically:
+            self.flip_vertically_centr()
+
+        elif selected_action == action_flip_horizontally:
+            self.flip_horizontally_centr()
 
         elif selected_action == action_cut:
             pass
@@ -166,6 +155,7 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
 
 
     def mouseMoveEvent(self, event):
+        # print(self.root.tab_pdf_editor.graph_tool_bar.tool_cursor)
         if self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "move":
             # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
             orig_cursor_position = event.lastScenePos()
@@ -173,23 +163,13 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
 
             dev_x = updated_cursor_position.x() - orig_cursor_position.x()
             dev_y = updated_cursor_position.y() - orig_cursor_position.y()
-            p = self.pos()
-            x = p.x() + dev_x
-            y = p.y() + dev_y
-            # w = p.width()
-            # h = p.height()
-            # p.setX(x)
-            # p.setY(y)
-            # p.setWidth(w)
-            # p.setHeight(h)
-            self.setPos(x, y)
-            # self.setW
-            # for ii in range(self.path().elementCount()):
-            #     x = p.elementAt(ii).x
-            #     y = p.elementAt(ii).y
-            #     # print(x, y)
-            #     p.setElementPositionAt(ii, x + dev_x, y + dev_y)
-            # self.setPath(p)
+            p = self.path()
+            for ii in range(self.path().elementCount()):
+                x = p.elementAt(ii).x
+                y = p.elementAt(ii).y
+                # print(x, y)
+                p.setElementPositionAt(ii, x + dev_x, y + dev_y)
+            self.setPath(p)
 
     def mouseReleaseEvent(self, event):
         pass
@@ -236,4 +216,22 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
             p.setElementPositionAt(ii, x_centr - dev_x, y_centr - dev_y)
         self.setPath(p)
 
- 
+    def flip_vertically_centr(self):
+        x_centr, y_centr = self.get_centr_points()
+        p = self.path()
+        for ii in range(p.elementCount()):
+            x = p.elementAt(ii).x
+            y = p.elementAt(ii).y
+            dev_y = y_centr - y
+            p.setElementPositionAt(ii, x, y_centr + dev_y)
+        self.setPath(p)
+
+    def flip_horizontally_centr(self):
+        x_centr, y_centr = self.get_centr_points()
+        p = self.path()
+        for ii in range(p.elementCount()):
+            x = p.elementAt(ii).x
+            y = p.elementAt(ii).y
+            dev_x = x_centr - x
+            p.setElementPositionAt(ii, x_centr + dev_x, y)
+        self.setPath(p)
