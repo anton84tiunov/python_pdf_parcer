@@ -7,7 +7,8 @@ import src.View.my_widgets.pdf_editor.graphic.polygon.my_polygon as my_polygon
 import src.View.my_widgets.pdf_editor.graphic.rectangle.my_rectangle as my_rectangle
 import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
-
+import src.View.my_widgets.pdf_editor.paint.pointer_path.my_demo_pointer_path as my_demo_pointer_path
+import src.View.my_widgets.pdf_editor.paint.pointer_path.my_point_ellipce_path as my_point_ellipce_path
 # import my_os_path as my_os_path
 
 # icon_dir = my_os_path.icon
@@ -41,8 +42,8 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.path_line_cubic_to: list[QtCore.QPointF] = []
         self.path_line_num: int = 0
         self.pointer_path = QtGui.QPainterPath()
-        self.path_demo_item = QtWidgets.QGraphicsPathItem(self.pointer_path)
-        self.addItem(self.path_demo_item)
+        self.path_demo_item = my_demo_pointer_path.MyDemoPainterPath(self.pointer_path)
+        # self.addItem(self.path_demo_item)
         # pointer_path = my_pointer_path.MyPainterPath(self.root, path)
         # переменные для отрисовки полигонов
         self.pol = QtGui.QPolygonF()
@@ -117,14 +118,23 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 ...
             elif cursor == "line":
                 if not self.path_line_is_move_to:
+                    self.pointer_path.clear()
                     # self.path_curve_move_to = updated_cursor_position
                     self.path.moveTo(updated_cursor_position)
                     self.pointer_path.moveTo(updated_cursor_position)
+                    item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
+                    self.addItem(item_ellipse_point)
                     self.path_line_is_move_to = True
+                    self.path_demo_item.setPath(self.pointer_path)
+                    self.addItem(self.path_demo_item)
                 else:
+                    self.removeItem(self.path_demo_item)
                     self.path.lineTo(updated_cursor_position)
                     self.pointer_path.lineTo(updated_cursor_position)
                     self.path_demo_item.setPath(self.pointer_path)
+                    self.addItem(self.path_demo_item)
+                    item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
+                    self.addItem(item_ellipse_point)
 
             elif cursor == "bezier":
                 # rext_item = my_rectangle.MyRactangle(self.root, QtCore.QRectF(updated_cursor_position.x(), updated_cursor_position.y(), 10.0, 10.0))
@@ -175,9 +185,15 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             elif cursor == "line":
                 path_item = my_pointer_path.MyPainterPath(self.root, self.path)
                 path_item.unsetCursor()
+                self.removeItem(self.path_demo_item)
                 self.addItem(path_item)
                 self.path.clear()
+                self.pointer_path.clear()
                 self.path_line_is_move_to = False
+                items = self.root.tab_pdf_editor.graph_scene.items()
+                for item in items:
+                    if hasattr(item, "delete_attribute_my_point_ellipce"):
+                        self.removeItem(item)
             elif cursor == "bezier":
                 # self.path.closeSubpath()
                 # if len(self.path_curve_cubic_to) == 3:
