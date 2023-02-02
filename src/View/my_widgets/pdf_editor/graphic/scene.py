@@ -9,6 +9,8 @@ import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 import src.View.my_widgets.pdf_editor.paint.pointer_path.my_demo_pointer_path as my_demo_pointer_path
 import src.View.my_widgets.pdf_editor.paint.pointer_path.my_point_ellipce_path as my_point_ellipce_path
+import src.View.my_widgets.pdf_editor.paint.polygon.my_demo_polygon as my_demo_polygon
+import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipce_pol as my_point_ellipce_pol
 # import my_os_path as my_os_path
 
 # icon_dir = my_os_path.icon
@@ -46,7 +48,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         # self.addItem(self.path_demo_item)
         # pointer_path = my_pointer_path.MyPainterPath(self.root, path)
         # переменные для отрисовки полигонов
+        self.pol_demo_item_is_append_to_scene: bool = False
         self.pol = QtGui.QPolygonF()
+        self.pol_demo_item = my_demo_polygon.MyDemoPolygon(self.pol)
         # polygon = my_polygon.MyPolygon(self.root, pol)
         # переменные для отрисовки прямоугольников
         self.rect = QtCore.QRectF()
@@ -117,17 +121,20 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             elif cursor == "pencil":
                 ...
             elif cursor == "line":
+                self.path_curve_cubic_to.clear()
+                self.path_curve_num = 0
                 if not self.path_line_is_move_to:
                     self.pointer_path.clear()
-                    # self.path_curve_move_to = updated_cursor_position
                     self.path.moveTo(updated_cursor_position)
                     self.pointer_path.moveTo(updated_cursor_position)
                     item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
                     self.addItem(item_ellipse_point)
                     self.path_line_is_move_to = True
+                    self.path_curve_is_move_to = True
                     self.path_demo_item.setPath(self.pointer_path)
                     self.addItem(self.path_demo_item)
                 else:
+                    # self.collidingItems
                     self.removeItem(self.path_demo_item)
                     self.path.lineTo(updated_cursor_position)
                     self.pointer_path.lineTo(updated_cursor_position)
@@ -137,33 +144,52 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                     self.addItem(item_ellipse_point)
 
             elif cursor == "bezier":
-                # rext_item = my_rectangle.MyRactangle(self.root, QtCore.QRectF(updated_cursor_position.x(), updated_cursor_position.y(), 10.0, 10.0))
-                # # rext_item.unsetCursor()
-                # self.addItem(rext_item)
+
                 if not self.path_curve_is_move_to:
-                    # self.path_curve_move_to = updated_cursor_position
+                    self.pointer_path.clear()        
                     self.path.moveTo(updated_cursor_position)
+                    self.pointer_path.moveTo(updated_cursor_position)
+                    item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
+                    self.addItem(item_ellipse_point)
                     self.path_curve_is_move_to = True
+                    self.path_line_is_move_to = True
+                    self.path_demo_item.setPath(self.pointer_path)
+                    self.addItem(self.path_demo_item)
                 else:
 
                     if self.path_curve_num == 0:
                         self.path_curve_cubic_to.insert(0, updated_cursor_position)
+                        item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
+                        self.addItem(item_ellipse_point)
                         self.path_curve_num = 1
                     elif self.path_curve_num == 1:
                         self.path_curve_cubic_to.insert(1, updated_cursor_position)
+                        item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
+                        self.addItem(item_ellipse_point)
                         self.path_curve_num = 2
                     elif self.path_curve_num == 2:
                         self.path_curve_cubic_to.insert(2, updated_cursor_position)
-                        # self.path.moveTo(self.path_curve_move_to)
-                        print(len(self.path_curve_cubic_to))
-                        # if len(self.path_curve_cubic_to) == 3:
-                        self.path.cubicTo(*self.path_curve_cubic_to)
+                        self.removeItem(self.path_demo_item)
+                        if len(self.path_curve_cubic_to) == 3:
+                            self.path.cubicTo(*self.path_curve_cubic_to)
+                            self.pointer_path.cubicTo(*self.path_curve_cubic_to)
+                            item_ellipse_point = my_point_ellipce_path.MyPointEllipcePath(updated_cursor_position)
+                            self.addItem(item_ellipse_point)
+                            self.path_demo_item.setPath(self.pointer_path)
+                            self.addItem(self.path_demo_item)
                         self.path_curve_cubic_to.clear()
-                        # self.path_curve_move_to = updated_cursor_position
                         self.path_curve_num = 0
 
             elif cursor == "polygon":
                 self.pol.append(updated_cursor_position)
+                item_ellipse_point = my_point_ellipce_pol.MyPointEllipcePol(updated_cursor_position)
+                self.addItem(item_ellipse_point)
+                if self.pol_demo_item_is_append_to_scene:
+                    self.removeItem(self.pol_demo_item)
+                self.pol_demo_item.setPolygon(self.pol)
+                self.addItem(self.pol_demo_item)
+                self.pol_demo_item_is_append_to_scene = True
+
             elif cursor == "rect":
                 # self.rect.setTopLeft(updated_cursor_position)
                 self.rect_p0 = updated_cursor_position
@@ -190,25 +216,38 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 self.path.clear()
                 self.pointer_path.clear()
                 self.path_line_is_move_to = False
+                self.path_line_is_move_to = False
+                self.path_curve_cubic_to.clear()
                 items = self.root.tab_pdf_editor.graph_scene.items()
                 for item in items:
                     if hasattr(item, "delete_attribute_my_point_ellipce"):
                         self.removeItem(item)
             elif cursor == "bezier":
-                # self.path.closeSubpath()
-                # if len(self.path_curve_cubic_to) == 3:
                 path_item = my_pointer_path.MyPainterPath(self.root, self.path)
                 path_item.unsetCursor()
+                self.removeItem(self.path_demo_item)
                 self.addItem(path_item)
                 self.path.clear()
                 self.path_curve_cubic_to.clear()
-                self.path_curve_is_move_to = False
-                self.path_curve_num = 2
+                self.path_line_is_move_to = False
+                self.path_line_is_move_to = False
+                self.path_curve_num = 0
+                self.pointer_path.clear()
+                items = self.root.tab_pdf_editor.graph_scene.items()
+                for item in items:
+                    if hasattr(item, "delete_attribute_my_point_ellipce"):
+                        self.removeItem(item)
             elif cursor == "polygon":
                 pol_item = my_polygon.MyPolygon(self.root, self.pol)
                 pol_item.unsetCursor()
                 self.addItem(pol_item)
+                self.pol_demo_item_is_append_to_scene = False
+                self.removeItem(self.pol_demo_item)
                 self.pol.clear()
+                items = self.root.tab_pdf_editor.graph_scene.items()
+                for item in items:
+                    if hasattr(item, "delete_attribute_my_point_ellipce"):
+                        self.removeItem(item)
             elif cursor == "rect":
                 ...
             elif cursor == "circle":

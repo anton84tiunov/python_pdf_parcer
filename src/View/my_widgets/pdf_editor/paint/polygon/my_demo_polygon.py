@@ -15,7 +15,7 @@ icon_svg_dir = my_os_path.icon_svg
 import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipce_pol as my_point_ellipce_pol
 
 
-class MyPolygon(QtWidgets.QGraphicsPolygonItem):
+class MyDemoPolygon(QtWidgets.QGraphicsPolygonItem):
     """Класс переопределяющий QtWidgets.QGraphicsPolygonItem
         Класс предназначен для демострации формы фигуры 
         при ее отрисовке
@@ -27,6 +27,17 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
         
+        self.delete_attribute_my_point_ellipce: bool = True
+        self.setZValue(999999999)
+        self.setBrush(QtGui.QColor.fromRgbF(0.6, 0.1, 0.1, 0.2))
+        pen = QtGui.QPen()
+        pen.setColor(QtGui.QColor.fromRgbF(0.9, 0.9, 0.9, 0.8 ))
+        pen.setWidthF(0.5)
+        pen.setDashOffset(0.7)
+        pen.setDashPattern ([3, 3])
+        pen.setJoinStyle(QtCore.Qt.PenJoinStyle.BevelJoin)
+        pen.setCapStyle(QtCore.Qt.PenCapStyle.FlatCap)
+        self.setPen(pen)
 
         self.setAcceptHoverEvents(True)
 
