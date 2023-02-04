@@ -12,7 +12,7 @@ icon_svg_dir = my_os_path.icon_svg
 # import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 # import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
-import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipce_pol as my_point_ellipce_pol
+import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipse_pol as my_point_ellipse_pol
 
 
 class MyDemoPolygon(QtWidgets.QGraphicsPolygonItem):
@@ -23,11 +23,11 @@ class MyDemoPolygon(QtWidgets.QGraphicsPolygonItem):
     def __init__(self, pol: QtGui.QPolygonF):
         super().__init__(pol)
         
-        self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
-        self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
-        self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
+        # self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
+        # self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
+        # self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
         
-        self.delete_attribute_my_point_ellipce: bool = True
+        self.delete_attribute_my_point_ellipse: bool = True
         self.setZValue(999999999)
         self.setBrush(QtGui.QColor.fromRgbF(0.6, 0.1, 0.1, 0.2))
         pen = QtGui.QPen()
