@@ -19,6 +19,9 @@ git push  git@github.com:anton84tiunov/python_pdf_parcer
 git commit -m "1  мое второе сохранение"
 
 
+git commit -m "5.1.3 хер поймешь что добавил , просто захотел сохраниться"
+
+
 
 
 # Игнор-лист файлов проекта
