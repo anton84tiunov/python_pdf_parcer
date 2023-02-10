@@ -18,6 +18,7 @@ class MyGraphicsView(QtWidgets.QGraphicsView):
         
         self.scene: graphics_scene.MyGraphicsScene = scene
         self.setScene(self.scene)
+        # self.updateScene()
         self.pen = QtGui.QPen(QtCore.Qt.green)
         self.greenBrush = QtGui.QBrush(QtCore.Qt.green)
         self.grayBrush = QtGui.QBrush(QtCore.Qt.gray)

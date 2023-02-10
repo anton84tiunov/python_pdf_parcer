@@ -139,6 +139,8 @@ class MyToolBar(QtWidgets.QFrame):
             # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
             self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
             for item in self.root.tab_pdf_editor.graph_scene.items():
+                if hasattr(item, "delete_attribute_my_point_rect"):
+                    self.root.tab_pdf_editor.graph_scene.removeItem(item)
                 # item.setCursor(item.all_size_cursor)
                 item.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
                 # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
@@ -158,14 +160,20 @@ class MyToolBar(QtWidgets.QFrame):
             self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
             for item in self.root.tab_pdf_editor.graph_scene.items():
                 # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
-                item.setCursor(item.current_cursor)
+                if hasattr(item, "delete_attribute_my_point_rect"):
+                    self.root.tab_pdf_editor.graph_scene.removeItem(item)
+                if item != QtWidgets.QGraphicsLineItem:
+                    if hasattr(item, "current_cursor"):
+                        item.setCursor(item.current_cursor)
 
         else :
             # self.root.tab_pdf_editor.graph_scene.blockSignals(True)
             for item in self.root.tab_pdf_editor.graph_scene.items():
-                
+                if hasattr(item, "delete_attribute_my_point_rect"):
+                    self.root.tab_pdf_editor.graph_scene.removeItem(item)
+                if item != QtWidgets.QGraphicsLineItem:
                 # item.setCursor(item.current_cursor)
-                item.unsetCursor()
+                    item.unsetCursor()
 
             # self.cursor_pix = QtGui.QPixmap(icon_dir + "298869_sign_out_icon.png")
             # self.cursor_scaled_pix = self.cursor_pix.scaled(QtCore.QSize(20, 20), QtCore.Qt.KeepAspectRatio)

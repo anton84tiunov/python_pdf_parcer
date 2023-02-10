@@ -11,7 +11,7 @@ def main():
     window = main_window.MainWindow()
     # window.tab_pdf_editor.graph_scene.addRect(120.0, 20.0, 100.0, 100.0)
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
     # app.exec_()
 
 

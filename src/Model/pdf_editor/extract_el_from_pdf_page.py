@@ -132,12 +132,16 @@ class ExtractElFromPdf():
 # ic(img_pix)
 # ic(matprop(transform))
 
-    def get_el(self, doc: fitz.Document, page: fitz.Page) -> dict[str ,list]:
+    def get_el(self, doc: fitz.Document, page: fitz.Page) -> dict[str ,tuple, list]:
         # for box in  page.get_bboxlog
         # rl = page.search_for("R-01")
         # box = page.get_textbox(rl[0])
         # print(rl, box)
+        
         el = {}
+        bound = page.bound()
+        # print(type((bound.x0, bound.y0, bound.width, bound.height)))
+        el["rect"] = (bound.x0, bound.y0, bound.width, bound.height)
         el["draw"] = self.ex_draw(page)
         el["text"] = self.ex_text(page)
         el["image"] = self.ex_image(doc, page)

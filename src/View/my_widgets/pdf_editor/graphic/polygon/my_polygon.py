@@ -63,8 +63,8 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
                 self.root.tab_pdf_editor.graph_scene.removeItem(item)
 
     def mouseDoubleClickEvent(self, event):
-        # if self.root.pdf_editor_cursor == "hand":
-        if True:
+        if self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "hand":
+        # if True:
             # print(self.root.pdf_editor_cursor)
             p = self.polygon()
             # g = QtWidgets.QGraphicsItemGroup()

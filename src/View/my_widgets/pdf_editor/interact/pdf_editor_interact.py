@@ -122,15 +122,20 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         """функция для отрисовки компонентов извлеченных и преобразованных из  pdf  на сцене"""
         self.pdf_path = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf', "",'Pdf(*.pdf);;All(*)' )[0]
         if self.pdf_path != "":
+            # self.gr
             items = self.graph_scene.items()
             for item in  items:
                 
-                if item != self.graph_scene.vert_line_cursor_item or item != self.graph_scene.hor_line_cursor_item:
+                # if item != self.graph_scene.vert_line_cursor_item or item != self.graph_scene.hor_line_cursor_item or item != self.graph_scene.rect_page:
                     # print(self.graph_scene.vert_line_cursor_item)
                     # print(item)
-                    self.graph_scene.removeItem(item)
+                self.graph_scene.removeItem(item)
             # self.graph_scene.clear()
-            el_draw, el_text, el_img = self.controller.open_pdf(self.pdf_path, 0)
+            # self.graph_view.update(0, 0, 0, 0)
+            # self.graph_scene.clear()
+            el_rect, el_draw, el_text, el_img = self.controller.open_pdf(self.pdf_path, 0)
+            self.graph_view.updateSceneRect(QtCore.QRectF(*el_rect))
+            self.graph_scene.setSceneRect(QtCore.QRectF(*el_rect))
             for draw in el_draw:
                 # item = GrIt()
                 if draw.items.draw == "re" or draw.items.draw == "qu":
@@ -254,7 +259,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 text_item.setZValue(image.img[0])
                 self.graph_scene.addItem(img_item)
         
-        self.graph_scene.set_grid_cords(25)
+        self.graph_scene.set_grid_cords(5)
                 
 
 
