@@ -1,5 +1,5 @@
 import sys
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 import src.View.my_widgets.pdf_editor.interact.pdf_editor_interact as pdf_editor_tab
 import src.View.my_widgets.pdf_el.tab.pdf_el_tab as pdf_el_tab
 

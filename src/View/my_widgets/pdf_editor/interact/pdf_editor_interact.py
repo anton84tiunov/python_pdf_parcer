@@ -1,6 +1,7 @@
 import sys, re, math
 from collections import OrderedDict
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
+import asyncio
 # import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.tab.pdf_editor_tab as pdf_editor_tab
 import src.Controller.pdf_editor.extract_el_from_pdf_controller as extract_el_from_pdf_controller
@@ -121,7 +122,14 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         """функция для отрисовки компонентов извлеченных и преобразованных из  pdf  на сцене"""
         self.pdf_path = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf', "",'Pdf(*.pdf);;All(*)' )[0]
         if self.pdf_path != "":
-            self.graph_scene.clear()
+            items = self.graph_scene.items()
+            for item in  items:
+                
+                if item != self.graph_scene.vert_line_cursor_item or item != self.graph_scene.hor_line_cursor_item:
+                    # print(self.graph_scene.vert_line_cursor_item)
+                    # print(item)
+                    self.graph_scene.removeItem(item)
+            # self.graph_scene.clear()
             el_draw, el_text, el_img = self.controller.open_pdf(self.pdf_path, 0)
             for draw in el_draw:
                 # item = GrIt()

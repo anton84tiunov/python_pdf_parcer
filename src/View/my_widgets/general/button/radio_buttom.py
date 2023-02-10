@@ -1,6 +1,6 @@
 
 import sys
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 
 import my_os_path as my_os_path
 

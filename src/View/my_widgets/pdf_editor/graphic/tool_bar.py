@@ -1,5 +1,5 @@
 import sys, os
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 # import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_pointer_path as my_pointer_path
 import src.View.my_widgets.pdf_editor.graphic.polygon.my_polygon as my_polygon

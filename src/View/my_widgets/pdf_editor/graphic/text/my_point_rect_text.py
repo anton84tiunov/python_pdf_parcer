@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 
 class MyPointRectText(QtWidgets.QGraphicsRectItem):
     """класс для создания точек изменения координат прямоугольников и четырехугольников графики"""

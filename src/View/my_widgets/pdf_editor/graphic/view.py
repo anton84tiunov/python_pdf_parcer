@@ -1,5 +1,5 @@
 import sys
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 
 import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.scene as graphics_scene
@@ -21,6 +21,7 @@ class MyGraphicsView(QtWidgets.QGraphicsView):
         self.pen = QtGui.QPen(QtCore.Qt.green)
         self.greenBrush = QtGui.QBrush(QtCore.Qt.green)
         self.grayBrush = QtGui.QBrush(QtCore.Qt.gray)
+        # self.setBackgroundBrush(QtGui.QBrush(QtCore.Qt.red))
         # self.cursor().setShape()
         # self.cursor().setPos(50, 50)
 

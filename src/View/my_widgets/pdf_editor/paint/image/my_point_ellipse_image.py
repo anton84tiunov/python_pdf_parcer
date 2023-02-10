@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 
 # import src.View.my_window.main_window as main_window
 

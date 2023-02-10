@@ -1,5 +1,5 @@
 import sys, os
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
 

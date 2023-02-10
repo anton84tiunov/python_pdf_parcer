@@ -3,6 +3,8 @@ python -m venv venv
     запускаем виртуальное окружение
 venv\Scripts\activate 
     библиотека графического интерфейса
+pip install -r requirements.txt
+
 pip install PySide2
     библиотека создания  .exe приложения 
 pip install pyinstaller
@@ -16,7 +18,7 @@ pip install loguru
 pip freeze > requirements.txt
 
 
-
+pip install matplotlib
 
 
 

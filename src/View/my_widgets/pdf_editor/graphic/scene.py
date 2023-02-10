@@ -1,8 +1,13 @@
 import sys
 import copy
 import typing
-from PySide2 import QtWidgets, QtGui,  QtCore 
-from PySide2.QtSvg import QGraphicsSvgItem, QSvgRenderer
+import random
+import asyncio
+from PySide6 import QtWidgets, QtGui,  QtCore 
+from PySide6.QtSvgWidgets import QGraphicsSvgItem
+
+from matplotlib.figure import Figure                                              # +++
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas  # +++
 
 import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_pointer_path as my_pointer_path
@@ -34,23 +39,42 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
     def __init__(self, root, **kwargs):
         super().__init__( **kwargs)
         self.root: QtWidgets = root
-
+        
+        # self.setSceneRect(0.0, 0.0, 200.0, 200.0)
+        # self.is_0_open_file = True
+        # self.setSceneRect(0.0, 0.0, 10000.0, 10000.0)
         self.grid_step = 5
         self.grid_pen = QtGui.QPen(QtCore.Qt.lightGray)
-        self.background_brush = QtGui.QBrush( QtGui.QColor(30, 30, 30), QtCore.Qt.SolidPattern)
+        # self.grid_pen.setCosmetic(True)
+        self.background_brush = QtGui.QBrush( QtGui.QColor(255, 255, 255), QtCore.Qt.SolidPattern)
         
 
 
         
-        self.cursor_rect = QtCore.QRectF(1.0, 1.0, 5.0, 5.0)
-        # self.cursor_rect.transposed()
-        self.cursor_item = QtWidgets.QGraphicsRectItem(self.cursor_rect)
-        self.cursor_item.setBrush(QtGui.QColor(0, 0, 0, 255))
+        # self.cursor_rect = QtCore.QRectF(1.0, 1.0, 5.0, 5.0)
+        # # self.cursor_rect.transposed()
+        # self.cursor_item = QtWidgets.QGraphicsEllipseItem(self.cursor_rect)
+        # self.cursor_item.setZValue(999999999)
+        # # self.cursor_item.setPen(self.grid_pen)
+        # self.cursor_item.setBrush(QtGui.QColor(0, 0, 0, 255))
+        # self.cursor_item.setTransform(QtGui.QTransform.fromTranslate(-2.5, -2.5))
         # self.addItem(self.cursor_item)
 
-        self.vert_line_cursor = QtCore.QLineF()
-        self.hor_line_cursor = QtCore.QLineF()
-
+        # self.vert_line_cursor = QtCore.QLineF(0.0, 0.0, 0.0, 100.0)
+        self.vert_line_cursor_item = QtWidgets.QGraphicsLineItem(0.0, 0.0, 0.0, 0.0)
+        self.vert_line_cursor_item.setZValue(999999999)
+        self.vert_line_cursor_item.setPen(self.grid_pen)
+        # self.vert_line_cursor.setBrush(QtGui.QColor(0, 0, 0, 255))
+        # self.vert_line_cursor_item.setTransform(QtGui.QTransform.fromTranslate(-0.0, -50.0))
+        # self.hor_line_cursor = QtCore.QLineF(0.0, 0.0, 100.0, 0.0)
+        self.hor_line_cursor_item = QtWidgets.QGraphicsLineItem(0.0, 0.0, 0.0, 0.0)
+        self.hor_line_cursor_item.setZValue(999999999)
+        self.hor_line_cursor_item.setPen(self.grid_pen)
+        # self.hor_line_cursor.setBrush(QtGui.QColor(0, 0, 0, 255))
+        # self.hor_line_cursor_item.setTransform(QtGui.QTransform.fromTranslate(-50.0, -0.0))
+        # self.rect_page = self.addRect(0.0, 0.0, 0.0, 0.0)
+        # self.addItem(self.vert_line_cursor_item)
+        # self.addItem(self.hor_line_cursor_item)
 
         self.grid_cords = QtWidgets.QGraphicsItemGroup()
         # self.grid_cords = QtWidgets.QGraphicsItemGroup()
@@ -89,37 +113,86 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.rect_demo_item = my_demo_rectangle.MyDemoRactangle(self.rect_demo)
 
         # self.set_grid_cords(5)
+
+        self.figure = Figure()
+        self.axes = self.figure.gca()
+        self.axes.set_title("My Plot") 
+
+    def graph(self):
+#        x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#        y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        
+        x = [ random.randrange(1, 100) for _ in range(10) ]
+        y = [ random.randrange(1, 100) for _ in range(10) ]
+        
+        self.axes.clear()
+        self.axes.plot(x, y, "-k", label="График внутри виджета QGraphicsView")
+
+        self.axes.legend()
+        self.axes.grid(True) 
+
+        self.canvas = FigureCanvas(self.figure)
+        self.proxy_widget = self.addWidget(self.canvas) 
+
     def round_step(sel, num, step):
         return round(num / step) * step
 
     def set_grid_cords(self, step: int):
         # self.grid_step = StopAsyncIteration
         self.grid_step = step
-        fon = QGraphicsSvgItem("assets/image/fon_1.SVG")
-        fon.setPos(1.0, 1.0)
-        self.addItem(fon);
+        # fon = QGraphicsSvgItem("assets/image/fon_1.SVG")
+        # fon.setPos(1.0, 1.0)
+        # self.addItem(fon);
         # if self.grid_cords.em
         # self.removeItem(self.grid_cords)
-        self.addItem(self.cursor_item)
+        # if not self.is_0_open_file:
+        #     # self.removeItem(self.cursor_item)
+        #     self.removeItem(self.vert_line_cursor_item)
+        #     self.removeItem(self.hor_line_cursor_item)
+        #     self.is_0_open_file = False
+        # self.BackgroundLayer
+        self.setSceneRect(0.0, 0.0, self.width(), self.height())
+        # self.sceneRect().
+       
+        # self.addItem(self.cursor_item)
+        self.vert_line_cursor_item.setLine(0.0, 0.0, 0.0, self.height())
+        self.hor_line_cursor_item.setLine(0.0, 0.0, self.width(), 0.0)
+        self.addItem(self.vert_line_cursor_item)
+        self.addItem(self.hor_line_cursor_item)
+        # self.rect_page.setRect(0.0, 0.0, self.width(), self.height())
+        # self.rect_page.setBrush(self.background_brush)
+        # self.rect_page.setZValue(-999999999)
         point_width = []
         point_height = []
         # print(self.width(), self.height())
-        for w in range(int(self.width())):
-            if w % step == 0:
-                point_width.append(w)
+        # x = [ random.randrange(1, int(self.width())) for _ in range(10) ]
+        # y = [ random.randrange(1, int(self.height())) for _ in range(10) ]
+        
+        # self.axes.clear()
+        # self.axes.plot(x, y, "-k")
 
-        for h in range(int(self.height())):
-            if h % step == 0:
-                point_height.append(h)
+        # self.axes.legend()
+        # self.axes.grid(True) 
 
-        for w in point_width:
-            for h in point_height:
-                rect = QtCore.QRectF(float(w), float(h), 2.0, 2.0)
-                # rect_item = QtWidgets.QGraphicsRectItem(rect)
-                rect_item = my_rectangle.MyRactangle(self.root, rect)
-                # self.grid_cords.addToGroup(rect_item)
-                # self.addItem(rect_item)
-                # self.drawBackground
+        # self.canvas = FigureCanvas(self.figure)
+        # self.proxy_widget = self.addWidget(self.canvas) 
+
+        # for w in range(int(self.width())):
+        #     if w % step == 0:
+        #         point_width.append(w)
+
+        # for h in range(int(self.height())):
+        #     if h % step == 0:
+        #         point_height.append(h)
+
+        # for w in point_width:
+        #     for h in point_height:
+        #         rect = QtCore.QRectF(float(w), float(h), 2.0, 2.0)
+        #         # rect_item = QtWidgets.QGraphicsRectItem(rect)
+        #         rect_item = my_rectangle.MyRactangle(self.root, rect)
+        #         # self.grid_cords.addToGroup(rect_item)
+        #         # self.addItem(rect_item)
+        #         # self.drawBackground
 
  
 
@@ -135,7 +208,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         
         cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
 
-        if button == QtCore.Qt.LeftButton:
+        if button == QtCore.Qt.MouseButton.LeftButton:
 
             self.is_mouse_left_pressed = True
            
@@ -200,7 +273,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 ...
             elif cursor == "ruler":
                 ...
-        if button == QtCore.Qt.MidButton:
+        if button == QtCore.Qt.MouseButton.MiddleButton:
             if cursor == "arrow":
                 ...
             elif cursor == "hand":
@@ -238,7 +311,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 
     def mouseReleaseEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent) -> None:
         button = event.button()
-        if button == QtCore.Qt.LeftButton:
+        if button == QtCore.Qt.MouseButton.LeftButton:
 
             self.is_mouse_left_pressed = False
 
@@ -306,9 +379,13 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         updated_cursor_position = event.scenePos()
         cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
 
+        # print(self.width())
+        # print(self.height())
         # self.root.tab_pdf_editor.graph_view.cursor().setPos(50, 50)
-        self.cursor_item.setPos(self.round_step(updated_cursor_position.x(), self.grid_step), self.round_step(updated_cursor_position.y(), self.grid_step))
-
+        # self.cursor_item.setPos(self.round_step(updated_cursor_position.x(), self.grid_step), self.round_step(updated_cursor_position.y(), self.grid_step))
+        self.hor_line_cursor_item.setY(self.round_step(updated_cursor_position.y(), self.grid_step))
+        self.vert_line_cursor_item.setX(self.round_step(updated_cursor_position.x(), self.grid_step))
+        
         if cursor == "arrow":
             ...
         elif cursor == "hand":
@@ -445,36 +522,36 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 #         renderer.render(painter, rect)
 
 
-    # def drawBackground(self, qp, rect):
-    #     qp.translate(.5, .5)
-    #     # self.grid_pen.setDashOffset(0.0)
-    #     self.grid_pen.setCosmetic(True)
-    #     self.grid_pen.setDashPattern([1, self.grid_step - 1])
-    #     qp.setPen(self.grid_pen)
-    #     # qp.fillRect(rect, self.background_brush)
+    def drawBackground(self, qp, rect):
+        # qp.translate(.5, .5)
+        # self.grid_pen.setDashOffset(0.0)
+        # self.grid_pen.setCosmetic(True)
+        # self.grid_pen.setDashPattern([1, self.grid_step - 1])
+        # qp.setPen(self.grid_pen)
+        qp.fillRect(rect, self.background_brush)
 
-    #     x, y, right, bottom = rect.toRect().getCoords()
-    #     x = int(x)
-    #     y = int(y)
-    #     right = int(right)
-    #     bottom = int(bottom)
+        # x, y, right, bottom = rect.toRect().getCoords()
+        # x = int(x)
+        # y = int(y)
+        # right = int(right)
+        # bottom = int(bottom)
 
-    #     top = y
-    #     left = x
-    #     step = self.grid_step
-    #     print(isinstance(step, int))
-    #     if isinstance(step, int):
-    #         yrest = y % step
-    #         if yrest:
-    #             y += step - yrest
-    #         for y in range(y, bottom, step):
-    #             qp.drawLine(left, y, right, y)
+        # top = y
+        # left = x
+        # step = self.grid_step
+        # print(isinstance(step, int))
+        # if isinstance(step, int):
+        #     yrest = y % step
+        #     if yrest:
+        #         y += step - yrest
+        #     for y in range(y, bottom, step):
+        #         qp.drawLine(left, y, right, y)
 
-    #         xrest = x % step
-    #         if xrest:
-    #             x += step - xrest
-    #         for x in range(x, right, step):
-    #             qp.drawLine(x, top, x, bottom)
+        #     xrest = x % step
+        #     if xrest:
+        #         x += step - xrest
+        #     for x in range(x, right, step):
+        #         qp.drawLine(x, top, x, bottom)
 
 
 

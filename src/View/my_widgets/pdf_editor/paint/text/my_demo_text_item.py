@@ -1,5 +1,5 @@
 import math
-from PySide2 import QtWidgets, QtGui,  QtCore 
+from PySide6 import QtWidgets, QtGui,  QtCore 
 
 # import src.View.my_widgets.pdf_editor.graphic.rectangle.my_point_rect_rect as my_point_rect_rect
 # import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
