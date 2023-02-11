@@ -15,7 +15,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self):
         super().__init__()
-        # self.tab_pdf_editor.graph_tool_bar.tool_cursors
+        # self.tab_pdf_editor.graph_left_tool_bar.tool_cursors
 
         self.setWindowTitle("My App")
         self.resize(800, 500)

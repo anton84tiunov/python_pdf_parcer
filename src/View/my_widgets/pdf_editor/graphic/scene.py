@@ -214,7 +214,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         dev_x = updated_cursor_position.x() - orig_cursor_position.x()
         dev_y = updated_cursor_position.y() - orig_cursor_position.y()
         
-        cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
+        cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
         if button == QtCore.Qt.MouseButton.LeftButton:
 
@@ -326,7 +326,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             orig_cursor_position = event.lastScenePos()
             updated_cursor_position = event.scenePos()
 
-            cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
+            cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
             if cursor == "arrow":
                 ...
@@ -385,7 +385,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         
         orig_cursor_position = event.lastScenePos()
         updated_cursor_position = event.scenePos()
-        cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
+        cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
         # print(updated_cursor_position.x(), updated_cursor_position.y())
         # print(self.width(), self.height())
         if updated_cursor_position.x() < 0 or updated_cursor_position.x() > self.width() or updated_cursor_position.y() < 0 or updated_cursor_position.y() > self.height():
@@ -446,7 +446,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
     def contextMenuEvent(self, event: QtWidgets.QGraphicsSceneContextMenuEvent) -> None:
 
         updated_cursor_position = event.scenePos()
-        cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
+        cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
         if cursor == "arrow":
             ...
@@ -475,7 +475,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
     def mouseDoubleClickEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent) -> None:
         
         updated_cursor_position = event.scenePos()
-        cursor = self.root.tab_pdf_editor.graph_tool_bar.tool_cursor
+        cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
         if cursor == "arrow":
             ...

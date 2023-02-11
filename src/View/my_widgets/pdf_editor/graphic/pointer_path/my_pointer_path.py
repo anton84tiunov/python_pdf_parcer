@@ -62,7 +62,7 @@ class MyPainterPath(QtWidgets.QGraphicsPathItem):
                 self.root.tab_pdf_editor.graph_scene.removeItem(item)
 
     def mouseDoubleClickEvent(self, event):
-        if self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "hand":
+        if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "hand":
         # if True:
             # print(self.root.pdf_editor_cursor)
             p = self.path()
@@ -155,8 +155,8 @@ class MyPainterPath(QtWidgets.QGraphicsPathItem):
 
 
     def mouseMoveEvent(self, event):
-        # print(self.root.tab_pdf_editor.graph_tool_bar.tool_cursor)
-        if self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "move":
+        # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
+        if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "move":
             # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
             orig_cursor_position = event.lastScenePos()
             updated_cursor_position = event.scenePos()

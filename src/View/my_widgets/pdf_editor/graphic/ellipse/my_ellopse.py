@@ -165,7 +165,7 @@ class MyEllipseRactangle(QtWidgets.QGraphicsEllipseItem):
 
 
     def mouseMoveEvent(self, event):
-        if self.root.tab_pdf_editor.graph_tool_bar.tool_cursor == "move":
+        if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "move":
             # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
             orig_cursor_position = event.lastScenePos()
             updated_cursor_position = event.scenePos()

@@ -8,6 +8,9 @@ import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
+
+import src.View.my_widgets.general.button.combo_box_num as combo_box_num
+
 import my_os_path as my_os_path
 
 icon_dir = my_os_path.icon
@@ -17,7 +20,7 @@ red_style = "background-color: rgb(255, 0, 0);"
 green_style = "background-color: rgb(0, 255, 0);"
 blue_style = "background-color: rgb(0, 0, 255);"
 
-class MyToolBar(QtWidgets.QFrame):
+class MyLeftToolBar(QtWidgets.QFrame):
     """класс для выбора способа взаимодействия с элементами 
         графической сцены и ей самой."""
         
@@ -85,6 +88,10 @@ class MyToolBar(QtWidgets.QFrame):
         self.spacer_tool_box = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.v_box.addItem(self.spacer_tool_box)
         
+        # self.c_box_grid_cords= combo_box_num.MyComboBoxNum(self, 'grid_cords.png')
+        # self.v_box.addWidget(self.c_box_grid_cords)
+        # self.c_box_grid_cords.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_ruler, "ruler"))
+        # self.c_box_grid_cords.currentTextChanged.connect(self.text_changed)
         # self.r_btn_cursor_color = radio_buttom.MyRadioButton(self, 'rgb-color-icon.png')
         # self.v_box.addWidget(self.r_btn_cursor_color)
 
@@ -118,6 +125,11 @@ class MyToolBar(QtWidgets.QFrame):
 
         # self.v_box.addWidget(self.tl_box)
         # self.tl_box.setStyleSheet(red_style)
+
+    def text_changed(self, s):
+        self.root.tab_pdf_editor.graph_scene.grid_step = int(s)
+        print(int(s))
+
 
     def disable_checked(self, check_btn: radio_buttom.MyRadioButton, cursor: str):
         size_cursor = QtCore.QSize(50, 50)
