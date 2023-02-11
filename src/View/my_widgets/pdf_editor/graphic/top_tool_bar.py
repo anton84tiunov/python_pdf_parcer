@@ -8,8 +8,8 @@ import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 
 import src.View.my_widgets.general.button.radio_buttom as radio_buttom
-
 import src.View.my_widgets.general.button.combo_box_num as combo_box_num
+import src.View.my_widgets.general.button.spin_box as spin_box
 
 import my_os_path as my_os_path
 
@@ -87,10 +87,14 @@ class MyTopToolBar(QtWidgets.QFrame):
         # self.spacer_tool_box = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.expandingDirections, QtWidgets.QSizePolicy.mi)
         # self.v_box.addItem(self.spacer_tool_box)
         
-        self.c_box_grid_cords= combo_box_num.MyComboBoxNum(self, 'grid_cords.png')
+        # self.c_box_grid_cords= combo_box_num.MyComboBoxNum(self, 'grid_cords.png')
+        self.c_box_grid_cords= spin_box.MySpineBox(self, 'grid_cords.png')
         self.v_box.addWidget(self.c_box_grid_cords)
         # self.c_box_grid_cords.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_ruler, "ruler"))
-        self.c_box_grid_cords.currentTextChanged.connect(self.text_changed)
+        self.c_box_grid_cords.valueChanged.connect(self.text_changed) # works, but reacts on every new character typed in textbox of spinbox
+        # self.c_box_grid_cords.editingFinished.connect(self.on_tspinbox_change) # works now, if not using int argument (so @pyqtSlot(), instead of @pyqtSlot(int), etc)
+
+        # self.c_box_grid_cords.va currentTextChanged.connect(self.text_changed)
         # self.r_btn_cursor_color = radio_buttom.MyRadioButton(self, 'rgb-color-icon.png')
         # self.v_box.addWidget(self.r_btn_cursor_color)
 

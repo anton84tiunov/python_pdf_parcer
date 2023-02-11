@@ -259,7 +259,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 text_item.setZValue(image.img[0])
                 self.graph_scene.addItem(img_item)
         
-        self.graph_scene.set_grid_cords(5)
+        self.graph_scene.set_grid_cords()
                 
 
 

@@ -123,7 +123,7 @@ class ConvertPdfElToModel():
                 draw_model.items.cords.append(("c", (p0, p1, p2, p3)))
             
             draw_current += 1
-        print(draw["closePath"])
+        # print(draw["closePath"])
         if draw["closePath"]:
             draw_model.items.cords.append(("l", (point_start, point_end)))
         draw_model.items.draw = "path"

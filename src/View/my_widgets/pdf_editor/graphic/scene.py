@@ -39,11 +39,12 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
     def __init__(self, root, **kwargs):
         super().__init__( **kwargs)
         self.root: QtWidgets = root
+        self.point_grid_step_cursor = QtCore.QPointF()
         
         # self.setSceneRect(0.0, 0.0, 200.0, 200.0)
         # self.is_0_open_file = True
         # self.setSceneRect(0.0, 0.0, 10000.0, 10000.0)
-        self.grid_step = 5
+        self.grid_step = 1
         self.grid_pen = QtGui.QPen(QtGui.QColor(0, 0, 0))
         self.grid_pen.setCosmetic(True)
         self.background_brush = QtGui.QBrush( QtGui.QColor(232, 235, 232), QtCore.Qt.SolidPattern)
@@ -140,9 +141,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
     def round_step(sel, num, step):
         return round(num / step) * step
 
-    def set_grid_cords(self, step: int):
+    def set_grid_cords(self):
         # self.grid_step = StopAsyncIteration
-        self.grid_step = step
+        # self.grid_step = step
         # fon = QGraphicsSvgItem("assets/image/fon_1.SVG")
         # fon.setPos(1.0, 1.0)
         # self.addItem(fon);
@@ -395,11 +396,14 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             self.hor_line_cursor_item.show()
             self.vert_line_cursor_item.show()
             # print(self.width())
-            # print(self.height())
+            #       (self.height())
             # self.root.tab_pdf_editor.graph_view.cursor().setPos(50, 50)
             # self.cursor_item.setPos(self.round_step(updated_cursor_position.x(), self.grid_step), self.round_step(updated_cursor_position.y(), self.grid_step))
-            self.hor_line_cursor_item.setY(self.round_step(updated_cursor_position.y(), self.grid_step))
-            self.vert_line_cursor_item.setX(self.round_step(updated_cursor_position.x(), self.grid_step))
+            self.point_grid_step_cursor.setY(self.round_step(updated_cursor_position.y(), self.grid_step))
+            self.point_grid_step_cursor.setX(self.round_step(updated_cursor_position.x(), self.grid_step))
+            
+            self.hor_line_cursor_item.setY(self.point_grid_step_cursor.y())
+            self.vert_line_cursor_item.setX(self.point_grid_step_cursor.x())
             
             if cursor == "arrow":
                 ...
