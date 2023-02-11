@@ -209,12 +209,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 
     def mousePressEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent) -> None:
         button = event.button()
-        orig_cursor_position = event.lastScenePos()
-        updated_cursor_position = event.scenePos()
-
-        dev_x = updated_cursor_position.x() - orig_cursor_position.x()
-        dev_y = updated_cursor_position.y() - orig_cursor_position.y()
-        
+       
         cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
         if button == QtCore.Qt.MouseButton.LeftButton:
@@ -228,42 +223,42 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             elif cursor == "move":
                 ...
             elif cursor == "pencil":
-                self.p_path_pen.moveTo(updated_cursor_position)
-                self.p_path_pen_demo.moveTo(updated_cursor_position)
+                self.p_path_pen.moveTo(self.point_grid_step_cursor)
+                self.p_path_pen_demo.moveTo(self.point_grid_step_cursor)
                 self.path_pen_demo_item.setPath(self.p_path_pen_demo)
                 self.addItem(self.path_pen_demo_item)
 
             elif cursor == "line":
                 if self.p_path_lc.elementCount() == 0:
-                    self.p_path_lc.moveTo(updated_cursor_position)
-                    self.p_path_lc_demo.moveTo(updated_cursor_position)
+                    self.p_path_lc.moveTo(self.point_grid_step_cursor)
+                    self.p_path_lc_demo.moveTo(self.point_grid_step_cursor)
                     self.addItem(self.path_lc_demo_item)
                 else:
                     self.curve_points.clear()
-                    self.p_path_lc.lineTo(updated_cursor_position)
-                    self.p_path_lc_demo.lineTo(updated_cursor_position)
+                    self.p_path_lc.lineTo(self.point_grid_step_cursor)
+                    self.p_path_lc_demo.lineTo(self.point_grid_step_cursor)
                     self.path_lc_demo_item.setPath(self.p_path_lc_demo)
 
 
             elif cursor == "bezier":
                 if self.p_path_lc.elementCount() == 0:
-                    self.p_path_lc.moveTo(updated_cursor_position)
-                    self.p_path_lc_demo.moveTo(updated_cursor_position)
+                    self.p_path_lc.moveTo(copy.deepcopy(self.point_grid_step_cursor))
+                    self.p_path_lc_demo.moveTo(copy.deepcopy(self.point_grid_step_cursor))
                     self.addItem(self.path_lc_demo_item)
                 else:
                     if len(self.curve_points) == 0:
-                        self.curve_points.insert(0, updated_cursor_position)
+                        self.curve_points.insert(0, copy.deepcopy(self.point_grid_step_cursor))
                     elif len(self.curve_points) == 1:
-                        self.curve_points.insert(1, updated_cursor_position)
+                        self.curve_points.insert(1, copy.deepcopy(self.point_grid_step_cursor))
                     elif len(self.curve_points) == 2:
-                        self.curve_points.insert(2, updated_cursor_position)
+                        self.curve_points.insert(2, copy.deepcopy(self.point_grid_step_cursor))
                         self.p_path_lc.cubicTo(*self.curve_points)
                         self.p_path_lc_demo.cubicTo(*self.curve_points)
                         self.path_lc_demo_item.setPath(self.p_path_lc_demo)
                         self.curve_points.clear()
 
             elif cursor == "polygon":
-                self.pol.append(updated_cursor_position)
+                self.pol.append(self.point_grid_step_cursor)
                 if self.pol_demo_item_is_append_to_scene:
                     self.removeItem(self.pol_demo_item)
                 self.pol_demo_item.setPolygon(self.pol)
@@ -271,7 +266,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 self.pol_demo_item_is_append_to_scene = True
             elif cursor == "rect":
                 # self.rect.setTopLeft(updated_cursor_position)
-                self.rect_p0 = updated_cursor_position
+                self.rect_p0 = copy.deepcopy(self.point_grid_step_cursor)
                 self.rect_demo = QtCore.QRectF()
                 self.rect_demo_item = my_demo_rectangle.MyDemoRactangle(self.rect_demo)
 
@@ -355,7 +350,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 # self.rect_demo_item = my_demo_rectangle.MyDemoRactangle(self.rect_demo)
 
                 self.removeItem(self.rect_demo_item)
-                self.rect_p1 = updated_cursor_position
+                self.rect_p1 = copy.deepcopy(self.point_grid_step_cursor)
                 if self.rect_p0.x() > self.rect_p1.x():
                     if self.rect_p0.y() > self.rect_p1.y():
                         self.rect.setBottomRight(self.rect_p0)
@@ -413,8 +408,8 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 ...
             elif cursor == "pencil":
                 if self.is_mouse_left_pressed:
-                    self.p_path_pen.lineTo(updated_cursor_position)
-                    self.p_path_pen_demo.lineTo(updated_cursor_position)
+                    self.p_path_pen.lineTo(self.point_grid_step_cursor)
+                    self.p_path_pen_demo.lineTo(self.point_grid_step_cursor)
                     self.path_pen_demo_item.setPath(self.p_path_pen_demo)
             elif cursor == "line":
                 ...
@@ -424,19 +419,19 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 ...
             elif cursor == "rect":
 
-                if self.rect_p0.x() > updated_cursor_position.x():
-                    if self.rect_p0.y() > updated_cursor_position.y():
+                if self.rect_p0.x() > self.point_grid_step_cursor.x():
+                    if self.rect_p0.y() > self.point_grid_step_cursor.y():
                         self.rect_demo.setBottomRight(self.rect_p0)
-                        self.rect_demo.setTopLeft(updated_cursor_position)
-                    elif self.rect_p0.y() < updated_cursor_position.y():
+                        self.rect_demo.setTopLeft(self.point_grid_step_cursor)
+                    elif self.rect_p0.y() < self.point_grid_step_cursor.y():
                         self.rect_demo.setTopRight(self.rect_p0)
-                        self.rect_demo.setBottomLeft(updated_cursor_position)
-                elif self.rect_p0.x() < updated_cursor_position.x():
-                    if self.rect_p0.y() > updated_cursor_position.y():
+                        self.rect_demo.setBottomLeft(self.point_grid_step_cursor)
+                elif self.rect_p0.x() < self.point_grid_step_cursor.x():
+                    if self.rect_p0.y() > self.point_grid_step_cursor.y():
                         self.rect_demo.setBottomLeft(self.rect_p0)
-                        self.rect_demo.setTopRight(updated_cursor_position)
-                    elif self.rect_p0.y() < updated_cursor_position.y():
-                        self.rect_demo.setBottomRight(updated_cursor_position)
+                        self.rect_demo.setTopRight(self.point_grid_step_cursor)
+                    elif self.rect_p0.y() < self.point_grid_step_cursor.y():
+                        self.rect_demo.setBottomRight(self.point_grid_step_cursor)
                         self.rect_demo.setTopLeft(self.rect_p0)
                 self.rect_demo_item.setRect(self.rect_demo)
             elif cursor == "circle":
