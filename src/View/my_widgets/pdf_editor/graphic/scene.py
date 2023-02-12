@@ -40,6 +40,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         super().__init__( **kwargs)
         self.root: QtWidgets = root
         self.point_grid_step_cursor = QtCore.QPointF()
+        self.old_point_grid_step_cursor = QtCore.QPointF()
         
         # self.setSceneRect(0.0, 0.0, 200.0, 200.0)
         # self.is_0_open_file = True
@@ -319,9 +320,6 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 
             self.is_mouse_left_pressed = False
 
-            orig_cursor_position = event.lastScenePos()
-            updated_cursor_position = event.scenePos()
-
             cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
             if cursor == "arrow":
@@ -379,67 +377,67 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 
     def mouseMoveEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent) -> None:
         
-        orig_cursor_position = event.lastScenePos()
         updated_cursor_position = event.scenePos()
         cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
-        # print(updated_cursor_position.x(), updated_cursor_position.y())
-        # print(self.width(), self.height())
+
         if updated_cursor_position.x() < 0 or updated_cursor_position.x() > self.width() or updated_cursor_position.y() < 0 or updated_cursor_position.y() > self.height():
             self.hor_line_cursor_item.hide()
             self.vert_line_cursor_item.hide()
         elif updated_cursor_position.x() >= 0 or updated_cursor_position.x() <= self.width() or updated_cursor_position.y() >= 0 or updated_cursor_position.y() <= self.height():
             self.hor_line_cursor_item.show()
             self.vert_line_cursor_item.show()
-            # print(self.width())
-            #       (self.height())
-            # self.root.tab_pdf_editor.graph_view.cursor().setPos(50, 50)
-            # self.cursor_item.setPos(self.round_step(updated_cursor_position.x(), self.grid_step), self.round_step(updated_cursor_position.y(), self.grid_step))
+            
             self.point_grid_step_cursor.setY(self.round_step(updated_cursor_position.y(), self.grid_step))
             self.point_grid_step_cursor.setX(self.round_step(updated_cursor_position.x(), self.grid_step))
             
-            self.hor_line_cursor_item.setY(self.point_grid_step_cursor.y())
-            self.vert_line_cursor_item.setX(self.point_grid_step_cursor.x())
-            
-            if cursor == "arrow":
-                ...
-            elif cursor == "hand":
-                ...
-            elif cursor == "move":
-                ...
-            elif cursor == "pencil":
-                if self.is_mouse_left_pressed:
-                    self.p_path_pen.lineTo(self.point_grid_step_cursor)
-                    self.p_path_pen_demo.lineTo(self.point_grid_step_cursor)
-                    self.path_pen_demo_item.setPath(self.p_path_pen_demo)
-            elif cursor == "line":
-                ...
-            elif cursor == "bezier":
-                ...
-            elif cursor == "polygon":
-                ...
-            elif cursor == "rect":
+            if  self.point_grid_step_cursor.x() != self.old_point_grid_step_cursor.x() or self.point_grid_step_cursor.y() != self.old_point_grid_step_cursor.y():
+                
+               
+                self.hor_line_cursor_item.setY(self.point_grid_step_cursor.y())
+                self.vert_line_cursor_item.setX(self.point_grid_step_cursor.x())
+                
+                if cursor == "arrow":
+                    ...
+                elif cursor == "hand":
+                    ...
+                elif cursor == "move":
+                    ...
+                elif cursor == "pencil":
+                    if self.is_mouse_left_pressed:
+                        self.p_path_pen.lineTo(self.point_grid_step_cursor)
+                        self.p_path_pen_demo.lineTo(self.point_grid_step_cursor)
+                        self.path_pen_demo_item.setPath(self.p_path_pen_demo)
+                elif cursor == "line":
+                    ...
+                elif cursor == "bezier":
+                    ...
+                elif cursor == "polygon":
+                    ...
+                elif cursor == "rect":
 
-                if self.rect_p0.x() > self.point_grid_step_cursor.x():
-                    if self.rect_p0.y() > self.point_grid_step_cursor.y():
-                        self.rect_demo.setBottomRight(self.rect_p0)
-                        self.rect_demo.setTopLeft(self.point_grid_step_cursor)
-                    elif self.rect_p0.y() < self.point_grid_step_cursor.y():
-                        self.rect_demo.setTopRight(self.rect_p0)
-                        self.rect_demo.setBottomLeft(self.point_grid_step_cursor)
-                elif self.rect_p0.x() < self.point_grid_step_cursor.x():
-                    if self.rect_p0.y() > self.point_grid_step_cursor.y():
-                        self.rect_demo.setBottomLeft(self.rect_p0)
-                        self.rect_demo.setTopRight(self.point_grid_step_cursor)
-                    elif self.rect_p0.y() < self.point_grid_step_cursor.y():
-                        self.rect_demo.setBottomRight(self.point_grid_step_cursor)
-                        self.rect_demo.setTopLeft(self.rect_p0)
-                self.rect_demo_item.setRect(self.rect_demo)
-            elif cursor == "circle":
-                ...
-            elif cursor == "text":
-                ...
-            elif cursor == "ruler":
-                ...
+                    if self.rect_p0.x() > self.point_grid_step_cursor.x():
+                        if self.rect_p0.y() > self.point_grid_step_cursor.y():
+                            self.rect_demo.setBottomRight(self.rect_p0)
+                            self.rect_demo.setTopLeft(self.point_grid_step_cursor)
+                        elif self.rect_p0.y() < self.point_grid_step_cursor.y():
+                            self.rect_demo.setTopRight(self.rect_p0)
+                            self.rect_demo.setBottomLeft(self.point_grid_step_cursor)
+                    elif self.rect_p0.x() < self.point_grid_step_cursor.x():
+                        if self.rect_p0.y() > self.point_grid_step_cursor.y():
+                            self.rect_demo.setBottomLeft(self.rect_p0)
+                            self.rect_demo.setTopRight(self.point_grid_step_cursor)
+                        elif self.rect_p0.y() < self.point_grid_step_cursor.y():
+                            self.rect_demo.setBottomRight(self.point_grid_step_cursor)
+                            self.rect_demo.setTopLeft(self.rect_p0)
+                    self.rect_demo_item.setRect(self.rect_demo)
+                elif cursor == "circle":
+                    ...
+                elif cursor == "text":
+                    ...
+                elif cursor == "ruler":
+                    ...
+
+                self.old_point_grid_step_cursor = copy.deepcopy(self.point_grid_step_cursor)
         return super().mouseMoveEvent(event)
 
     def contextMenuEvent(self, event: QtWidgets.QGraphicsSceneContextMenuEvent) -> None:

@@ -1,4 +1,5 @@
 import math
+import copy
 from PySide6 import QtWidgets, QtGui,  QtCore 
 import my_os_path as my_os_path
 
@@ -23,6 +24,7 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
     def __init__(self, root: QtWidgets,  pol: QtGui.QPolygonF):
         super().__init__(pol)
         self.root: QtWidgets = root
+        self.orig_cursor_position =  QtCore.QPointF()
         
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
@@ -156,22 +158,28 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
 
 
     def mouseMoveEvent(self, event):
+         # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
         if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "move":
-            # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
-            orig_cursor_position = event.lastScenePos()
-            updated_cursor_position = event.scenePos()
+ 
+            updated_cursor_position = self.root.tab_pdf_editor.graph_scene.point_grid_step_cursor
+            # orig_cursor_position = self.root.tab_pdf_editor.graph_scene.old_point_grid_step_cursor
 
-            dev_x = updated_cursor_position.x() - orig_cursor_position.x()
-            dev_y = updated_cursor_position.y() - orig_cursor_position.y()
-            p = self.polygon()
-            # print(p.count())
-            for ii in range(p.count()):
-                x = p.at(ii).x()
-                y = p.at(ii).y()
-                # print(x, y)
-                p. replace(ii, QtCore.QPointF(x + dev_x, y + dev_y))
-            self.setPolygon(p)
-
+            if  updated_cursor_position.x() != self.orig_cursor_position.x() or updated_cursor_position.y() != self.orig_cursor_position.y():
+                # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
+                if self.orig_cursor_position != QtCore.QPointF():
+                    dev_x = updated_cursor_position.x() - self.orig_cursor_position.x()
+                    dev_y = updated_cursor_position.y() - self.orig_cursor_position.y()
+            
+                    p = self.polygon()
+                    # print(p.count())
+                    for ii in range(p.count()):
+                        x = p.at(ii).x()
+                        y = p.at(ii).y()
+                        # print(x, y)
+                        p. replace(ii, QtCore.QPointF(x + dev_x, y + dev_y))
+                    self.setPolygon(p)
+                self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
+                
     def mouseReleaseEvent(self, event):
         pass
 

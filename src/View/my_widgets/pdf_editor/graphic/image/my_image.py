@@ -1,4 +1,5 @@
 import math
+import copy
 from PySide6 import QtWidgets, QtGui,  QtCore 
 import my_os_path as my_os_path
 
@@ -24,7 +25,7 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         super().__init__( pix)
         self.root: QtWidgets = root
         self.list_point_rect = ["top", "bottom", "left", "right"]
-        
+        self.orig_cursor_position =  QtCore.QPointF()
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
@@ -166,30 +167,36 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
 
 
     def mouseMoveEvent(self, event):
+         # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
         if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "move":
-            # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
-            orig_cursor_position = event.lastScenePos()
-            updated_cursor_position = event.scenePos()
+ 
+            updated_cursor_position = self.root.tab_pdf_editor.graph_scene.point_grid_step_cursor
+            # orig_cursor_position = self.root.tab_pdf_editor.graph_scene.old_point_grid_step_cursor
 
-            dev_x = updated_cursor_position.x() - orig_cursor_position.x()
-            dev_y = updated_cursor_position.y() - orig_cursor_position.y()
-            p = self.pos()
-            x = p.x() + dev_x
-            y = p.y() + dev_y
-            # w = p.width()
-            # h = p.height()
-            # p.setX(x)
-            # p.setY(y)
-            # p.setWidth(w)
-            # p.setHeight(h)
-            self.setPos(x, y)
-            # self.setW
-            # for ii in range(self.path().elementCount()):
-            #     x = p.elementAt(ii).x
-            #     y = p.elementAt(ii).y
-            #     # print(x, y)
-            #     p.setElementPositionAt(ii, x + dev_x, y + dev_y)
-            # self.setPath(p)
+            if  updated_cursor_position.x() != self.orig_cursor_position.x() or updated_cursor_position.y() != self.orig_cursor_position.y():
+                # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
+                if self.orig_cursor_position != QtCore.QPointF():
+                    dev_x = updated_cursor_position.x() - self.orig_cursor_position.x()
+                    dev_y = updated_cursor_position.y() - self.orig_cursor_position.y()
+            
+                    p = self.pos()
+                    x = p.x() + dev_x
+                    y = p.y() + dev_y
+                    # w = p.width()
+                    # h = p.height()
+                    # p.setX(x)
+                    # p.setY(y)
+                    # p.setWidth(w)
+                    # p.setHeight(h)
+                    self.setPos(x, y)
+                    # self.setW
+                    # for ii in range(self.path().elementCount()):
+                    #     x = p.elementAt(ii).x
+                    #     y = p.elementAt(ii).y
+                    #     # print(x, y)
+                    #     p.setElementPositionAt(ii, x + dev_x, y + dev_y)
+                    # self.setPath(p)
+                self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
 
     def mouseReleaseEvent(self, event):
         pass

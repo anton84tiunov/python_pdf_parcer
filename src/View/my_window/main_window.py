@@ -43,8 +43,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # self.tab_pdf_editor.graph_scene.addRect(150.0, 150.0, 100.0, 100.0)
         # self.tab_pdf_editor.graph_view.setCursor
-
-
+        
 
 
 
