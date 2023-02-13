@@ -117,28 +117,6 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.rect_p1 = QtCore.QPointF(0.0, 0.0)
         self.rect_demo_item = my_demo_rectangle.MyDemoRactangle(self.rect_demo)
 
-        # self.set_grid_cords(5)
-
-        self.figure = Figure()
-        self.axes = self.figure.gca()
-        self.axes.set_title("My Plot") 
-
-    def graph(self):
-#        x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-#        y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        
-        x = [ random.randrange(1, 100) for _ in range(10) ]
-        y = [ random.randrange(1, 100) for _ in range(10) ]
-        
-        self.axes.clear()
-        self.axes.plot(x, y, "-k", label="График внутри виджета QGraphicsView")
-
-        self.axes.legend()
-        self.axes.grid(True) 
-
-        self.canvas = FigureCanvas(self.figure)
-        self.proxy_widget = self.addWidget(self.canvas) 
-
     def round_step(sel, num, step):
         return round(num / step) * step
 
@@ -169,44 +147,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.addItem(self.vert_line_cursor_item)
         self.addItem(self.hor_line_cursor_item)
         self.rect_page.setRect(0.0, 0.0, self.width(), self.height())
-        # self.rect_page.setBrush(self.background_brush)
-        # self.rect_page.setZValue(-999999999)
         self.addItem(self.rect_page)
-        point_width = []
-        point_height = []
-        # print(self.width(), self.height())
-        # x = [ random.randrange(1, int(self.width())) for _ in range(10) ]
-        # y = [ random.randrange(1, int(self.height())) for _ in range(10) ]
-        
-        # self.axes.clear()
-        # self.axes.plot(x, y, "-k")
-
-        # self.axes.legend()
-        # self.axes.grid(True) 
-
-        # self.canvas = FigureCanvas(self.figure)
-        # self.proxy_widget = self.addWidget(self.canvas) 
-
-        # for w in range(int(self.width())):
-        #     if w % step == 0:
-        #         point_width.append(w)
-
-        # for h in range(int(self.height())):
-        #     if h % step == 0:
-        #         point_height.append(h)
-
-        # for w in point_width:
-        #     for h in point_height:
-        #         rect = QtCore.QRectF(float(w), float(h), 2.0, 2.0)
-        #         # rect_item = QtWidgets.QGraphicsRectItem(rect)
-        #         rect_item = my_rectangle.MyRactangle(self.root, rect)
-        #         # self.grid_cords.addToGroup(rect_item)
-        #         # self.addItem(rect_item)
-        #         # self.drawBackground
-
- 
-
-
 
     def mousePressEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent) -> None:
         button = event.button()

@@ -36,7 +36,8 @@ class MyPointRectImage(QtWidgets.QGraphicsRectItem):
                     dev_x = updated_cursor_position.x() - self.orig_cursor_position.x()
                     dev_y = updated_cursor_position.y() - self.orig_cursor_position.y()
         
-                    self.setRect(self.rect().x() + dev_x, self.rect().y() + dev_y, self.rect().width(), self.rect().height(), )
+                    # self.setRect(self.rect().x() + dev_x, self.rect().y() + dev_y, self.rect().width(), self.rect().height(), )
+                    self.setRect(updated_cursor_position.x(), updated_cursor_position.y(), self.rect().width(), self.rect().height(), )
                     p = self.el.rect()
                     if self.name_point == "top":
                         # self.setCursor(QtCore.Qt.CursorShape.SizeVerCursor)

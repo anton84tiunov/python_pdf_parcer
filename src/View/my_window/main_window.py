@@ -2,6 +2,9 @@ import sys
 from PySide6 import QtWidgets, QtGui,  QtCore 
 import src.View.my_widgets.pdf_editor.interact.pdf_editor_interact as pdf_editor_tab
 import src.View.my_widgets.pdf_el.tab.pdf_el_tab as pdf_el_tab
+import my_os_path
+
+win_icon = my_os_path.icon_ico + "icon.ico"
 
 win_style = """font: 16pt \"PT Sans\";
             background-color: rgb(71, 71, 71);
@@ -16,8 +19,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         # self.tab_pdf_editor.graph_left_tool_bar.tool_cursors
-
-        self.setWindowTitle("My App")
+        print(win_icon)
+        self.setWindowTitle("приложение по работе с  pdf")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(win_icon))
+        self.setWindowIcon(icon)
         self.resize(800, 500)
         self.setStyleSheet(win_style)
         self.centralwidget = QtWidgets.QWidget(self)

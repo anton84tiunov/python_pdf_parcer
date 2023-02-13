@@ -37,15 +37,17 @@ class MyPointRectPath(QtWidgets.QGraphicsRectItem):
             if  updated_cursor_position.x() != self.orig_cursor_position.x() or updated_cursor_position.y() != self.orig_cursor_position.y():
                 # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
                 if self.orig_cursor_position != QtCore.QPointF():
-                    dev_x = updated_cursor_position.x() - self.orig_cursor_position.x()
-                    dev_y = updated_cursor_position.y() - self.orig_cursor_position.y()
+                    # dev_x = updated_cursor_position.x() - self.orig_cursor_position.x()
+                    # dev_y = updated_cursor_position.y() - self.orig_cursor_position.y()
         
         
-                    self.setRect(self.rect().x() + dev_x, self.rect().y() + dev_y, self.rect().width(), self.rect().height(), )
+                    # self.setRect(self.rect().x() + dev_x, self.rect().y() + dev_y, self.rect().width(), self.rect().height(), )
+                    self.setRect(updated_cursor_position.x(), updated_cursor_position.y(), self.rect().width(), self.rect().height(), )
                     p = self.el.path()
                     # for ii in range(self.path().elementCount()):
                     x = p.elementAt(self.num_point).x
                     y = p.elementAt(self.num_point).y
-                    p.setElementPositionAt(self.num_point, x + dev_x, y + dev_y)
+                    # p.setElementPositionAt(self.num_point, x + dev_x, y + dev_y)
+                    p.setElementPositionAt(self.num_point, updated_cursor_position.x(), updated_cursor_position.y())
                     self.el.setPath(p)
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)

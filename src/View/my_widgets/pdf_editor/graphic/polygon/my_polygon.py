@@ -176,10 +176,10 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
                         x = p.at(ii).x()
                         y = p.at(ii).y()
                         # print(x, y)
-                        p. replace(ii, QtCore.QPointF(x + dev_x, y + dev_y))
+                        p[ii] = QtCore.QPointF(x + dev_x, y + dev_y)
                     self.setPolygon(p)
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
-                
+
     def mouseReleaseEvent(self, event):
         pass
 
