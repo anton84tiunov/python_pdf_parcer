@@ -19,7 +19,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         # self.tab_pdf_editor.graph_left_tool_bar.tool_cursors
-        print(win_icon)
+        # print(win_icon)
         self.setWindowTitle("приложение по работе с  pdf")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(win_icon))
