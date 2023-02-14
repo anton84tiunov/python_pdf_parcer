@@ -11,6 +11,7 @@ git config --list
 git init
 git status
 git add *
+git rm help.txt
 
 git commit -m "1  мое первое сохранение"
 
