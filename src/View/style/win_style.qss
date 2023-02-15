@@ -1,4 +1,4 @@
-qss = """ 
+
 QTabWidget::pane { 
     border-top: 2px solid #8a1567;
 }
@@ -195,4 +195,3 @@ QRadioButton::checked {
 QGroupBox {
   border: 0px solid #0d6efd;
 }
-""" 

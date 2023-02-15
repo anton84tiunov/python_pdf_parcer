@@ -2,6 +2,7 @@ import sys
 from PySide6 import QtWidgets, QtGui,  QtCore 
 import src.View.my_widgets.pdf_editor.interact.pdf_editor_interact as pdf_editor_tab
 import src.View.my_widgets.pdf_el.tab.pdf_el_tab as pdf_el_tab
+import src.View.my_widgets.general.menu.menu_bar as menu_bar
 import my_os_path
 
 win_icon = my_os_path.icon_ico + "icon.ico"
@@ -21,19 +22,28 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.tab_pdf_editor.graph_left_tool_bar.tool_cursors
         # print(win_icon)
         self.setWindowTitle("приложение по работе с  pdf")
+        # self.setStyleSheet(open("src/View/style/Clocker.qss", "r").read())
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(win_icon))
         self.setWindowIcon(icon)
         self.resize(800, 500)
-        self.setStyleSheet(win_style)
+
+        
+        # self.setStyleSheet(win_style)
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setContentsMargins(0, 0, 0, 0)
 
         self.ver_lay_centr = QtWidgets.QVBoxLayout(self.centralwidget)
         self.ver_lay_centr.setContentsMargins(0, 0, 0, 0)
+
+        self.menu_bar = menu_bar.MenuBar(self)
+        self.menu_bar.setContentsMargins(0, 0, 0, 0)
+        self.ver_lay_centr.addWidget(self.menu_bar)
+
         self.tabWidget = QtWidgets.QTabWidget()
         self.tabWidget.setContentsMargins(0, 0, 0, 0)
         self.ver_lay_centr.addWidget(self.tabWidget)
+
         # self.tabWidget.setStyleSheet(centr_style)
         self.tabWidget.setContentsMargins(0, 0, 0, 0)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
@@ -51,8 +61,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.tab_pdf_editor.graph_view.setCursor
         
 
+        self.tab_pdf_editor.frame_menu.btn_save_qt.clicked.connect(self.set_style)
 
-
+    def set_style(self):
+        self.setStyleSheet(open("src/View/style/Clocker.qss", "r").read())
 
 
 
