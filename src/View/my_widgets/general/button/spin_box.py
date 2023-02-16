@@ -23,9 +23,9 @@ class MySpineBox(QtWidgets.QSpinBox):
         self.par: QtWidgets = parent 
        
 
-        # self.setMinimumSize(QtCore.QSize(200, 30))
-        # self.setBaseSize(QtCore.QSize(200, 30))
-        # self.setMaximumSize(QtCore.QSize(200, 30))
+        self.setMinimumSize(QtCore.QSize(80, 30))
+        self.setBaseSize(QtCore.QSize(80, 30))
+        self.setMaximumSize(QtCore.QSize(80, 30))
         # self.combo_style = f"down-arrow::image: url({icon_svg_dir + icon});"
 
         self.setStyleSheet(f"image: url({icon_svg_dir + icon});")

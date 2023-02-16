@@ -117,6 +117,7 @@ QMenu::item
 {
     min-width : 150px;
     padding: 3px 20px 3px 20px;
+	color: #aee9d1;
 
 }
 

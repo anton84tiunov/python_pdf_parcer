@@ -11,10 +11,10 @@ win_style = "win_style"
 
 def main():
 
-    win_style = config.get_setting("configs/sryle_config.INI", "Style", "current_style")
+    win_style = config.get_setting(config.resource_path("configs/sryle_config.INI"), "Style", "current_style")
 
     app = QtWidgets.QApplication(sys.argv)
-    app.setStyleSheet(open("src/View/style/" + win_style + ".qss", "r").read())
+    app.setStyleSheet(open(config.resource_path("style/" + win_style + ".qss"), "r").read())
 
 
     icon = QtGui.QIcon()

@@ -33,10 +33,31 @@ class MyTopToolBar(QtWidgets.QFrame):
 
         self.v_box.setContentsMargins(0, 0, 0, 0)
 
+        self.spacer_tool_box = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.v_box.addItem(self.spacer_tool_box)
+
         self.c_box_grid_cords= spin_box.MySpineBox(self, 'grid_cords.png')
         self.v_box.addWidget(self.c_box_grid_cords)
         self.c_box_grid_cords.valueChanged.connect(self.text_changed) # works, but reacts on every new character typed in textbox of spinbox
 
+
+        self.r_btn_cursor_basket = radio_buttom.MyRadioButton(self, '9036038_trash_sharp_icon.png')
+        self.v_box.addWidget(self.r_btn_cursor_basket)
+
+        self.r_btn_cursor_back = radio_buttom.MyRadioButton(self, 'curved-arrow-left-outline-icon.png')
+        self.v_box.addWidget(self.r_btn_cursor_back)
+
+        self.r_btn_cursor_forward = radio_buttom.MyRadioButton(self, 'curved-arrow-right-outline-icon.png')
+        self.v_box.addWidget(self.r_btn_cursor_forward)
+
+        self.r_btn_cursor_minus_zoom = radio_buttom.MyRadioButton(self, '3844430_magnifier_out_plus_search_zoom_icon.png')
+        self.v_box.addWidget(self.r_btn_cursor_minus_zoom)
+
+        self.r_btn_cursor_plus_zoom = radio_buttom.MyRadioButton(self, '3844431_in_magnifier_plus_search_zoom_icon.png')
+        self.v_box.addWidget(self.r_btn_cursor_plus_zoom)
+
+        self.v_box.addItem(self.spacer_tool_box)
+        
     def text_changed(self, s):
         self.root.tab_pdf_editor.graph_scene.grid_step = int(s)
         print(int(s))

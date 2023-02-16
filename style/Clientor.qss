@@ -89,7 +89,7 @@ QMenu
 {
     background-color: #dcdcdf;
     border: 1px solid;
-    color: #000;
+    color: #aaa;
 
 }
 

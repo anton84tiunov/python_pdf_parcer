@@ -2,4 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
+pyinstaller -w -i "C:/python_proj/mvc_pdf_parcer_2/assets/icon/icon_ico/icon.ico" --add-binary  "assets;assets" --add-data  "style;style" --add-data  "configs;configs"  main.py
+
 pyinstaller -F -w -i "C:/python_proj/mvc_pdf_parcer_2/assets/icon/icon_ico/icon.ico" main.py
