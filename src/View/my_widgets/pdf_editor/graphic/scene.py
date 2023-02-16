@@ -15,11 +15,13 @@ import src.View.my_widgets.pdf_editor.graphic.polygon.my_polygon as my_polygon
 import src.View.my_widgets.pdf_editor.graphic.rectangle.my_rectangle as my_rectangle
 import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
+import src.View.my_widgets.pdf_editor.graphic.ellipse.my_ellopse as my_ellopse
 import src.View.my_widgets.pdf_editor.paint.pointer_path.my_demo_pointer_path as my_demo_pointer_path
 import src.View.my_widgets.pdf_editor.paint.pointer_path.my_point_ellipse_path as my_point_ellipse_path
 import src.View.my_widgets.pdf_editor.paint.polygon.my_demo_polygon as my_demo_polygon
 import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipse_pol as my_point_ellipse_pol
 import src.View.my_widgets.pdf_editor.paint.rectangle.my_demo_rectangle as my_demo_rectangle
+import src.View.my_widgets.pdf_editor.paint.ellipse.my_demo_ellipse as my_demo_ellipse
 # import my_os_path as my_os_path
 
 # icon_dir = my_os_path.icon
@@ -116,6 +118,13 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.rect_p0 = QtCore.QPointF(0.0, 0.0)
         self.rect_p1 = QtCore.QPointF(0.0, 0.0)
         self.rect_demo_item = my_demo_rectangle.MyDemoRactangle(self.rect_demo)
+
+
+        self.ellopse = QtCore.QRectF()
+        self.ellopse_demo = QtCore.QRectF()
+        self.ellopse_p0 = QtCore.QPointF(0.0, 0.0)
+        self.ellopse_p1 = QtCore.QPointF(0.0, 0.0)
+        self.ellopse_demo_item = my_demo_ellipse.MyDemoEllipse(self.ellopse_demo)
 
     def round_step(sel, num, step):
         return round(num / step) * step
@@ -214,7 +223,11 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 
                 self.addItem(self.rect_demo_item)
             elif cursor == "circle":
-                ...
+                self.ellopse_p0 = copy.deepcopy(self.point_grid_step_cursor)
+                self.ellopse_demo = QtCore.QRectF()
+                self.ellopse_demo_item = my_demo_ellipse.MyDemoEllipse(self.ellopse_demo)
+
+                self.addItem(self.ellopse_demo_item)
             elif cursor == "text":
                 ...
             elif cursor == "ruler":
@@ -309,7 +322,25 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 self.addItem(rext_item)
                 
             elif cursor == "circle":
-                ...
+                self.removeItem(self.ellopse_demo_item)
+                self.ellopse_p1 = copy.deepcopy(self.point_grid_step_cursor)
+                if self.ellopse_p0.x() > self.ellopse_p1.x():
+                    if self.ellopse_p0.y() > self.ellopse_p1.y():
+                        self.ellopse.setBottomRight(self.ellopse_p0)
+                        self.ellopse.setTopLeft(self.ellopse_p1)
+                    elif self.ellopse_p0.y() < self.ellopse_p1.y():
+                        self.ellopse.setTopRight(self.ellopse_p0)
+                        self.ellopse.setBottomLeft(self.ellopse_p1)
+                elif self.ellopse_p0.x() < self.ellopse_p1.x():
+                    if self.ellopse_p0.y() > self.ellopse_p1.y():
+                        self.ellopse.setBottomLeft(self.ellopse_p0)
+                        self.ellopse.setTopRight(self.ellopse_p1)
+                    elif self.ellopse_p0.y() < self.ellopse_p1.y():
+                        self.ellopse.setBottomRight(self.ellopse_p1)
+                        self.ellopse.setTopLeft(self.ellopse_p0)
+                ellopse_item = my_ellopse.MyEllipseRactangle(self.root, self.ellopse)
+                ellopse_item.unsetCursor()
+                self.addItem(ellopse_item)
             elif cursor == "text":
                 ...
             elif cursor == "ruler":
@@ -372,7 +403,21 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                             self.rect_demo.setTopLeft(self.rect_p0)
                     self.rect_demo_item.setRect(self.rect_demo)
                 elif cursor == "circle":
-                    ...
+                    if self.ellopse_p0.x() > self.point_grid_step_cursor.x():
+                        if self.ellopse_p0.y() > self.point_grid_step_cursor.y():
+                            self.ellopse_demo.setBottomRight(self.ellopse_p0)
+                            self.ellopse_demo.setTopLeft(self.point_grid_step_cursor)
+                        elif self.ellopse_p0.y() < self.point_grid_step_cursor.y():
+                            self.ellopse_demo.setTopRight(self.ellopse_p0)
+                            self.ellopse_demo.setBottomLeft(self.point_grid_step_cursor)
+                    elif self.ellopse_p0.x() < self.point_grid_step_cursor.x():
+                        if self.ellopse_p0.y() > self.point_grid_step_cursor.y():
+                            self.ellopse_demo.setBottomLeft(self.ellopse_p0)
+                            self.ellopse_demo.setTopRight(self.point_grid_step_cursor)
+                        elif self.ellopse_p0.y() < self.point_grid_step_cursor.y():
+                            self.ellopse_demo.setBottomRight(self.point_grid_step_cursor)
+                            self.ellopse_demo.setTopLeft(self.ellopse_p0)
+                    self.ellopse_demo_item.setRect(self.ellopse_demo)
                 elif cursor == "text":
                     ...
                 elif cursor == "ruler":
