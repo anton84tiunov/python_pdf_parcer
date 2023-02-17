@@ -4,6 +4,8 @@ from PySide6 import QtWidgets, QtGui,  QtCore
 # import src.View.style.win_style as my_style
 import src.View.my_window.main_window as main_window
 import my_os_path
+import src.Utility.loging.base_loger as base_loger
+
 
 win_icon = my_os_path.icon_ico + "icon.ico"
 
@@ -11,6 +13,8 @@ win_style = "win_style"
 
 def main():
 
+    base_loger.init_loger('app')
+    
     win_style = config.get_setting(config.resource_path("configs/sryle_config.INI"), "Style", "current_style")
 
     app = QtWidgets.QApplication(sys.argv)

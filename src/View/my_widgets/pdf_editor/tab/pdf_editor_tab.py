@@ -11,6 +11,7 @@ import src.View.my_widgets.pdf_editor.graphic.left_tool_bar as left_tool_bar
 import src.View.my_widgets.pdf_editor.graphic.top_tool_bar as top_tool_bar
 import src.View.my_widgets.pdf_editor.menu.menu_bar as menu_bar
 
+
 red_style = "background-color: rgb(255, 0, 0);"
 green_style = "background-color: rgb(0, 255, 0);"
 blue_style = "background-color: rgb(0, 0, 255);"
@@ -21,7 +22,7 @@ class TabPdfEditor(tab_base.TabBase):
     def __init__(self, root: QtWidgets):
         super().__init__("pdf_editor")
 
-        logger = logging.getLogger(__name__)
+        logger = logging.getLogger('app.pdf_editor_tab')
 
         try:
             self.root: QtWidgets = root
@@ -71,9 +72,7 @@ class TabPdfEditor(tab_base.TabBase):
 
         except Exception as e:
             logger.exception(e)
-            logging.basicConfig(filename='pdf_editor.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
-            logging.warning(str(e))
-            self.txt_brow_log.append(f'<span style=" font-family:"MS Shell Dlg 2"; font-size:5pt;color:#ffff00;"Error: </span><span style=" font-size:18pt; text-decoration: underline; color:#3355cc;">{e}</span>')
+            self.txt_brow_log.append(f'<span style=" font-family:"MS Shell Dlg 2"; font-size:5pt;color:#ff0000;"Error: </span><span style=" font-size:18pt; text-decoration: underline; color:#ffaa00;">{e}</span>')
     
         
  

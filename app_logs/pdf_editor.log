@@ -1,0 +1,46 @@
+
+asctime: 2023-02-17 17:35:38,847, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:37:37,648, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:38:49,782, name: app, levelname: DEBUG, message: logger init
+asctime: 2023-02-17 17:42:13,207, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-17 17:43:40,216, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:46:43,649, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-17 17:47:01,650, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:48:41,024, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
