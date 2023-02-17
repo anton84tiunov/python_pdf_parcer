@@ -25,7 +25,7 @@ class MyGraphicsView(QtWidgets.QGraphicsView):
         # self.setBackgroundBrush(QtGui.QBrush(QtCore.Qt.red))
         # self.cursor().setShape()
         # self.cursor().setPos(50, 50)
-
+        # self.viewport().pos()
     def zoom_view(self, int_scale: int):
         """функция для масштабирования сцены"""
         scale_scene = 1

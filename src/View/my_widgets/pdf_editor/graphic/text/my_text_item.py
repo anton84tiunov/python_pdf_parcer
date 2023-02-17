@@ -199,7 +199,7 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
     
     
     def mouseReleaseEvent(self, event):
-        pass
+        self.orig_cursor_position =  QtCore.QPointF()
 
 
     def get_centr_points(self) -> tuple[float, float]:

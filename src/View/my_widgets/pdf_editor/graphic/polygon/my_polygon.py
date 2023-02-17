@@ -181,7 +181,7 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
 
     def mouseReleaseEvent(self, event):
-        pass
+        self.orig_cursor_position =  QtCore.QPointF()
 
 
     def get_centr_points(self) -> tuple[float, float]:
@@ -209,7 +209,7 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
             y = p.at(ii).y()
             dev_x = math.cos(math.radians(angle)) * (x-x_centr) - math.sin(math.radians(angle)) * (y-y_centr) + x_centr
             dev_y = math.sin(math.radians(angle)) * (x-x_centr) + math.cos(math.radians(angle)) * (y-y_centr) + y_centr
-            p.replace(ii, QtCore.QPointF(dev_x, dev_y))
+            p[ii] = QtCore.QPointF(dev_x, dev_y)
         self.setPolygon(p)
 
     def scale_centr(self, scale: float):
@@ -222,7 +222,7 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
             y_to_centr = y_centr - y
             dev_x = x_to_centr * scale / 100
             dev_y = y_to_centr * scale / 100
-            p.replace(ii, QtCore.QPointF(x_centr - dev_x, y_centr - dev_y))
+            p[ii] = QtCore.QPointF(x_centr - dev_x, y_centr - dev_y)
         self.setPolygon(p)
 
     def flip_vertically_centr(self):
@@ -232,7 +232,7 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
             x = p.at(ii).x()
             y = p.at(ii).y()
             dev_y = y_centr - y
-            p.replace(ii, QtCore.QPointF(x, y_centr + dev_y))
+            p[ii] = QtCore.QPointF(x, y_centr + dev_y)
         self.setPolygon(p)
 
     def flip_horizontally_centr(self):
@@ -242,5 +242,5 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
             x = p.at(ii).x()
             y = p.at(ii).y()
             dev_x = x_centr - x
-            p.replace(ii, QtCore.QPointF(x_centr + dev_x, y))
+            p[ii] = QtCore.QPointF(x_centr + dev_x, y)
         self.setPolygon(p)

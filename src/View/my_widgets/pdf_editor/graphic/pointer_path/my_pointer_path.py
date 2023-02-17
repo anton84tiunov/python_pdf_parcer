@@ -179,7 +179,7 @@ class MyPainterPath(QtWidgets.QGraphicsPathItem):
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
 
     def mouseReleaseEvent(self, event):
-        pass
+        self.orig_cursor_position =  QtCore.QPointF()
 
 
     def get_centr_points(self) -> tuple[float, float]:

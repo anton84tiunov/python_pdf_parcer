@@ -12,7 +12,7 @@ import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
-
+import src.View.my_widgets.pdf_editor.graphic.ellipse.my_ellopse as my_ellopse
 
 
 
@@ -115,7 +115,7 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
         action_to_Front = menu.addAction("to Front")
         action_to_back = menu.addAction("to back")
         menu.addSeparator()
-        action_rotate = menu.addAction("rotate")
+        # action_rotate = menu.addAction("rotate")
         action_scale = menu.addAction("scale")
         action_flip_vertically = menu.addAction("flip vertically")
         action_flip_horizontally = menu.addAction("flip horizontally")
@@ -132,23 +132,58 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
             settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
             settings.exec()
 
-        elif selected_action == action_rotate:
-            rot =  my_rotate.MyDialogRotatePath(self.root)
-            if rot.exec_():
-                self.rotation_centr(rot.val_rotate)
+        # elif selected_action == action_rotate:
+        #     rot =  my_rotate.MyDialogRotatePath(self.root)
+        #     if rot.exec_():
+        #         self.rotation_centr(rot.val_rotate)
 
 
         elif selected_action == action_scale:
             scl =  my_scale.MyDialogScalePath(self.root)
             if scl.exec_():
-                self.scale_centr(scl.val_scale)
+                self.scale_centr(scl.val_scale / 100)
 
         elif selected_action == action_cut:
             pass
         elif selected_action == action_copy:
-            pass
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyRactangle(self.root, self.rect())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
+
         elif selected_action == action_paste:
-            pass
+            if isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, MyRactangle):
+                rect_f = self.root.tab_pdf_editor.graph_scene.buffer_copy_item.rect()
+                w = copy.deepcopy(rect_f.width())
+                h = copy.deepcopy(rect_f.height())
+
+                rect_f.setX(copy.deepcopy(event.scenePos().x()))
+                rect_f.setY(copy.deepcopy(event.scenePos().y()))
+                rect_f.setWidth(w)
+                rect_f.setHeight(h)
+
+                rect_item = MyRactangle(self.root, rect_f)
+                rect_item.setPen(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.pen())
+                rect_item.setBrush(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.brush())
+                rect_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())
+                self.root.tab_pdf_editor.graph_scene.addItem(rect_item)
+            
+            elif isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, my_ellopse.MyEllipseRactangle):
+                rect_f = self.root.tab_pdf_editor.graph_scene.buffer_copy_item.rect()
+                w = copy.deepcopy(rect_f.width())
+                h = copy.deepcopy(rect_f.height())
+
+                rect_f.setX(copy.deepcopy(event.scenePos().x()))
+                rect_f.setY(copy.deepcopy(event.scenePos().y()))
+                rect_f.setWidth(w)
+                rect_f.setHeight(h)
+
+                ellipse_item = my_ellopse.MyEllipseRactangle(self.root, rect_f)
+                ellipse_item.setPen(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.pen())
+                ellipse_item.setBrush(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.brush())
+                ellipse_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())
+                self.root.tab_pdf_editor.graph_scene.addItem(ellipse_item)
+        
         elif selected_action == action_duplicate:
             pass
 
@@ -197,48 +232,28 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
                 
     def mouseReleaseEvent(self, event):
-        pass
+        self.orig_cursor_position =  QtCore.QPointF()
 
 
     def get_centr_points(self) -> tuple[float, float]:
-        list_x = []
-        list_y = []
-        p = self.path()
-        for ii in range(p.elementCount()):
-            list_x.append(p.elementAt(ii).x)
-            list_y.append(p.elementAt(ii).y)
-
-        x_min = min(list_x)
-        x_max = max(list_x)
-        y_min = min(list_y)
-        y_max = max(list_y)
-        x_centr: float = x_min + (x_max - x_min) / 2
-        y_centr: float = y_min + (y_max - y_min) / 2
-
-        return x_centr, y_centr
+        p = self.rect()
+        pc = p.center()
+        return pc.x(), pc.y()
  
-    def rotation_centr(self, angle: int):
-        x_centr, y_centr = self.get_centr_points()
-        p = self.path()
-        for ii in range(p.elementCount()):
-            x = p.elementAt(ii).x
-            y = p.elementAt(ii).y
-            dev_x = math.cos(math.radians(angle)) * (x-x_centr) - math.sin(math.radians(angle)) * (y-y_centr) + x_centr
-            dev_y = math.sin(math.radians(angle)) * (x-x_centr) + math.cos(math.radians(angle)) * (y-y_centr) + y_centr
-            p.setElementPositionAt(ii, dev_x, dev_y)
-        self.setPath(p)
+    # def rotation_centr(self, angle: int):
+    #     x_centr, y_centr = self.get_centr_points()
+    #     p = self.rect()
+    #     self.setRotation(float(angle))
 
+        
     def scale_centr(self, scale: float):
         x_centr, y_centr = self.get_centr_points()
-        p = self.path()
-        for ii in range(p.elementCount()):
-            x = p.elementAt(ii).x
-            y = p.elementAt(ii).y
-            x_to_centr = x_centr - x
-            y_to_centr = y_centr - y
-            dev_x = x_to_centr * scale / 100
-            dev_y = y_to_centr * scale / 100
-            p.setElementPositionAt(ii, x_centr - dev_x, y_centr - dev_y)
-        self.setPath(p)
+        p = self.rect()
+        w2 = p.width() / 2
+        h2 = p.height() / 2
+        p2 = QtCore.QRectF()
+        p2.setTopLeft(QtCore.QPointF(x_centr - w2 * scale, y_centr - h2 * scale))
+        p2.setBottomRight(QtCore.QPointF(x_centr + w2 * scale, y_centr + h2 * scale))
+        self.setRect(p2)
 
  

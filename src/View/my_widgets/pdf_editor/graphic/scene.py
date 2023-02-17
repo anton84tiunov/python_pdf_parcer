@@ -22,6 +22,8 @@ import src.View.my_widgets.pdf_editor.paint.polygon.my_demo_polygon as my_demo_p
 import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipse_pol as my_point_ellipse_pol
 import src.View.my_widgets.pdf_editor.paint.rectangle.my_demo_rectangle as my_demo_rectangle
 import src.View.my_widgets.pdf_editor.paint.ellipse.my_demo_ellipse as my_demo_ellipse
+import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
+import src.View.my_widgets.pdf_editor.graphic.scene_rect_item as scene_rect_item
 # import my_os_path as my_os_path
 
 # icon_dir = my_os_path.icon
@@ -43,7 +45,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.root: QtWidgets = root
         self.point_grid_step_cursor = QtCore.QPointF()
         self.old_point_grid_step_cursor = QtCore.QPointF()
-        
+        self.buffer_copy_item = QtWidgets.QWidget()
+
+
         # self.setSceneRect(0.0, 0.0, 200.0, 200.0)
         # self.is_0_open_file = True
         # self.setSceneRect(0.0, 0.0, 10000.0, 10000.0)
@@ -76,7 +80,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.hor_line_cursor_item.setPen(self.grid_pen)
         # self.hor_line_cursor.setBrush(QtGui.QColor(0, 0, 0, 255))
         # self.hor_line_cursor_item.setTransform(QtGui.QTransform.fromTranslate(-50.0, -0.0))
-        self.rect_page = QtWidgets.QGraphicsRectItem(0.0, 0.0, 0.0, 0.0)
+        self.rect_page = scene_rect_item.MyRectPage(self.root, QtCore.QRectF(0.0, 0.0, 0.0, 0.0))
         self.rect_page.setBrush(self.background_brush)
         self.rect_page.setZValue(-999999999)
         # self.addItem(self.vert_line_cursor_item)
@@ -352,13 +356,15 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         updated_cursor_position = event.scenePos()
         cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
+        # self.point_grid_step_cursor.setY(self.round_step(updated_cursor_position.y(), self.grid_step))
+        # self.point_grid_step_cursor.setX(self.round_step(updated_cursor_position.x(), self.grid_step))
+            
         if updated_cursor_position.x() < 0 or updated_cursor_position.x() > self.width() or updated_cursor_position.y() < 0 or updated_cursor_position.y() > self.height():
             self.hor_line_cursor_item.hide()
             self.vert_line_cursor_item.hide()
         elif updated_cursor_position.x() >= 0 or updated_cursor_position.x() <= self.width() or updated_cursor_position.y() >= 0 or updated_cursor_position.y() <= self.height():
             self.hor_line_cursor_item.show()
             self.vert_line_cursor_item.show()
-            
             self.point_grid_step_cursor.setY(self.round_step(updated_cursor_position.y(), self.grid_step))
             self.point_grid_step_cursor.setX(self.round_step(updated_cursor_position.x(), self.grid_step))
             
@@ -431,6 +437,8 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         updated_cursor_position = event.scenePos()
         cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
+       
+            
         if cursor == "arrow":
             ...
         elif cursor == "hand":
