@@ -30,7 +30,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
     def __init__(self, root: QtWidgets):
         super().__init__(root)
         self.root: QtWidgets = root
-        self.controller = extract_el_from_pdf_controller.ExtractElFromPdfController()
+        self.controller = extract_el_from_pdf_controller.ExtractElFromPdfController(self.root)
         self.pdf_path = ""
 
         self.frame_menu.btn_open_pdf.clicked.connect(self.open_pdf_to_qt)
@@ -120,6 +120,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
     def open_pdf_to_qt(self):
         """функция для отрисовки компонентов извлеченных и преобразованных из  pdf  на сцене"""
+        
         self.pdf_path = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf', "",'Pdf(*.pdf);;All(*)' )[0]
         if self.pdf_path != "":
             # self.gr
