@@ -44,3 +44,126 @@ Traceback (most recent call last):
   File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
     bound = page.bound()
 AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-18 08:45:48,524, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:36:24,577, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:37:36,528, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:43:59,660, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:51:01,664, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:52:41,436, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:32:07,928, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:34:41,351, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:40:30,325, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:44:07,061, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:48:32,368, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:57:30,220, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:59:14,858, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:17:47,902, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:20:38,666, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:23:35,836, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:43:55,634, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:55:26,193, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:21:23,626, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:22:29,627, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:33:07,917, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:52:29,676, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:55:46,631, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:19:21,229, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:25:32,292, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:33:30,772, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:36:52,685, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:38:50,782, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:42:33,759, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:47:18,536, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:50:47,949, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:54:55,512, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:58:22,330, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 15:38:50,360, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 16:09:49,947, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 16:21:04,556, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 18:58:52,721, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:01:57,062, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:04:47,952, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:05:58,717, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:08:36,491, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+

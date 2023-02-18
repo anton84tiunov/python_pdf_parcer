@@ -81,9 +81,10 @@ class MyLeftToolBar(QtWidgets.QFrame):
         self.v_box.addWidget(self.r_btn_cursor_text)
         self.r_btn_cursor_text.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_text, "text"))
         
+        
         self.r_btn_cursor_img = radio_buttom.MyRadioButton(self, 'img.png')
         self.v_box.addWidget(self.r_btn_cursor_img)
-        # self.r_btn_cursor_text.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_img, "img"))
+        self.r_btn_cursor_img.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_img, "img"))
         
         self.r_btn_cursor_ruler= radio_buttom.MyRadioButton(self, 'student_ruler_school_brush_learning_stationery_icon_230451.png')
         self.v_box.addWidget(self.r_btn_cursor_ruler)

@@ -29,7 +29,7 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
-
+        # self.setSc
         # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
         size_cursor = QtCore.QSize(32, 32)
         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_image_itemt.png")
@@ -44,10 +44,28 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
 
         self.setAcceptHoverEvents(True)
 
+        self.sc = False
+
+        self.orig_pix = self.pixmap()
+        self.orig_scale_size = copy.deepcopy(self.pixmap().size())
+        # self.orig_pix.scaled(self.orig_scale_size,  QtCore.Qt.AspectRatioMode.KeepAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+
+
 
      # mouse hover event
     def hoverEnterEvent(self, event):
-        pass
+        if self.sc:
+            self.sc = False
+            # self.setScale(2.0)
+            # pix = self.pixmap()
+            # pix = pix.scaled(self.orig_scale_size )
+            # self.setPixmap(pix)
+        else:
+            self.sc = True
+            # self.setScale(0.5)
+            # pix = self.pixmap()
+            # pix = pix.scaled(QtCore.QSize(self.orig_scale_size.width() * 2, self.orig_scale_size.height() * 2))
+            # self.setPixmap(pix)
         # if self.root.pdf_editor_cursor == "move":
         #     self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
         # else:
@@ -67,36 +85,50 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "hand":
         # if True:
             # print(self.root.pdf_editor_cursor)
-            p = self.boundingRect()
+            # self.setb
+            r = self.boundingRect()
+            p = self.pos()
+            # x = r.x() 
+            # y = r.y()
             x = p.x() 
             y = p.y()
-            w = p.width()
-            h = p.height()
-            for ii in self.list_point_rect:
-                if ii == "top":
-                    x0 = x + w/2
-                    y0 = y
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_top = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_top)
-                if ii == "bottom":
-                    x0 = x + w/2
-                    y0 = y + h
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_bottom = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_bottom)
-                if ii == "left":
-                    x0 = x
-                    y0 = y + h/2
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_left = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_left)
-                if ii == "right":
-                    x0 = x + w
-                    y0 = y + h/2
-                    it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
-                    rect_right = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
-                    self.root.tab_pdf_editor.graph_scene.addItem(rect_right)
+            # self.pixmap().scaledToHeight()
+            # scaledToHeight
+            # scaledToWidth
+            w = r.width()
+            h = r.height()
+            x0 = x + w
+            y0 = y + h
+
+            rect = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
+            rect_item = my_point_rect_image.MyPointRectImage(self.root, self, rect)
+            self.root.tab_pdf_editor.graph_scene.addItem(rect_item)
+
+            # for ii in self.list_point_rect:
+            #     if ii == "top":
+            #         x0 = x + w/2
+            #         y0 = y
+            #         it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
+            #         rect_top = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
+            #         self.root.tab_pdf_editor.graph_scene.addItem(rect_top)
+            #     if ii == "bottom":
+            #         x0 = x + w/2
+            #         y0 = y + h
+            #         it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
+            #         rect_bottom = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
+            #         self.root.tab_pdf_editor.graph_scene.addItem(rect_bottom)
+            #     if ii == "left":
+            #         x0 = x
+            #         y0 = y + h/2
+            #         it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
+            #         rect_left = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
+            #         self.root.tab_pdf_editor.graph_scene.addItem(rect_left)
+            #     if ii == "right":
+            #         x0 = x + w
+            #         y0 = y + h/2
+            #         it = QtCore.QRectF(x0 - 5, y0 - 5, 10, 10)
+            #         rect_right = my_point_rect_image.MyPointRectImage(self.root, self, ii, it)
+            #         self.root.tab_pdf_editor.graph_scene.addItem(rect_right)
 
                 
      
@@ -182,20 +214,10 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
                     p = self.pos()
                     x = p.x() + dev_x
                     y = p.y() + dev_y
-                    # w = p.width()
-                    # h = p.height()
-                    # p.setX(x)
-                    # p.setY(y)
-                    # p.setWidth(w)
-                    # p.setHeight(h)
                     self.setPos(x, y)
-                    # self.setW
-                    # for ii in range(self.path().elementCount()):
-                    #     x = p.elementAt(ii).x
-                    #     y = p.elementAt(ii).y
-                    #     # print(x, y)
-                    #     p.setElementPositionAt(ii, x + dev_x, y + dev_y)
-                    # self.setPath(p)
+                    # print(self.x(), self.y())
+                    # self.setScale
+          
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
 
     def mouseReleaseEvent(self, event):

@@ -6,10 +6,10 @@ from PySide6 import QtWidgets, QtGui,  QtCore
 class MyPointRectImage(QtWidgets.QGraphicsRectItem):
     """класс для создания точек изменения координат прямоугольников и четырехугольников графики"""
 
-    def __init__(self, root: QtWidgets, el: QtWidgets, name_point: str, rectF: QtCore.QRectF):
+    def __init__(self, root: QtWidgets, el: QtWidgets, rectF: QtCore.QRectF):
         super().__init__(rectF)
         # self.rectF = rectF
-        self.name_point: str = name_point
+        # self.name_point: str = name_point
         self.root: QtWidgets = root
         self.el: QtWidgets = el
         self.orig_cursor_position =  QtCore.QPointF()
@@ -28,7 +28,7 @@ class MyPointRectImage(QtWidgets.QGraphicsRectItem):
         if self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor == "hand":
  
             updated_cursor_position = self.root.tab_pdf_editor.graph_scene.point_grid_step_cursor
-            # orig_cursor_position = self.root.tab_pdf_editor.graph_scene.old_point_grid_step_cursor
+            # self.orig_cursor_position = self.root.tab_pdf_editor.graph_scene.old_point_grid_step_cursor
 
             if  updated_cursor_position.x() != self.orig_cursor_position.x() or updated_cursor_position.y() != self.orig_cursor_position.y():
                 # print(self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor)
@@ -38,27 +38,25 @@ class MyPointRectImage(QtWidgets.QGraphicsRectItem):
         
                     # self.setRect(self.rect().x() + dev_x, self.rect().y() + dev_y, self.rect().width(), self.rect().height(), )
                     self.setRect(updated_cursor_position.x(), updated_cursor_position.y(), self.rect().width(), self.rect().height(), )
-                    p = self.el.rect()
-                    if self.name_point == "top":
-                        # self.setCursor(QtCore.Qt.CursorShape.SizeVerCursor)
-                        y = p.y() + dev_y
-                        p.setY(y)
+                    r = self.el.boundingRect()
+                    p = self.el.pos()
+                    
+                    x = copy.deepcopy(p.x()) 
+                    y = copy.deepcopy(p.y())
 
-                    if self.name_point == "bottom":
-                        # self.setCursor(QtCore.Qt.CursorShape.SizeVerCursor)
-                        h = p.height() + dev_y
-                        p.setHeight(h)
+                    w = copy.deepcopy(r.width())
+                    h = copy.deepcopy(r.height())
 
-                    if self.name_point == "left":
-                        # self.setCursor(QtCore.Qt.CursorShape.SizeHorCursor)
-                        x = p.x() + dev_x
-                        p.setX(x)
 
-                    if self.name_point == "right":
-                        # self.setCursor(QtCore.Qt.CursorShape.SizeHorCursor)
-                        w = p.width() + dev_x
-                        p.setWidth(w)
 
-                    self.el.setRect(p)
+                    # scale = (self.orig_cursor_position.x() / updated_cursor_position.x()) * (self.orig_cursor_position.y() / updated_cursor_position.y())
+                    scale_x = int(self.orig_cursor_position.x() - x)
+                    scale_y = int(self.orig_cursor_position.y() - y)
+                    # print(scale_x)
+                    # print(scale_y)
+                    pix = self.el.orig_pix.scaled(QtCore.QSize(scale_x, scale_y),  QtCore.Qt.AspectRatioMode.KeepAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+                    # pix = pix.scaledToWidth(scale_x)
+                    self.el.setPixmap(pix)
+                    # self.el.setScale(scale)
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)
 

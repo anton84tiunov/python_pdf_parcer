@@ -35,6 +35,9 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
         self.frame_menu.btn_open_pdf.clicked.connect(self.open_pdf_to_qt)
     
+        self.frame_menu.btn_close_qt.clicked.connect(lambda: print(sys.getsizeof(self.graph_scene.items())))
+
+
     def convert_even_odd(self, even_odd: bool) -> QtCore.Qt.FillRule:
         """функция для преобразования fitz(path.even odd) -> QtCore.Qt.FillRule"""
         if even_odd:
@@ -257,7 +260,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
                 img_item.setPos(image.bbox[0], image.bbox[1])
                 # img_item.setScale
-                text_item.setZValue(image.img[0])
+                img_item.setZValue(image.img[0])
+                # img_item.pixmap()
                 self.graph_scene.addItem(img_item)
         
         self.graph_scene.set_grid_cords()

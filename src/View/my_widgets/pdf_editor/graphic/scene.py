@@ -233,7 +233,50 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
 
                 self.addItem(self.ellopse_demo_item)
             elif cursor == "text":
-                ...
+                pos = copy.deepcopy(self.point_grid_step_cursor)
+                text, ok = QtWidgets.QInputDialog.getText(None,  'text','Enter text')
+
+                if ok:
+                    text_item = my_text_item.MyTextItem(self.root, text)
+                    # font_text = QtGui.QFont()
+                    # font_text.setFamily(span.span_font)
+                    # font_text.setPixelSize(int(span.span_size - abs(span.span_ascender) - abs(span.span_descender)))
+                    # font_text.setPixelSize(int(span.span_origin[1] - span.span_bbox[1]))
+                    # text_item.setTextWidth(span.span_size)
+                    # font_text.setPointSizeF(span.span_size)
+                    # text_item
+                    # flags = self.flags_decomposer(span.span_flags)
+                    # if 'italic' in flags:
+                    #     font_text.setItalic(True)
+                    # if 'bold' in flags:
+                    #     font_text.setBold(True)
+                    # text_item.setFont(font_text)
+                    
+                    text_item.setPos(pos)
+                    # text_item.setPos(span.span_origin[0], span.span_origin[1] - span.span_size)
+                    # text_item.setRotation(self.rotate_decompocer(line.line_dir))
+                    # text_item.setDefaultTextColor(QtGui.QColor(*span.span_color))
+                    # text_item.setZValue(text.block_number)
+                    self.addItem(text_item)
+          
+
+            elif cursor == "img":
+                img_path = QtWidgets.QFileDialog.getOpenFileName(self.root.tab_pdf_editor.graph_view, 'select image', "",'JPG(*.jpg);;PNG(*.png);;All(*)' )[0]
+                if img_path != "":
+                    pix = QtGui.QPixmap(img_path)
+                    # pix.loadFromData(image.base_image.image)
+                    # pix = pix.scaled(image.base_image.width / image.base_image.xres, image.base_image.height / image.base_image.yres)
+                    # pix = pix.scaled(image.bbox[2] - image.bbox[0], image.bbox[3] - image.bbox[1])
+                    # pix.scaledToHeight(image.base_image.yres)
+                    # pix.scaledToWidth(image.base_image.xres)
+                    img_item =  my_image.MyImage(self.root, pix)
+
+                    # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
+                    img_item.setPos(event.pos())
+                    # img_item.setScale
+                    # text_item.setZValue(image.img[0])
+                    self.addItem(img_item)
+
             elif cursor == "ruler":
                 ...
         if button == QtCore.Qt.MouseButton.MiddleButton:
