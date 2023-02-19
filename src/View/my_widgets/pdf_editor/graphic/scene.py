@@ -385,7 +385,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                     elif self.ellopse_p0.y() < self.ellopse_p1.y():
                         self.ellopse.setBottomRight(self.ellopse_p1)
                         self.ellopse.setTopLeft(self.ellopse_p0)
-                ellopse_item = my_ellopse.MyEllipseRactangle(self.root, self.ellopse)
+                ellopse_item = my_ellopse.MyEllipse(self.root, self.ellopse)
                 ellopse_item.unsetCursor()
                 self.addItem(ellopse_item)
             elif cursor == "text":

@@ -17,7 +17,7 @@ import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
 
 
-class MyEllipseRactangle(QtWidgets.QGraphicsEllipseItem):
+class MyEllipse(QtWidgets.QGraphicsEllipseItem):
     """Класс переопределяющий QtWidgets.QGraphicsEllipseItem
         Вклассе добавленны функции для взаимодействия пользователя с 
         отрисованными экземплярами класса на графической сцене
@@ -147,7 +147,7 @@ class MyEllipseRactangle(QtWidgets.QGraphicsEllipseItem):
         elif selected_action == action_cut:
             pass
         elif selected_action == action_copy:
-            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyEllipseRactangle(self.root, self.rect())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyEllipse(self.root, self.rect())
             self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
             self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
             self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
@@ -169,7 +169,7 @@ class MyEllipseRactangle(QtWidgets.QGraphicsEllipseItem):
                 rect_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())
                 self.root.tab_pdf_editor.graph_scene.addItem(rect_item)
             
-            elif isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, MyEllipseRactangle):
+            elif isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, MyEllipse):
                 rect_f = self.root.tab_pdf_editor.graph_scene.buffer_copy_item.rect()
                 w = copy.deepcopy(rect_f.width())
                 h = copy.deepcopy(rect_f.height())
@@ -179,7 +179,7 @@ class MyEllipseRactangle(QtWidgets.QGraphicsEllipseItem):
                 rect_f.setWidth(w)
                 rect_f.setHeight(h)
 
-                ellipse_item = MyEllipseRactangle(self.root, rect_f)
+                ellipse_item = MyEllipse(self.root, rect_f)
                 ellipse_item.setPen(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.pen())
                 ellipse_item.setBrush(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.brush())
                 ellipse_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())

@@ -99,6 +99,7 @@ class MenuBar(QtWidgets.QMenuBar):
         self.style_MailSy.triggered.connect(lambda: self.set_win_style("MailSy"))
 
     def set_win_style(self, style):
+        # self.root.setStyleSheet(QtWidgets.QProxyStyle.baseStyle())
         self.root.setStyleSheet(open(config.resource_path("style/" + style + ".qss"), "r").read())
         config.update_setting(config.resource_path("configs/sryle_config.INI"), "Style", "current_style", style)
 

@@ -40,7 +40,7 @@ class MyRectPage(QtWidgets.QGraphicsRectItem):
                 rect_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())
                 self.root.tab_pdf_editor.graph_scene.addItem(rect_item)
             
-            elif isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, my_ellopse.MyEllipseRactangle):
+            elif isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, my_ellopse.MyEllipse):
                 rect_f = self.root.tab_pdf_editor.graph_scene.buffer_copy_item.rect()
                 w = copy.deepcopy(rect_f.width())
                 h = copy.deepcopy(rect_f.height())
@@ -50,7 +50,7 @@ class MyRectPage(QtWidgets.QGraphicsRectItem):
                 rect_f.setWidth(w)
                 rect_f.setHeight(h)
 
-                ellipse_item = my_ellopse.MyEllipseRactangle(self.root, rect_f)
+                ellipse_item = my_ellopse.MyEllipse(self.root, rect_f)
                 ellipse_item.setPen(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.pen())
                 ellipse_item.setBrush(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.brush())
                 ellipse_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())

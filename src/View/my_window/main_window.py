@@ -23,6 +23,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(win_icon)
         self.setWindowTitle("приложение по работе с  pdf")
         # self.setStyleSheet(open("src/View/style/Clocker.qss", "r").read())
+        
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(win_icon))
         self.setWindowIcon(icon)
@@ -61,10 +62,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.tab_pdf_editor.graph_view.setCursor
         
 
-        self.tab_pdf_editor.frame_menu.btn_save_qt.clicked.connect(self.set_style)
+    #     self.tab_pdf_editor.frame_menu.btn_save_qt.clicked.connect(self.set_style)
 
-    def set_style(self):
-        self.setStyleSheet(open("src/View/style/Clocker.qss", "r").read())
+    # def set_style(self):
+    #     self.setStyleSheet(open("src/View/style/Clocker.qss", "r").read())
 
 
 

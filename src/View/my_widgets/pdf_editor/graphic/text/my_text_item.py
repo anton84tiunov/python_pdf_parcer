@@ -21,6 +21,7 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
     """
     def __init__(self, root: QtWidgets,  text: str):
         super().__init__( text)
+        self.text = text
         self.root = root
         self.list_point_rect = ["top", "bottom", "left", "right"]
         self.orig_cursor_position =  QtCore.QPointF()
@@ -43,7 +44,11 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
 
         self.setAcceptHoverEvents(True)
 
+        # self.font().te
 
+    def setPlainText(self, p_text: str) -> None:
+        self.text = p_text
+        return super().setPlainText(p_text)
 
 
      # mouse hover event

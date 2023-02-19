@@ -1,5 +1,6 @@
-import sys, re, math
+import sys, re, math, json
 from collections import OrderedDict
+import pickle
 from PySide6 import QtWidgets, QtGui,  QtCore 
 import asyncio
 # import src.View.my_window.main_window as main_window
@@ -8,6 +9,7 @@ import src.Controller.pdf_editor.extract_el_from_pdf_controller as extract_el_fr
 import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_pointer_path as my_pointer_path
 import src.View.my_widgets.pdf_editor.graphic.polygon.my_polygon as my_polygon
 import src.View.my_widgets.pdf_editor.graphic.rectangle.my_rectangle as my_rectangle
+import src.View.my_widgets.pdf_editor.graphic.ellipse.my_ellopse as my_ellopse
 import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 import src.Model.general.draw_model as drawModel
@@ -32,10 +34,14 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         self.root: QtWidgets = root
         self.controller = extract_el_from_pdf_controller.ExtractElFromPdfController(self.root)
         self.pdf_path = ""
+        self.pdf_editor_path_save_pdf_file = ''
+        self.pdf_editor_path_save_qt_file = ''
+        self.pdf_editor_path_open_qt_file = ''
 
         self.frame_menu.btn_open_pdf.clicked.connect(self.open_pdf_to_qt)
         self.frame_menu.dbl_sp_box_num_page.valueChanged.connect(lambda: self.open_pdf_to_qt_num_page(self.frame_menu.dbl_sp_box_num_page.value()))
-        
+        self.frame_menu.btn_save_qt.clicked.connect(self.save_qt)
+
         self.frame_menu.btn_close_qt.clicked.connect(lambda: print(sys.getsizeof(self.graph_scene.items())))
 
 
@@ -284,15 +290,195 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
             self.create_update_scene(el_rect, el_draw, el_text, el_img)
                 
 
+    def save_qt(self):
+        self.pdf_editor_path_save_pdf_file = QtWidgets.QFileDialog.getSaveFileName(self, 'Open pdf_ex', "",'Pdf_ex(*.pdf_ex);;All(*)' )[0]
+        if self.pdf_editor_path_save_pdf_file != '':
+            page_items = {}
+            page_items['items'] = []
+
+            items: QtWidgets.QGraphicsScene.items = self.graph_scene.items()
+
+            for itm  in items:
+
+                item: QtWidgets.QGraphicsItem = itm
+
+                page_item = {}
+        
+                page_item['z_val'] = item.zValue()
+                page_item['opacity'] = item.opacity()
+                
+                if not isinstance(item, (my_image.MyImage, my_text_item.MyTextItem)):
+
+                    pen: QtGui.QPen = item.pen()
+
+                    page_item['pen_c'] = pen.color().getRgbF()
+                    page_item['pen_w'] = pen.widthF()
+                    page_item['pen_d_o'] = pen.dashOffset()
+                    page_item['pen_d_p'] = pen.dashPattern()
+                    page_item['pen_j_s'] = str(pen.joinStyle()).replace("PenJoinStyle.", "")
+                    page_item['pen_c_s'] = str(pen.capStyle()).replace("PenCapStyle.", "")
+                    page_item['pen_m_l'] = pen.miterLimit()
+                    page_item['pen_s'] = str(pen.style()).replace("PenStyle.", "")
+                        
+
+                    if not isinstance(item, (my_pointer_path.MyPainterPath , QtWidgets.QGraphicsLineItem)):
+                        brush: QtGui.QBrush = item.brush()
+
+                        page_item['brush_s'] = str(brush.style()).replace('BrushStyle.', '')
+                        page_item['brush_c'] = brush.color().getRgbF()
+
+                if isinstance(item, my_pointer_path.MyPainterPath):
+        
+                    page_item['i_type'] = "path"
+
+                    # close_path = False
+                    path_el_group = []
+                    path = item.path()
+
+                    for ii in range(path.elementCount()):
+                        path_el = {}
+                        elem = path.elementAt(ii)
+                  
+                        type_sub_el = ""
+                        if elem.type == QtGui.QPainterPath.ElementType.MoveToElement:
+                            type_sub_el = "m"
+                        if elem.type == QtGui.QPainterPath.ElementType.LineToElement:
+                            type_sub_el = "l"
+                        if elem.type == QtGui.QPainterPath.ElementType.CurveToElement:
+                            type_sub_el = "c"
+                        if elem.type == QtGui.QPainterPath.ElementType.CurveToDataElement:
+                            type_sub_el = "cd"
+
+                        path_el["type"] = type_sub_el
+                        path_el["x"] = elem.x
+                        path_el["y"] = elem.y
+                        path_el_group.append(path_el)
+
+                    # if len(path_el_group) > 1:
+                    #     if path_el_group[0] == path_el_group[-1]:
+                    #         close_path = True
+                    #         path_el_group.pop()
+                    
+                    
+                    page_item['fill_r'] = str(path.fillRule()).replace("FillRule.", "")
+                    # page_item['cl_path'] = close_path
+                    page_item['path'] = path_el_group
+
+                    page_items['items'].insert(0, page_item)
 
 
+                elif isinstance(item, my_polygon.MyPolygon):
+                    
+                    page_item['i_type'] = "pol"
 
+                    pol_el_group = []
+                    pol = item.polygon()
 
+                    for ii in range(pol.count()):
+                        pol_el = {}
+                        elem = pol.at(ii)
 
+                        pol_el["x"] = elem.x()
+                        pol_el["y"] = elem.y()
+                        pol_el_group.append(pol_el)
 
+                    # page_item['fill_rule'] = str(pol.fillRule()).replace("FillRule.", "")
+                    # page_item['close_path'] = close_path
+                    page_item['pol'] = pol_el_group
 
+                    page_items['items'].insert(0, page_item)
 
+                elif isinstance(item, my_rectangle.MyRactangle):
+                    
+                    page_item['i_type'] = "rect"
 
+                    rect_el = {}
+                    rect = item.rect()
+                        
+                    rect_el["x"] = rect.x()
+                    rect_el["y"] = rect.y()
+                    rect_el["w"] = rect.width()
+                    rect_el["h"] = rect.height()
+
+                    page_item['rect'] = rect_el
+
+                    page_items['items'].insert(0, page_item)
+
+                elif isinstance(item, my_ellopse.MyEllipse):
+                    
+                    page_item['i_type'] = "ell"
+
+                    ell_el = {}
+                    ell_rect = item.rect()
+                        
+                    ell_el["x"] = ell_rect.x()
+                    ell_el["y"] = ell_rect.y()
+                    ell_el["w"] = ell_rect.width()
+                    ell_el["h"] = ell_rect.height()
+
+                    page_item['rect'] = ell_el
+
+                    page_items['items'].insert(0, page_item)
+
+                elif isinstance(item, my_image.MyImage):
+                    
+                    page_item['i_type'] = "img"
+
+                    pixmap = item.pixmap()
+                    # convert QPixmap to bytes
+                    ba = QtCore.QByteArray()
+                    buff = QtCore.QBuffer(ba)
+                    buff.open(QtCore.QIODevice.WriteOnly) 
+                    ok = pixmap.save(buff, "PNG")
+                    assert ok
+                    pixmap_bytes = ba.data()
+                    # print(type(pixmap_bytes))
+                    str_img = pixmap_bytes.decode("ISO-8859-1")
+                    # print(type(str_img))
+
+                    # print(type(str_img.encode('ISO-8859-1')))
+                    # # convert bytes to QPixmap
+                    # ba = QtCore.QByteArray(pixmap_bytes)
+                    # pixmap = QtGui.QPixmap()
+                    # ok = pixmap.loadFromData(ba, "PNG")
+                    # assert ok
+                    # print(type(pixmap))
+
+                    page_item['img'] = str_img
+                    rect = {}
+                    b_rect = item.boundingRect()
+                    p_rect = item.pos()
+                    rect["x"] = p_rect.x()
+                    rect["y"] = p_rect.y()
+                    rect["w"] = b_rect.width()
+                    rect["h"] = b_rect.height()
+                    page_item['rect'] = rect
+
+                    page_items['items'].insert(0, page_item)
+
+                elif isinstance(item, my_text_item.MyTextItem):
+                    
+                    page_item['i_type'] = "txt"
+
+                    page_item['text'] = item.text
+                    item.setPlainText("sssssssssss")
+                    font_text = item.font()
+                    page_item['f_family'] = font_text.family()
+                    page_item['f_size'] = font_text.pixelSize()
+                    page_item['f_bold'] = font_text.bold()
+                    page_item['f_italic'] = font_text.italic()
+                    page_item['pos'] = {}
+                    page_item['pos']['x'] = item.pos().x()
+                    page_item['pos']['y'] = item.pos().y()
+                    page_item['rot'] = item.rotation()
+                    page_item['color'] = item.defaultTextColor().getRgb()
+                    # print(page_item['color'])
+                    page_items['items'].insert(0, page_item)
+
+                with open(self.pdf_editor_path_save_pdf_file, 'w') as outfile:
+                    json.dump(page_items, outfile)
+                    outfile.close()
+                # print(page_items)
 
 
 

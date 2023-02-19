@@ -18,6 +18,7 @@ def main():
     win_style = config.get_setting(config.resource_path("configs/sryle_config.INI"), "Style", "current_style")
 
     app = QtWidgets.QApplication(sys.argv)
+    # print(app.styleSheet())
     app.setStyleSheet(open(config.resource_path("style/" + win_style + ".qss"), "r").read())
 
 
@@ -26,6 +27,7 @@ def main():
     app.setWindowIcon(icon)
     window = main_window.MainWindow()
     # window.tab_pdf_editor.graph_scene.addRect(120.0, 20.0, 100.0, 100.0)
+    # print(window.styleSheet())
     window.show()
     sys.exit(app.exec())
     # app.exec_()
