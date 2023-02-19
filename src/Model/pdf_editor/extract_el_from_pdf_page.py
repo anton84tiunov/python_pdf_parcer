@@ -42,6 +42,9 @@ class ExtractElFromPdf():
         else:
             return None
             
+    def get_doc_count_page(self, doc: fitz.Document) -> int:
+        count_page = doc.page_count
+        return count_page
 
     def ex_draw(self, page: fitz.Page) -> list:
         return page.get_drawings()

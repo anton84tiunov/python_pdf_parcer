@@ -34,7 +34,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         self.pdf_path = ""
 
         self.frame_menu.btn_open_pdf.clicked.connect(self.open_pdf_to_qt)
-    
+        self.frame_menu.dbl_sp_box_num_page.valueChanged.connect(lambda: self.open_pdf_to_qt_num_page(self.frame_menu.dbl_sp_box_num_page.value()))
+        
         self.frame_menu.btn_close_qt.clicked.connect(lambda: print(sys.getsizeof(self.graph_scene.items())))
 
 
@@ -121,152 +122,167 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         else:
             return 0
 
+    def create_update_scene(self, el_rect, el_draw, el_text, el_img):
+
+        items = self.graph_scene.items()
+        for item in  items:
+            
+            # if item != self.graph_scene.vert_line_cursor_item or item != self.graph_scene.hor_line_cursor_item or item != self.graph_scene.rect_page:
+                # print(self.graph_scene.vert_line_cursor_item)
+                # print(item)
+            self.graph_scene.removeItem(item)
+        # self.graph_scene.clear()
+        # self.graph_view.update(0, 0, 0, 0)
+        # self.graph_scene.clear()
+        self.graph_view.updateSceneRect(QtCore.QRectF(*el_rect))
+        self.graph_scene.setSceneRect(QtCore.QRectF(*el_rect))
+        for draw in el_draw:
+            # item = GrIt()
+            if draw.items.draw == "re" or draw.items.draw == "qu":
+                p0 = QtCore.QPointF(*draw.items.cords[0][0])
+                p1 = QtCore.QPointF(*draw.items.cords[0][1])
+                p2 = QtCore.QPointF(*draw.items.cords[0][2])
+                p3 = QtCore.QPointF(*draw.items.cords[0][3])
+                # rect = QtCore.QRectF(p[1][0], p[1][1], p[1][2] - p[1][0], p[1][3] - p[1][1])
+                rect = QtCore.QRectF(p0,p2)
+                item = my_rectangle.MyRactangle(self.root, rect)
+                self.graph_scene.addItem(item)
+            
+            if draw.items.draw == "path" or draw.items.draw == "pol":
+                path = QtGui.QPainterPath()
+                start_path = 0
+                end_path = len(draw.items.cords) - 1
+                current_path = 0
+                for pp in draw.items.cords:
+                    if pp[0] == "l":
+                        if current_path == start_path:
+                            path.moveTo(*pp[1][0])
+                            path.lineTo(*pp[1][1])
+                        else:
+                            path.lineTo(*pp[1][1])
+                    if pp[0] == "c":
+                        if current_path == start_path:
+                            path.moveTo(*pp[1][0])
+                            path.cubicTo(*pp[1][1], *pp[1][2], *pp[1][3])
+                        else:
+                            path.cubicTo(*pp[1][1], *pp[1][2], *pp[1][3])
+                    if pp[0] == "re":
+                        # print(pp)
+                        p0 = QtCore.QPointF(*pp[1][0])
+                        p1 = QtCore.QPointF(*pp[1][1])
+                        p2 = QtCore.QPointF(*pp[1][2])
+                        p3 = QtCore.QPointF(*pp[1][3])
+                        rect = QtCore.QRectF(p0, p2)
+                        path.addRect(rect)
+                        # path.addRect(*pp[1][1], *pp[1][2], *pp[1][3])
+                    if pp[0] == "qu":
+                        p0 = QtCore.QPointF(*pp[1][0])
+                        p1 = QtCore.QPointF(*pp[1][1])
+                        p2 = QtCore.QPointF(*pp[1][2])
+                        p3 = QtCore.QPointF(*pp[1][3])
+                        rect = QtCore.QRectF(p0, p2)
+                        path.addRect(rect)
+
+                    current_path += 1
+                # p_item = None
+                if draw.items.draw == "pol":
+                    item = my_polygon.MyPolygon(self.root, path.toFillPolygon())
+                    self.graph_scene.addItem(item)
+                if draw.items.draw == "path":
+                    item = my_pointer_path.MyPainterPath(self.root, path)
+                    self.graph_scene.addItem(item)
+                # if p_item is not None:
+                # item = self.graph_scene.addItem(p_item)
+
+            
+            if item is not None:
+                item.setZValue(draw.seqno)
+
+                dashes_pattern, dashes_offset = self.convert_dashes(draw.dashes)
+
+
+                if "f" in draw.type:
+                    brush = QtGui.QBrush(QtGui.QColor.fromRgbF(*draw.fill, draw.fill_opacity))
+                    item.setBrush(brush)
+
+                if "s" in draw.type:   
+                    pen = QtGui.QPen()
+                    pen.setColor(QtGui.QColor.fromRgbF(*draw.color, draw.stroke_opacity))
+                    pen.setWidthF(draw.width)
+                    pen.setDashOffset(dashes_offset)
+                    pen.setDashPattern (dashes_pattern)
+                    pen.setJoinStyle(self.convert_line_join(draw.lineJoin) )
+                    pen.setCapStyle(self.convert_line_cap(draw.lineCap))
+                    item.setPen(pen)
+
+        # el_text = list(OrderedDict.fromkeys(el_text))
+        # print(len(el_text))
+        for text in el_text:
+            # text = list(OrderedDict.fromkeys(text))
+            for line in text.block_lines:
+                # line = list(OrderedDict.fromkeys(line))
+                for span in line.line_spans:
+                    text_item = my_text_item.MyTextItem(self.root, span.span_text)
+                    font_text = QtGui.QFont()
+                    font_text.setFamily(span.span_font)
+                    font_text.setPixelSize(int(span.span_size - abs(span.span_ascender) - abs(span.span_descender)))
+                    # font_text.setPixelSize(int(span.span_origin[1] - span.span_bbox[1]))
+                    # text_item.setTextWidth(span.span_size)
+                    # font_text.setPointSizeF(span.span_size)
+                    # text_item
+                    flags = self.flags_decomposer(span.span_flags)
+                    if 'italic' in flags:
+                        font_text.setItalic(True)
+                    if 'bold' in flags:
+                        font_text.setBold(True)
+                    text_item.setFont(font_text)
+                    
+                    text_item.setPos(span.span_bbox[0], span.span_bbox[1])
+                    # text_item.setPos(span.span_origin[0], span.span_origin[1] - span.span_size)
+                    text_item.setRotation(self.rotate_decompocer(line.line_dir))
+                    text_item.setDefaultTextColor(QtGui.QColor(*span.span_color))
+                    text_item.setZValue(text.block_number)
+                    self.graph_scene.addItem(text_item)
+        
+        for image in el_img:
+            pix = QtGui.QPixmap()
+            pix.loadFromData(image.base_image.image)
+            # pix = pix.scaled(image.base_image.width / image.base_image.xres, image.base_image.height / image.base_image.yres)
+            pix = pix.scaled(image.bbox[2] - image.bbox[0], image.bbox[3] - image.bbox[1])
+            # pix.scaledToHeight(image.base_image.yres)
+            # pix.scaledToWidth(image.base_image.xres)
+            img_item =  my_image.MyImage(self.root, pix)
+
+            # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
+            img_item.setPos(image.bbox[0], image.bbox[1])
+            # img_item.setScale
+            img_item.setZValue(image.img[0])
+            # img_item.pixmap()
+            self.graph_scene.addItem(img_item)
+    
+        self.graph_scene.set_grid_cords()
+
     def open_pdf_to_qt(self):
         """функция для отрисовки компонентов извлеченных и преобразованных из  pdf  на сцене"""
-        
+
         self.pdf_path = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf', "",'Pdf(*.pdf);;All(*)' )[0]
         if self.pdf_path != "":
-            # self.gr
-            items = self.graph_scene.items()
-            for item in  items:
-                
-                # if item != self.graph_scene.vert_line_cursor_item or item != self.graph_scene.hor_line_cursor_item or item != self.graph_scene.rect_page:
-                    # print(self.graph_scene.vert_line_cursor_item)
-                    # print(item)
-                self.graph_scene.removeItem(item)
-            # self.graph_scene.clear()
-            # self.graph_view.update(0, 0, 0, 0)
-            # self.graph_scene.clear()
+            
+            page_count = self.controller.page_count(self.pdf_path)
+
+            self.frame_menu.dbl_sp_box_num_page.setMaximum(page_count - 1)
+            self.frame_menu.dbl_sp_box_num_page.setValue(0)
+       
             el_rect, el_draw, el_text, el_img = self.controller.open_pdf(self.pdf_path, 0)
-            self.graph_view.updateSceneRect(QtCore.QRectF(*el_rect))
-            self.graph_scene.setSceneRect(QtCore.QRectF(*el_rect))
-            for draw in el_draw:
-                # item = GrIt()
-                if draw.items.draw == "re" or draw.items.draw == "qu":
-                    p0 = QtCore.QPointF(*draw.items.cords[0][0])
-                    p1 = QtCore.QPointF(*draw.items.cords[0][1])
-                    p2 = QtCore.QPointF(*draw.items.cords[0][2])
-                    p3 = QtCore.QPointF(*draw.items.cords[0][3])
-                    # rect = QtCore.QRectF(p[1][0], p[1][1], p[1][2] - p[1][0], p[1][3] - p[1][1])
-                    rect = QtCore.QRectF(p0,p2)
-                    item = my_rectangle.MyRactangle(self.root, rect)
-                    self.graph_scene.addItem(item)
+            self.create_update_scene(el_rect, el_draw, el_text, el_img)
                 
-                if draw.items.draw == "path" or draw.items.draw == "pol":
-                    path = QtGui.QPainterPath()
-                    start_path = 0
-                    end_path = len(draw.items.cords) - 1
-                    current_path = 0
-                    for pp in draw.items.cords:
-                        if pp[0] == "l":
-                            if current_path == start_path:
-                                path.moveTo(*pp[1][0])
-                                path.lineTo(*pp[1][1])
-                            else:
-                                path.lineTo(*pp[1][1])
-                        if pp[0] == "c":
-                            if current_path == start_path:
-                                path.moveTo(*pp[1][0])
-                                path.cubicTo(*pp[1][1], *pp[1][2], *pp[1][3])
-                            else:
-                                path.cubicTo(*pp[1][1], *pp[1][2], *pp[1][3])
-                        if pp[0] == "re":
-                            # print(pp)
-                            p0 = QtCore.QPointF(*pp[1][0])
-                            p1 = QtCore.QPointF(*pp[1][1])
-                            p2 = QtCore.QPointF(*pp[1][2])
-                            p3 = QtCore.QPointF(*pp[1][3])
-                            rect = QtCore.QRectF(p0, p2)
-                            path.addRect(rect)
-                            # path.addRect(*pp[1][1], *pp[1][2], *pp[1][3])
-                        if pp[0] == "qu":
-                            p0 = QtCore.QPointF(*pp[1][0])
-                            p1 = QtCore.QPointF(*pp[1][1])
-                            p2 = QtCore.QPointF(*pp[1][2])
-                            p3 = QtCore.QPointF(*pp[1][3])
-                            rect = QtCore.QRectF(p0, p2)
-                            path.addRect(rect)
-
-                        current_path += 1
-                    # p_item = None
-                    if draw.items.draw == "pol":
-                        item = my_polygon.MyPolygon(self.root, path.toFillPolygon())
-                        self.graph_scene.addItem(item)
-                    if draw.items.draw == "path":
-                        item = my_pointer_path.MyPainterPath(self.root, path)
-                        self.graph_scene.addItem(item)
-                    # if p_item is not None:
-                    # item = self.graph_scene.addItem(p_item)
-    
-                
-                if item is not None:
-                    item.setZValue(draw.seqno)
-
-                    dashes_pattern, dashes_offset = self.convert_dashes(draw.dashes)
-
-
-                    if "f" in draw.type:
-                        brush = QtGui.QBrush(QtGui.QColor.fromRgbF(*draw.fill, draw.fill_opacity))
-                        item.setBrush(brush)
-
-                    if "s" in draw.type:   
-                        pen = QtGui.QPen()
-                        pen.setColor(QtGui.QColor.fromRgbF(*draw.color, draw.stroke_opacity))
-                        pen.setWidthF(draw.width)
-                        pen.setDashOffset(dashes_offset)
-                        pen.setDashPattern (dashes_pattern)
-                        pen.setJoinStyle(self.convert_line_join(draw.lineJoin) )
-                        pen.setCapStyle(self.convert_line_cap(draw.lineCap))
-                        item.setPen(pen)
-
-            # el_text = list(OrderedDict.fromkeys(el_text))
-            # print(len(el_text))
-            for text in el_text:
-                # text = list(OrderedDict.fromkeys(text))
-                for line in text.block_lines:
-                    # line = list(OrderedDict.fromkeys(line))
-                    for span in line.line_spans:
-                        text_item = my_text_item.MyTextItem(self.root, span.span_text)
-                        font_text = QtGui.QFont()
-                        font_text.setFamily(span.span_font)
-                        font_text.setPixelSize(int(span.span_size - abs(span.span_ascender) - abs(span.span_descender)))
-                        # font_text.setPixelSize(int(span.span_origin[1] - span.span_bbox[1]))
-                        # text_item.setTextWidth(span.span_size)
-                        # font_text.setPointSizeF(span.span_size)
-                        # text_item
-                        flags = self.flags_decomposer(span.span_flags)
-                        if 'italic' in flags:
-                            font_text.setItalic(True)
-                        if 'bold' in flags:
-                            font_text.setBold(True)
-                        text_item.setFont(font_text)
-                       
-                        text_item.setPos(span.span_bbox[0], span.span_bbox[1])
-                        # text_item.setPos(span.span_origin[0], span.span_origin[1] - span.span_size)
-                        text_item.setRotation(self.rotate_decompocer(line.line_dir))
-                        text_item.setDefaultTextColor(QtGui.QColor(*span.span_color))
-                        text_item.setZValue(text.block_number)
-                        self.graph_scene.addItem(text_item)
-          
-            for image in el_img:
-                pix = QtGui.QPixmap()
-                pix.loadFromData(image.base_image.image)
-                # pix = pix.scaled(image.base_image.width / image.base_image.xres, image.base_image.height / image.base_image.yres)
-                pix = pix.scaled(image.bbox[2] - image.bbox[0], image.bbox[3] - image.bbox[1])
-                # pix.scaledToHeight(image.base_image.yres)
-                # pix.scaledToWidth(image.base_image.xres)
-                img_item =  my_image.MyImage(self.root, pix)
-
-                # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
-                img_item.setPos(image.bbox[0], image.bbox[1])
-                # img_item.setScale
-                img_item.setZValue(image.img[0])
-                # img_item.pixmap()
-                self.graph_scene.addItem(img_item)
+    def open_pdf_to_qt_num_page(self, num_page):
+        """функция для отрисовки компонентов извлеченных и преобразованных из  pdf  на сцене"""
         
-        self.graph_scene.set_grid_cords()
+        if self.pdf_path != "": 
+            el_rect, el_draw, el_text, el_img = self.controller.open_pdf(self.pdf_path, num_page)
+            self.create_update_scene(el_rect, el_draw, el_text, el_img)
                 
-
 
 
 

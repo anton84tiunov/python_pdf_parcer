@@ -167,3 +167,9 @@ asctime: 2023-02-18 19:05:58,717, name: app, levelname: DEBUG, message: logger i
 asctime: 2023-02-18 19:08:36,491, name: app, levelname: DEBUG, message: logger init
  ------------------------------
 
+asctime: 2023-02-18 19:14:33,221, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 05:53:21,982, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
