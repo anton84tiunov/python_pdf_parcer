@@ -41,6 +41,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         self.frame_menu.btn_open_pdf.clicked.connect(self.open_pdf_to_qt)
         self.frame_menu.dbl_sp_box_num_page.valueChanged.connect(lambda: self.open_pdf_to_qt_num_page(self.frame_menu.dbl_sp_box_num_page.value()))
         self.frame_menu.btn_save_qt.clicked.connect(self.save_qt)
+        self.frame_menu.btn_open_qt.clicked.connect(self.open_qt_file)
 
         self.frame_menu.btn_close_qt.clicked.connect(lambda: print(sys.getsizeof(self.graph_scene.items())))
 
@@ -461,7 +462,6 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                     page_item['i_type'] = "txt"
 
                     page_item['text'] = item.text
-                    item.setPlainText("sssssssssss")
                     font_text = item.font()
                     page_item['f_family'] = font_text.family()
                     page_item['f_size'] = font_text.pixelSize()
@@ -475,13 +475,136 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                     # print(page_item['color'])
                     page_items['items'].insert(0, page_item)
 
-                with open(self.pdf_editor_path_save_pdf_file, 'w') as outfile:
-                    json.dump(page_items, outfile)
-                    outfile.close()
-                # print(page_items)
+            rect_page = self.graph_scene.sceneRect()
+            page_items['rect_page'] = {}
+            page_items['rect_page']['x'] = rect_page.x()
+            page_items['rect_page']['y'] = rect_page.y()
+            page_items['rect_page']['w'] = rect_page.width()
+            page_items['rect_page']['h'] = rect_page.height()
+
+            with open(self.pdf_editor_path_save_pdf_file, 'w') as outfile:
+                json.dump(page_items, outfile)
+                outfile.close()
+            # print(page_items)
 
 
+    def open_qt_file(self):
+        self.pdf_editor_path_open_qt_file = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf_ex', "",'Pdf_ex(*.pdf_ex);;All(*)' )[0]
+        if self.pdf_editor_path_open_qt_file != '':
+            # self.pdf_editor_scene.clear()
 
+            with open(self.pdf_editor_path_open_qt_file) as json_file:
+                data = json.load(json_file)
+
+                self.graph_scene.clear()
+                rect_page = data['rect_page']
+                self.graph_view.updateSceneRect(QtCore.QRectF(rect_page['x'], rect_page['y'], rect_page['w'], rect_page['h']))
+                self.graph_scene.setSceneRect(QtCore.QRectF(rect_page['x'], rect_page['y'], rect_page['w'], rect_page['h']))
+                self.graph_scene.set_grid_cords()
+
+                for num_it in range(len(data['items'])):
+                    
+                    if data['items'][num_it]["i_type"] == "path":
+             
+                        path_el_group = data['items'][num_it]['path']
+
+                        path = QtGui.QPainterPath()
+
+                        for i in range(len(path_el_group)):
+                            pt = path_el_group[i]
+
+                            if pt['type'] == "m":
+                                path.moveTo(QtCore.QPointF(pt['x'], pt['y']))
+                            if pt['type'] == "l":
+                                path.lineTo(QtCore.QPointF(pt['x'], pt['y']))
+                            if pt['type'] == "c":
+                                c = QtCore.QPointF(pt['x'], pt['y'])
+                                cd1 = QtCore.QPointF(path_el_group[i + 1]['x'], path_el_group[i + 1]['y'])
+                                cd2 = QtCore.QPointF(path_el_group[i + 2]['x'], path_el_group[i + 2]['y'])
+                                path.cubicTo(c, cd1, cd2)
+
+                        path_item = my_pointer_path.MyPainterPath(self.root, path)
+          
+                        self.graph_scene.addItem(path_item)
+
+                    if data['items'][num_it]["i_type"] == "pol":
+                        
+                        pol_el_group = data['items'][num_it]['pol']
+
+                        pol = QtGui.QPolygon()
+
+                        for i in range(len(pol_el_group)):
+                            pt = pol_el_group[i]
+                            pol.append(QtCore.QPoint(pt['x'], pt['y']))
+
+            
+                        pol_item = my_polygon.MyPolygon(self.root, pol)
+          
+                        self.graph_scene.addItem(pol_item)
+
+                    if data['items'][num_it]["i_type"] == "rect":
+                        rect_el_group = data['items'][num_it]['rect']
+
+                        rect = QtCore.QRectF()
+                        rect.setX(rect_el_group['x'])
+                        rect.setY(rect_el_group['y'])
+                        rect.setWidth(rect_el_group['w'])
+                        rect.setHeight(rect_el_group['h'])
+
+                        rect_item = my_rectangle.MyRactangle(self.root, rect)
+          
+                        self.graph_scene.addItem(rect_item)
+
+                    if data['items'][num_it]["i_type"] == "ell":
+                        ell_el_group = data['items'][num_it]['rect']
+
+                        ell = QtCore.QRectF()
+                        ell.setX(rect_el_group['x'])
+                        ell.setY(rect_el_group['y'])
+                        ell.setWidth(rect_el_group['w'])
+                        ell.setHeight(rect_el_group['h'])
+
+                        ell_item = my_rectangle.MyRactangle(self.root, ell)
+          
+                        self.graph_scene.addItem(ell_item)
+
+                    if data['items'][num_it]["i_type"] == "txt":
+
+                        text_item = my_text_item.MyTextItem(self.root, data['items'][num_it]['text'])
+
+                        font_text = QtGui.QFont()
+                        font_text.setFamily(data['items'][num_it]['f_family'])
+                        font_text.setPixelSize(data['items'][num_it]['f_size'])
+                        font_text.setBold(data['items'][num_it]['f_bold'])
+                        font_text.setItalic(data['items'][num_it]['f_italic'])
+                        text_item.setFont(font_text)
+                        pos = data['items'][num_it]['pos']
+                        text_item.setPos(QtCore.QPoint(pos['x'], pos['y']))
+                        text_item.setRotation(data['items'][num_it]['rot'])
+                        # text_item.setDefaultTextColor(QtGui.QColor.setRgb(data['items'][num_it]['color']))
+                        # print(type(data['items'][num_it]['color']))
+                        # print(data['items'][num_it]['color'])
+                        
+                        self.graph_scene.addItem(text_item)
+
+                    if data['items'][num_it]["i_type"] == "img":
+                        
+                        pixmap_bytes = data['items'][num_it]['img'].encode('ISO-8859-1')
+                        # convert bytes to QPixmap
+                        ba = QtCore.QByteArray(pixmap_bytes)
+                        pixmap = QtGui.QPixmap()
+                        ok = pixmap.loadFromData(ba, "PNG")
+                        assert ok
+                        img_item = my_image.MyImage(self.root, pixmap)
+                        rect = data['items'][num_it]['rect']
+                        img_item.setPos(QtCore.QPointF(rect["x"], rect["y"]))
+                        self.graph_scene.addItem(img_item)
+
+        # items = self.graph_scene.items()
+        # for item in  items:
+        #     self.graph_scene.removeItem(item)
+        # self.graph_view.updateSceneRect(QtCore.QRectF(*el_rect))
+        # self.graph_scene.setSceneRect(QtCore.QRectF(*el_rect))
 
 
 
