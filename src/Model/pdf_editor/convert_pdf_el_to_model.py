@@ -143,7 +143,7 @@ class ConvertPdfElToModel():
         text_line = textModel.TextLine()
         text_spane = textModel.TextSpane()
         text_model.block_number = block["number"] # 0
-        print(text_model.block_number)
+        # print(text_model.block_number)
         text_model.block_type = block["type"] # 0
         text_model.block_bbox = block["bbox"] # (43.0, 36.177734375, 207.52720642089844, 58.326171875)
         block_lines = block["lines"]

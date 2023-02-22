@@ -472,7 +472,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                     page_item['pos']['y'] = item.pos().y()
                     page_item['rot'] = item.rotation()
                     page_item['color'] = item.defaultTextColor().getRgb()
-                    # print(page_item['color'])
+                    print("page_item['color']", type(page_item['color']), page_item['color'])
                     page_items['items'].insert(0, page_item)
 
             rect_page = self.graph_scene.sceneRect()
@@ -502,8 +502,109 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 self.graph_scene.setSceneRect(QtCore.QRectF(rect_page['x'], rect_page['y'], rect_page['w'], rect_page['h']))
                 self.graph_scene.set_grid_cords()
 
+                pen =  QtGui.QPen()
+                brush = QtGui.QBrush()
+
                 for num_it in range(len(data['items'])):
                     
+                    if "pen_c" in data['items'][num_it]:
+             
+
+                        pen.setColor(QtGui.QColor.fromRgbF(*data['items'][num_it]['pen_c']))
+                        pen.setWidthF(data['items'][num_it]['pen_w'])
+                        pen.setDashOffset(data['items'][num_it]['pen_d_o'])
+                        pen.setDashPattern(data['items'][num_it]['pen_d_p'])
+                        
+                        pen_join_style = QtCore.Qt.PenJoinStyle()
+                        p_j_s =  data['items'][num_it]['pen_j_s']
+                        if  p_j_s == "MiterJoin":
+                            pen.setJoinStyle(pen_join_style.MiterJoin)
+                        elif  p_j_s == "BevelJoin":
+                            pen.setJoinStyle(pen_join_style.BevelJoin)
+                        elif  p_j_s == "RoundJoin":
+                            pen.setJoinStyle(pen_join_style.RoundJoin)
+                        elif  p_j_s == "SvgMiterJoin":
+                            pen.setJoinStyle(pen_join_style.SvgMiterJoin)
+                        elif  p_j_s == "MPenJoinStyle":
+                            pen.setJoinStyle(pen_join_style.MPenJoinStyle)
+                       
+                        pen_cap_style = QtCore.Qt.PenCapStyle()
+                        p_c_s =  data['items'][num_it]['pen_c_s']
+                        if  p_c_s == "FlatCap":
+                            pen.setCapStyle(pen_cap_style.FlatCap)
+                        elif  p_c_s == "SquareCap":
+                            pen.setCapStyle(pen_cap_style.SquareCap)
+                        elif  p_c_s == "RoundCap":
+                            pen.setCapStyle(pen_cap_style.RoundCap)
+                        elif  p_c_s == "MPenCapStyle":
+                            pen.setCapStyle(pen_cap_style.MPenCapStyle)
+
+                        pen.setMiterLimit(data['items'][num_it]['pen_m_l'])
+                        
+                        pen_style = QtCore.Qt.PenStyle()
+                        p_s =  data['items'][num_it]['pen_s']
+                        if p_s == "NoPen":
+                            pen.setStyle(pen_style.NoPen)
+                        elif p_s == "SolidLine":
+                            pen.setStyle(pen_style.SolidLine)
+                        elif p_s == "DashLine":
+                            pen.setStyle(pen_style.DashLine)
+                        elif p_s == "DotLine":
+                            pen.setStyle(pen_style.DotLine)
+                        elif p_s == "DashDotLine":
+                            pen.setStyle(pen_style.DashDotLine)
+                        elif p_s == "DashDotDotLine":
+                            pen.setStyle(pen_style.DashDotDotLine)
+                        elif p_s == "CustomDashLine":
+                            pen.setStyle(pen_style.CustomDashLine)
+                        elif p_s == "MPenStyle":
+                            pen.setStyle(pen_style.MPenStyle)
+                    
+                    if "brush_c" in data['items'][num_it]:
+
+                        brush.setColor(QtGui.QColor.fromRgbF(*data['items'][num_it]['brush_c']))
+                        brush_style = QtCore.Qt.BrushStyle()
+                        b_s =  data['items'][num_it]['brush_s']
+
+                        if b_s == "NoBrush":
+                            brush.setStyle(brush_style.NoBrush)
+                        elif b_s == "SolidPattern":
+                            brush.setStyle(brush_style.SolidPattern)
+                        elif b_s == "Dense1Pattern":
+                            brush.setStyle(brush_style.Dense1Pattern)
+                        elif b_s == "Dense2Pattern":
+                            brush.setStyle(brush_style.Dense2Pattern)
+                        elif b_s == "Dense3Pattern":
+                            brush.setStyle(brush_style.Dense3Pattern)
+                        elif b_s == "Dense4Pattern":
+                            brush.setStyle(brush_style.Dense4Pattern)
+                        elif b_s == "Dense5Pattern":
+                            brush.setStyle(brush_style.Dense5Pattern)
+                        elif b_s == "Dense6Pattern":
+                            brush.setStyle(brush_style.Dense6Pattern)
+                        elif b_s == "Dense7Pattern":
+                            brush.setStyle(brush_style.Dense7Pattern)
+                        elif b_s == "HorPattern":
+                            brush.setStyle(brush_style.HorPattern)
+                        elif b_s == "VerPattern":
+                            brush.setStyle(brush_style.VerPattern)
+                        elif b_s == "CrossPattern":
+                            brush.setStyle(brush_style.CrossPattern)
+                        elif b_s == "BDiagPattern":
+                            brush.setStyle(brush_style.BDiagPattern)
+                        elif b_s == "FDiagPattern":
+                            brush.setStyle(brush_style.FDiagPattern)
+                        elif b_s == "DiagCrossPattern":
+                            brush.setStyle(brush_style.DiagCrossPattern)
+                        elif b_s == "LinearGradientPattern":
+                            brush.setStyle(brush_style.LinearGradientPattern)
+                        elif b_s == "RadialGradientPattern":
+                            brush.setStyle(brush_style.RadialGradientPattern)
+                        elif b_s == "ConicalGradientPattern":
+                            brush.setStyle(brush_style.ConicalGradientPattern)
+                        elif b_s == "TexturePattern":
+                            brush.setStyle(brush_style.TexturePattern)
+         
                     if data['items'][num_it]["i_type"] == "path":
              
                         path_el_group = data['items'][num_it]['path']
@@ -524,7 +625,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                                 path.cubicTo(c, cd1, cd2)
 
                         path_item = my_pointer_path.MyPainterPath(self.root, path)
-          
+                        path_item.setPen(pen)
                         self.graph_scene.addItem(path_item)
 
                     if data['items'][num_it]["i_type"] == "pol":
@@ -539,7 +640,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
             
                         pol_item = my_polygon.MyPolygon(self.root, pol)
-          
+                        pol_item.setPen(pen)
+                        pol_item.setBrush(brush)
                         self.graph_scene.addItem(pol_item)
 
                     if data['items'][num_it]["i_type"] == "rect":
@@ -552,7 +654,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         rect.setHeight(rect_el_group['h'])
 
                         rect_item = my_rectangle.MyRactangle(self.root, rect)
-          
+                        rect_item.setPen(pen)
+                        rect_item.setBrush(brush)
                         self.graph_scene.addItem(rect_item)
 
                     if data['items'][num_it]["i_type"] == "ell":
@@ -565,7 +668,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         ell.setHeight(rect_el_group['h'])
 
                         ell_item = my_rectangle.MyRactangle(self.root, ell)
-          
+                        ell_item.setPen(pen)
+                        ell_item.setBrush(brush)
                         self.graph_scene.addItem(ell_item)
 
                     if data['items'][num_it]["i_type"] == "txt":
@@ -581,8 +685,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         pos = data['items'][num_it]['pos']
                         text_item.setPos(QtCore.QPoint(pos['x'], pos['y']))
                         text_item.setRotation(data['items'][num_it]['rot'])
-                        # text_item.setDefaultTextColor(QtGui.QColor.setRgb(data['items'][num_it]['color']))
-                        # print(type(data['items'][num_it]['color']))
+                        text_item.setDefaultTextColor(QtGui.QColor(*data['items'][num_it]['color']))
+                        # print("data['items'][num_it]['color']", type(data['items'][num_it]['color']), data['items'][num_it]['color'])
                         # print(data['items'][num_it]['color'])
                         
                         self.graph_scene.addItem(text_item)
@@ -599,6 +703,14 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         rect = data['items'][num_it]['rect']
                         img_item.setPos(QtCore.QPointF(rect["x"], rect["y"]))
                         self.graph_scene.addItem(img_item)
+
+         
+                    # if not isinstance(item, (my_pointer_path.MyPainterPath , QtWidgets.QGraphicsLineItem)):
+                    #     brush: QtGui.QBrush = item.brush()
+
+                    #     page_item['brush_s'] = str(brush.style()).replace('BrushStyle.', '')
+                    #     page_item['brush_c'] = brush.color().getRgbF()
+
 
         # items = self.graph_scene.items()
         # for item in  items:
