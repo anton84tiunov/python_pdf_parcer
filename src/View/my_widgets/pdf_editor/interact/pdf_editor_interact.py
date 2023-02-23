@@ -14,6 +14,7 @@ import src.View.my_widgets.pdf_editor.graphic.image.my_image as my_image
 import src.View.my_widgets.pdf_editor.graphic.text.my_text_item as my_text_item
 import src.Model.general.draw_model as drawModel
 import src.Model.general.text_model as textModel
+import src.View.my_widgets.pdf_editor.graphic.my_cross_line as my_cross_line
 
 
 
@@ -134,13 +135,14 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         items = self.graph_scene.items()
         for item in  items:
             
-            # if item != self.graph_scene.vert_line_cursor_item or item != self.graph_scene.hor_line_cursor_item or item != self.graph_scene.rect_page:
-                # print(self.graph_scene.vert_line_cursor_item)
-                # print(item)
-            self.graph_scene.removeItem(item)
+            if not hasattr(item, "attribute_cross_line"):
+     
+                self.graph_scene.removeItem(item)
         # self.graph_scene.clear()
         # self.graph_view.update(0, 0, 0, 0)
         # self.graph_scene.clear()
+        # self.graph_scene.addItem(self.graph_scene.vert_line_cursor_item)
+        # self.graph_scene.addItem(self.graph_scene.hor_line_cursor_item)
         self.graph_view.updateSceneRect(QtCore.QRectF(*el_rect))
         self.graph_scene.setSceneRect(QtCore.QRectF(*el_rect))
         for draw in el_draw:
@@ -472,7 +474,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                     page_item['pos']['y'] = item.pos().y()
                     page_item['rot'] = item.rotation()
                     page_item['color'] = item.defaultTextColor().getRgb()
-                    print("page_item['color']", type(page_item['color']), page_item['color'])
+                    # print("page_item['color']", type(page_item['color']), page_item['color'])
                     page_items['items'].insert(0, page_item)
 
             rect_page = self.graph_scene.sceneRect()
@@ -496,7 +498,16 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
             with open(self.pdf_editor_path_open_qt_file) as json_file:
                 data = json.load(json_file)
 
-                self.graph_scene.clear()
+                items = self.graph_scene.items()
+                for item in  items:
+                    
+                    if not hasattr(item, "attribute_cross_line"):
+            
+                        self.graph_scene.removeItem(item)
+                
+                # self.graph_scene.addItem(self.graph_scene.vert_line_cursor_item)
+                # self.graph_scene.addItem(self.graph_scene.hor_line_cursor_item)
+
                 rect_page = data['rect_page']
                 self.graph_view.updateSceneRect(QtCore.QRectF(rect_page['x'], rect_page['y'], rect_page['w'], rect_page['h']))
                 self.graph_scene.setSceneRect(QtCore.QRectF(rect_page['x'], rect_page['y'], rect_page['w'], rect_page['h']))

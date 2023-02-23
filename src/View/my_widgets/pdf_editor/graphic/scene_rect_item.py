@@ -13,6 +13,7 @@ class MyRectPage(QtWidgets.QGraphicsRectItem):
         super().__init__( rect)
 
         self.root: QtWidgets = root
+        self.attribute_rect_page: bool = True
 
     def contextMenuEvent(self, event: QtWidgets.QGraphicsSceneContextMenuEvent) -> None:
         

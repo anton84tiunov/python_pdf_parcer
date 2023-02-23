@@ -30,6 +30,12 @@ class MyLeftToolBar(QtWidgets.QFrame):
         self.tool_cursors: list[str] = ["arrow", "hand", "move", "pencil", "line", "bezier", "polygon", "rect", "circle", "text", "ruler"]
         self.tool_cursor: str = ""
 
+        self.c_cursor: bool = True
+        # self.rect_page_cursor = "arrow"
+        # self.scene_cursor = "arrow"
+        # self.view_cursor = "arrow"
+        
+
         # self.setStyleSheet(green_style)
 
         self.v_box = QtWidgets.QVBoxLayout(self)
@@ -92,44 +98,6 @@ class MyLeftToolBar(QtWidgets.QFrame):
         
         self.spacer_tool_box = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.v_box.addItem(self.spacer_tool_box)
-        
-        # self.c_box_grid_cords= combo_box_num.MyComboBoxNum(self, 'grid_cords.png')
-        # self.v_box.addWidget(self.c_box_grid_cords)
-        # self.c_box_grid_cords.clicked.connect(lambda: self.disable_checked(self.r_btn_cursor_ruler, "ruler"))
-        # self.c_box_grid_cords.currentTextChanged.connect(self.text_changed)
-        # self.r_btn_cursor_color = radio_buttom.MyRadioButton(self, 'rgb-color-icon.png')
-        # self.v_box.addWidget(self.r_btn_cursor_color)
-
-        # self.r_btn_cursor_basket = radio_buttom.MyRadioButton(self, '9036038_trash_sharp_icon.png')
-        # self.v_box.addWidget(self.r_btn_cursor_basket)
-
-        # self.r_btn_cursor_back = radio_buttom.MyRadioButton(self, 'curved-arrow-left-outline-icon.png')
-        # self.v_box.addWidget(self.r_btn_cursor_back)
-
-        # self.r_btn_cursor_forward = radio_buttom.MyRadioButton(self, 'curved-arrow-right-outline-icon.png')
-        # self.v_box.addWidget(self.r_btn_cursor_forward)
-
-        # self.r_btn_cursor_minus_zoom = radio_buttom.MyRadioButton(self, '3844430_magnifier_out_plus_search_zoom_icon.png')
-        # self.v_box.addWidget(self.r_btn_cursor_minus_zoom)
-
-        # self.r_btn_cursor_plus_zoom = radio_buttom.MyRadioButton(self, '3844431_in_magnifier_plus_search_zoom_icon.png')
-        # self.v_box.addWidget(self.r_btn_cursor_plus_zoom)
-
-        
-        
-        # sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
-        # sizePolicy.setHorizontalStretch(0)
-        # sizePolicy.setVerticalStretch(0)
-        # # sizePolicy.setHeightForWidth(self.toolBox.sizePolicy().hasHeightForWidth())
-        
-
-
-        # self.tl_box = QtWidgets.QWidget(self)
-        # # self.v_box.setSizePolicy(sizePolicy)
-        # self.tl_box.setGeometry(0, 0, 50, 50)
-
-        # self.v_box.addWidget(self.tl_box)
-        # self.tl_box.setStyleSheet(red_style)
 
     def text_changed(self, s):
         self.root.tab_pdf_editor.graph_scene.grid_step = int(s)
@@ -148,55 +116,33 @@ class MyLeftToolBar(QtWidgets.QFrame):
         self.r_btn_cursor_rect.setChecked(False)
         self.r_btn_cursor_circle.setChecked(False)
         self.r_btn_cursor_text.setChecked(False)
+        self.r_btn_cursor_img.setChecked(False)
         self.r_btn_cursor_ruler.setChecked(False)
         self.tool_cursor = cursor
         check_btn.setChecked(True)
-        
-        if cursor == "move":
-            # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
-            self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
-            for item in self.root.tab_pdf_editor.graph_scene.items():
-                if hasattr(item, "delete_attribute_my_point_rect"):
-                    self.root.tab_pdf_editor.graph_scene.removeItem(item)
-                # item.setCursor(item.all_size_cursor)
-                item.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
-                # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
-                # if isinstance(item, my_pointer_path.MyPainterPath):
-                #     pass
-                # elif isinstance(item, my_polygon.MyPolygon):
-                #     pass
-                # elif isinstance(item, my_rectangle.MyRactangle):
-                #     pass
-                # elif isinstance(item, my_text_item.MyTextItem):
-                #     pass
-                # elif isinstance(item, my_image.MyImage):
-                #     pass
-                # item.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
-        elif cursor in ["arrow", "hand"]:
-            # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
-            self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
-            for item in self.root.tab_pdf_editor.graph_scene.items():
-                # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
-                if hasattr(item, "delete_attribute_my_point_rect"):
-                    self.root.tab_pdf_editor.graph_scene.removeItem(item)
-                if item != QtWidgets.QGraphicsLineItem:
-                    if hasattr(item, "current_cursor"):
-                        item.setCursor(item.current_cursor)
 
-        else :
-            # self.root.tab_pdf_editor.graph_scene.blockSignals(True)
-            for item in self.root.tab_pdf_editor.graph_scene.items():
-                if hasattr(item, "delete_attribute_my_point_rect"):
-                    self.root.tab_pdf_editor.graph_scene.removeItem(item)
-                if item != QtWidgets.QGraphicsLineItem:
-                # item.setCursor(item.current_cursor)
-                    item.unsetCursor()
+        if cursor in  ["arrow", "hand", "move", "ruler"]:
+            
+            self.c_cursor = True
+            
+            if cursor == "arrow":
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+            
+            elif cursor == "hand":
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+            
+            elif cursor == "move":
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+            
+            elif cursor == "ruler":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_ruller.png")
+                self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+                self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+                self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
 
-            # self.cursor_pix = QtGui.QPixmap(icon_dir + "298869_sign_out_icon.png")
-            # self.cursor_scaled_pix = self.cursor_pix.scaled(QtCore.QSize(20, 20), QtCore.Qt.KeepAspectRatio)
-            # self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, -1, -1)
-            # self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+        else:
 
+            self.c_cursor = False
 
             if cursor == "pencil":
                 self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_pencil.png")
@@ -240,14 +186,151 @@ class MyLeftToolBar(QtWidgets.QFrame):
                 self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
                 self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
 
-            elif cursor == "ruler":
-                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_ruller.png")
+            elif cursor == "img":
+                self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_image_itemt.png")
                 self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
                 self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
                 self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
 
+        for item in self.root.tab_pdf_editor.graph_scene.items():
+            if hasattr(item, "delete_attribute_my_point_rect"):
+                self.root.tab_pdf_editor.graph_scene.removeItem(item)
+            if hasattr(item, "current_cursor"):
+                if self.c_cursor:
+                    # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
+                    item.setCursor(item.current_cursor)
+                else:
+                    # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, True)
+                    item.setCursor(self.root.tab_pdf_editor.graph_view.viewport().cursor())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        # if cursor == "move":
+        #     # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
+        #     self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+        #     for item in self.root.tab_pdf_editor.graph_scene.items():
+        #         if hasattr(item, "delete_attribute_my_point_rect"):
+        #             self.root.tab_pdf_editor.graph_scene.removeItem(item)
+        #         # item.setCursor(item.all_size_cursor)
+        #         if not hasattr(item, "attribute_rect_page"):
+        #             item.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
+        #         else:
+        #             item.setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+  
+        # elif cursor in ["arrow", "hand"]:
+        #     # self.root.tab_pdf_editor.graph_scene.blockSignals(False)
+        #     self.root.tab_pdf_editor.graph_view.viewport().setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+        #     for item in self.root.tab_pdf_editor.graph_scene.items():
+        #         # item.setFlag(QtWidgets.QGraphicsItem.unsetCursor, False)
+  
+        #         if not hasattr(item, "attribute_cross_line"):
      
-        # ["arrow", "hand", "move", "pencil", "line", "bezier", "polygon", "rect", "circle", "text", "ruler"]
+        #             if hasattr(item, "delete_attribute_my_point_rect"):
+        #                 self.root.tab_pdf_editor.graph_scene.removeItem(item)
+        #             if item != QtWidgets.QGraphicsLineItem:
+        #                 if hasattr(item, "current_cursor"):
+        #                     item.setCursor(item.current_cursor)
+        #             if hasattr(item, "attribute_rect_page"):
+        #                 item.setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+        # else :
+        #     # self.root.tab_pdf_editor.graph_scene.blockSignals(True)
+        #     for item in self.root.tab_pdf_editor.graph_scene.items():
+        #         if hasattr(item, "delete_attribute_my_point_rect"):
+        #             self.root.tab_pdf_editor.graph_scene.removeItem(item)
+        #         if item != QtWidgets.QGraphicsLineItem:
+        #         # item.setCursor(item.current_cursor)
+        #             item.unsetCursor()
+        #         if hasattr(item, "attribute_rect_page"):
+        #             item.setCursor(QtCore.Qt.CursorShape.ArrowCursor)
+
+        #     if cursor == "pencil":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_pencil.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "line":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_line.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "bezier":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_curve.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "polygon":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_polygon.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "rect":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_rect.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "circle":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_circle.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "text":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_text.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
+        #     elif cursor == "ruler":
+        #         self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_ruller.png")
+        #         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
+        #         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
+        #         self.root.tab_pdf_editor.graph_view.viewport().setCursor(self.current_cursor)
+
 
 
 

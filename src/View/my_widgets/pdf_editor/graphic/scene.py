@@ -24,6 +24,7 @@ import src.View.my_widgets.pdf_editor.paint.rectangle.my_demo_rectangle as my_de
 import src.View.my_widgets.pdf_editor.paint.ellipse.my_demo_ellipse as my_demo_ellipse
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.graphic.scene_rect_item as scene_rect_item
+import src.View.my_widgets.pdf_editor.graphic.my_cross_line as my_cross_line
 # import my_os_path as my_os_path
 
 # icon_dir = my_os_path.icon
@@ -69,15 +70,18 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         # self.addItem(self.cursor_item)
 
         # self.vert_line_cursor = QtCore.QLineF(0.0, 0.0, 0.0, 100.0)
-        self.vert_line_cursor_item = QtWidgets.QGraphicsLineItem(0.0, 0.0, 0.0, 0.0)
+        self.vert_line_cursor_item = my_cross_line.MyCrossLine(0.0, 0.0, 0.0, 0.0)
         self.vert_line_cursor_item.setZValue(999999999)
         self.vert_line_cursor_item.setPen(self.grid_pen)
         # self.vert_line_cursor.setBrush(QtGui.QColor(0, 0, 0, 255))
         # self.vert_line_cursor_item.setTransform(QtGui.QTransform.fromTranslate(-0.0, -50.0))
         # self.hor_line_cursor = QtCore.QLineF(0.0, 0.0, 100.0, 0.0)
-        self.hor_line_cursor_item = QtWidgets.QGraphicsLineItem(0.0, 0.0, 0.0, 0.0)
+        self.hor_line_cursor_item = my_cross_line.MyCrossLine(0.0, 0.0, 0.0, 0.0)
         self.hor_line_cursor_item.setZValue(999999999)
         self.hor_line_cursor_item.setPen(self.grid_pen)
+        self.addItem(self.vert_line_cursor_item)
+        self.addItem(self.hor_line_cursor_item)
+        
         # self.hor_line_cursor.setBrush(QtGui.QColor(0, 0, 0, 255))
         # self.hor_line_cursor_item.setTransform(QtGui.QTransform.fromTranslate(-50.0, -0.0))
         self.rect_page = scene_rect_item.MyRectPage(self.root, QtCore.QRectF(0.0, 0.0, 0.0, 0.0))
@@ -157,8 +161,8 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         # self.addItem(self.cursor_item)
         self.vert_line_cursor_item.setLine(0.0, 0.0, 0.0, self.height())
         self.hor_line_cursor_item.setLine(0.0, 0.0, self.width(), 0.0)
-        self.addItem(self.vert_line_cursor_item)
-        self.addItem(self.hor_line_cursor_item)
+        # self.addItem(self.vert_line_cursor_item)
+        # self.addItem(self.hor_line_cursor_item)
         self.rect_page.setRect(0.0, 0.0, self.width(), self.height())
         self.addItem(self.rect_page)
 
@@ -263,6 +267,8 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             elif cursor == "img":
                 img_path = QtWidgets.QFileDialog.getOpenFileName(self.root.tab_pdf_editor.graph_view, 'select image', "",'JPG(*.jpg);;PNG(*.png);;All(*)' )[0]
                 if img_path != "":
+                    # pos = copy.deepcopy(self.point_grid_step_cursor)
+                    pos = copy.deepcopy(self.point_grid_step_cursor)
                     pix = QtGui.QPixmap(img_path)
                     # pix.loadFromData(image.base_image.image)
                     # pix = pix.scaled(image.base_image.width / image.base_image.xres, image.base_image.height / image.base_image.yres)
@@ -272,7 +278,7 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                     img_item =  my_image.MyImage(self.root, pix)
 
                     # img_item.setMatrix(QtGui.QMatrix(*image.matrix))
-                    img_item.setPos(event.pos())
+                    img_item.setPos(pos)
                     # img_item.setScale
                     # text_item.setZValue(image.img[0])
                     self.addItem(img_item)
