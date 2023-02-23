@@ -12,7 +12,7 @@ import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
-
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_path as my_dialog_prop_path
 
 
 
@@ -115,8 +115,9 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
-            settings.exec()
+            settings =  my_dialog_prop_path.MyDialogPropPath (self.root, self.pen(), self.brush(), self.zValue, self.opacity())
+            if settings.exec():
+                print(settings.pen_sryle)
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dialog_settins_el</class>
+ <widget class="QDialog" name="dialog_settins_el">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>303</width>
+    <height>367</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>settings</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGroupBox" name="gr_box_pen">
+       <property name="title">
+        <string>pen</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="lbl_no_pen">
+          <property name="text">
+           <string>no pen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="ch_box_no_pen">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lbl_pen_color">
+          <property name="text">
+           <string>color</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="btn_pen_color">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="lbl_pen_width">
+          <property name="text">
+           <string>width</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_width"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="lbl_pen_style">
+          <property name="text">
+           <string>style</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="com_box_pen_sryle">
+          <item>
+           <property name="text">
+            <string>NoPen</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SolidLine</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DashLine</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DotLine</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DashDotLine</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DashDotDotLine</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CustomDashLine</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MPenStyle</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="lbl_pen_cap_style">
+          <property name="text">
+           <string>cap</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="com_box_pen_cap_style">
+          <item>
+           <property name="text">
+            <string>FlatCap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SquareCap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RoundCap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MPenCapStyle</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="lbl_pen_join_style">
+          <property name="text">
+           <string>join</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QComboBox" name="com_box_pen_join_style">
+          <item>
+           <property name="text">
+            <string>MiterJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BevelJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RoundJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SvgMiterJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MPenJoinStyle</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="lbl_pen_dash_pattern">
+          <property name="text">
+           <string>pattern</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLineEdit" name="l_e_dash_pattern"/>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="lbl_pen_dash_offset">
+          <property name="text">
+           <string>offset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_dash_offset"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="btn_default">
+         <property name="text">
+          <string>default</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_ok">
+         <property name="text">
+          <string>ok</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_cancel">
+         <property name="text">
+          <string>cancel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QGroupBox" name="gr_box_brush">
+       <property name="title">
+        <string>brush</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="lbl_no_brush">
+          <property name="text">
+           <string>no brush</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="ch_box_no_brush">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lbl_brush_color">
+          <property name="text">
+           <string>color</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="btn_brush_color">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="lbl_brush_style">
+          <property name="text">
+           <string>style</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="com_box_brush_style">
+          <item>
+           <property name="text">
+            <string>NoBrush</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SolidPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense1Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense2Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense3Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense4Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense5Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense6Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Dense7Pattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>HorPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>VerPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CrossPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BDiagPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>FDiagPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DiagCrossPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>LinearGradientPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RadialGradientPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ConicalGradientPattern</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TexturePattern</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="gr_box_item">
+       <property name="title">
+        <string>item</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="lbl_z_index">
+          <property name="text">
+           <string>zIndex</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_z_index"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="lbl_box_opacity">
+          <property name="text">
+           <string>opacity</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_opacity"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QGraphicsView" name="gr_view_priview">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -13,6 +13,7 @@ import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_path as my_dialog_prop_path
 
 
 

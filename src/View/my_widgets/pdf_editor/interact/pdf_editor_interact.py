@@ -324,7 +324,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                     page_item['pen_s'] = str(pen.style()).replace("PenStyle.", "")
                         
 
-                    if not isinstance(item, (my_pointer_path.MyPainterPath , QtWidgets.QGraphicsLineItem)):
+                    if not isinstance(item, (QtWidgets.QGraphicsLineItem)):
                         brush: QtGui.QBrush = item.brush()
 
                         page_item['brush_s'] = str(brush.style()).replace('BrushStyle.', '')
@@ -637,6 +637,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
                         path_item = my_pointer_path.MyPainterPath(self.root, path)
                         path_item.setPen(pen)
+                        if brush.color() :
+                            path_item.setBrush(brush)
                         self.graph_scene.addItem(path_item)
 
                     if data['items'][num_it]["i_type"] == "pol":
