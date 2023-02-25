@@ -21,11 +21,14 @@ import src.View.my_widgets.pdf_editor.paint.pointer_path.my_point_ellipse_path a
 import src.View.my_widgets.pdf_editor.paint.polygon.my_demo_polygon as my_demo_polygon
 import src.View.my_widgets.pdf_editor.paint.polygon.my_point_ellipse_pol as my_point_ellipse_pol
 import src.View.my_widgets.pdf_editor.paint.rectangle.my_demo_rectangle as my_demo_rectangle
+import src.View.my_widgets.pdf_editor.paint.rectangle.my_demo_highlight_rectangle as my_demo_highlight_rectangle
 import src.View.my_widgets.pdf_editor.paint.ellipse.my_demo_ellipse as my_demo_ellipse
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.graphic.scene_rect_item as scene_rect_item
 import src.View.my_widgets.pdf_editor.graphic.my_cross_line as my_cross_line
-# import my_os_path as my_os_path
+import src.Utility.general.comfig.config as config
+import src.Utility.pdf_editor.default_pen_brush as default_pen_brush
+import src.Utility.pdf_editor.get_set_default_style as get_set_default_style# import my_os_path as my_os_path
 
 # icon_dir = my_os_path.icon
 
@@ -57,7 +60,12 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.grid_pen.setCosmetic(True)
         self.background_brush = QtGui.QBrush( QtGui.QColor(232, 235, 232), QtCore.Qt.SolidPattern)
         
-
+        # rect_i = QtCore.QRect(100, 100, 100, 100)
+        # # graph_it = QtWidgets.QGraphicsRectItem(rect_i)
+        # widg = QtWidgets.QFrame()
+        # widg.setGeometry(rect_i)
+        # # widg = QtWidgets.QGraphicsProxyWidget(graph_it, QtCore.Qt.WindowType.Tool)
+        # self.addWidget(widg)
 
         
         # self.cursor_rect = QtCore.QRectF(1.0, 1.0, 5.0, 5.0)
@@ -134,6 +142,14 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.ellopse_p1 = QtCore.QPointF(0.0, 0.0)
         self.ellopse_demo_item = my_demo_ellipse.MyDemoEllipse(self.ellopse_demo)
 
+        self.highlight_rect = QtCore.QRectF()
+        self.highlight_rect_demo = QtCore.QRectF()
+        self.highlight_rect_p0 = QtCore.QPointF(0.0, 0.0)
+        self.highlight_rect_p1 = QtCore.QPointF(0.0, 0.0)
+        self.highlight_rect_demo_item = my_demo_highlight_rectangle.MyDemoHighlightRactangle(self.highlight_rect_demo)
+        self.highlight_rect_demo_item.setZValue(999999999)
+
+
     def round_step(sel, num, step):
         return round(num / step) * step
 
@@ -176,7 +192,11 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             self.is_mouse_left_pressed = True
            
             if cursor == "arrow":
-                ...
+                self.highlight_rect_p0 = copy.deepcopy(self.point_grid_step_cursor)
+                self.highlight_rect_demo = QtCore.QRectF()
+                self.highlight_rect_demo_item = my_demo_highlight_rectangle.MyDemoHighlightRactangle(self.highlight_rect_demo)
+
+                self.addItem(self.highlight_rect_demo_item)
             elif cursor == "hand":
                 ...
             elif cursor == "move":
@@ -296,6 +316,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 ...
             elif cursor == "line" or cursor == "bezier":
                 path_item = my_pointer_path.MyPainterPath(self.root, self.p_path_lc)
+                pen, brush = get_set_default_style.get_pen_brush("path")
+                path_item.setPen(pen)
+                path_item.setBrush(brush)
                 self.addItem(path_item)
                 self.p_path_lc = QtGui.QPainterPath()
                 if self.p_path_lc_demo.elementCount() > 0:
@@ -306,10 +329,14 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             elif cursor == "polygon":       
                 pol_item = my_polygon.MyPolygon(self.root, self.pol)
                 pol_item.unsetCursor()
+                pen, brush = get_set_default_style.get_pen_brush("polygon")
+                pol_item.setPen(pen)
+                pol_item.setBrush(brush)
                 self.addItem(pol_item)
                 self.pol_demo_item_is_append_to_scene = False
                 self.removeItem(self.pol_demo_item)
                 self.pol.clear()
+                
             elif cursor == "rect":
                 ...
             elif cursor == "circle":
@@ -330,7 +357,28 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             cursor = self.root.tab_pdf_editor.graph_left_tool_bar.tool_cursor
 
             if cursor == "arrow":
-                ...
+                self.removeItem(self.highlight_rect_demo_item)
+                self.highlight_rect_p1 = copy.deepcopy(self.point_grid_step_cursor)
+                if self.highlight_rect_p0.x() > self.highlight_rect_p1.x():
+                    if self.highlight_rect_p0.y() > self.highlight_rect_p1.y():
+                        self.highlight_rect.setBottomRight(self.highlight_rect_p0)
+                        self.highlight_rect.setTopLeft(self.highlight_rect_p1)
+                    elif self.highlight_rect_p0.y() < self.highlight_rect_p1.y():
+                        self.highlight_rect.setTopRight(self.highlight_rect_p0)
+                        self.highlight_rect.setBottomLeft(self.highlight_rect_p1)
+                elif self.highlight_rect_p0.x() < self.highlight_rect_p1.x():
+                    if self.highlight_rect_p0.y() > self.highlight_rect_p1.y():
+                        self.highlight_rect.setBottomLeft(self.highlight_rect_p0)
+                        self.highlight_rect.setTopRight(self.highlight_rect_p1)
+                    elif self.highlight_rect_p0.y() < self.highlight_rect_p1.y():
+                        self.highlight_rect.setBottomRight(self.highlight_rect_p1)
+                        self.highlight_rect.setTopLeft(self.highlight_rect_p0)
+                rect_item = my_rectangle.MyRactangle(self.root, self.highlight_rect)
+                rect_item.unsetCursor()
+                # pen, brush = get_set_default_style.get_pen_brush("path")
+                # rect_item.setPen(pen)
+                # rect_item.setBrush(brush)
+                self.addItem(rect_item)
             elif cursor == "hand":
                 ...
             elif cursor == "move":
@@ -342,6 +390,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 path_item = my_pointer_path.MyPainterPath(self.root, self.p_path_pen)
                 path_item.unsetCursor()
                 self.p_path_pen = QtGui.QPainterPath()
+                pen, brush = get_set_default_style.get_pen_brush("path")
+                path_item.setPen(pen)
+                path_item.setBrush(brush)
                 self.addItem(path_item)
 
             elif cursor == "line":
@@ -370,9 +421,12 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                     elif self.rect_p0.y() < self.rect_p1.y():
                         self.rect.setBottomRight(self.rect_p1)
                         self.rect.setTopLeft(self.rect_p0)
-                rext_item = my_rectangle.MyRactangle(self.root, self.rect)
-                rext_item.unsetCursor()
-                self.addItem(rext_item)
+                rect_item = my_rectangle.MyRactangle(self.root, self.rect)
+                rect_item.unsetCursor()
+                pen, brush = get_set_default_style.get_pen_brush("rectangle")
+                rect_item.setPen(pen)
+                rect_item.setBrush(brush)
+                self.addItem(rect_item)
                 
             elif cursor == "circle":
                 self.removeItem(self.ellopse_demo_item)
@@ -391,9 +445,12 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                     elif self.ellopse_p0.y() < self.ellopse_p1.y():
                         self.ellopse.setBottomRight(self.ellopse_p1)
                         self.ellopse.setTopLeft(self.ellopse_p0)
-                ellopse_item = my_ellopse.MyEllipse(self.root, self.ellopse)
-                ellopse_item.unsetCursor()
-                self.addItem(ellopse_item)
+                ellipse_item = my_ellopse.MyEllipse(self.root, self.ellopse)
+                ellipse_item.unsetCursor()
+                pen, brush = get_set_default_style.get_pen_brush("ellipse")
+                ellipse_item.setPen(pen)
+                ellipse_item.setBrush(brush)
+                self.addItem(ellipse_item)
             elif cursor == "text":
                 ...
             elif cursor == "ruler":
@@ -424,7 +481,21 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                 self.vert_line_cursor_item.setX(self.point_grid_step_cursor.x())
                 
                 if cursor == "arrow":
-                    ...
+                    if self.highlight_rect_p0.x() > self.point_grid_step_cursor.x():
+                        if self.highlight_rect_p0.y() > self.point_grid_step_cursor.y():
+                            self.highlight_rect_demo.setBottomRight(self.highlight_rect_p0)
+                            self.highlight_rect_demo.setTopLeft(self.point_grid_step_cursor)
+                        elif self.highlight_rect_p0.y() < self.point_grid_step_cursor.y():
+                            self.highlight_rect_demo.setTopRight(self.highlight_rect_p0)
+                            self.highlight_rect_demo.setBottomLeft(self.point_grid_step_cursor)
+                    elif self.highlight_rect_p0.x() < self.point_grid_step_cursor.x():
+                        if self.highlight_rect_p0.y() > self.point_grid_step_cursor.y():
+                            self.highlight_rect_demo.setBottomLeft(self.highlight_rect_p0)
+                            self.highlight_rect_demo.setTopRight(self.point_grid_step_cursor)
+                        elif self.highlight_rect_p0.y() < self.point_grid_step_cursor.y():
+                            self.highlight_rect_demo.setBottomRight(self.point_grid_step_cursor)
+                            self.highlight_rect_demo.setTopLeft(self.highlight_rect_p0)
+                    self.highlight_rect_demo_item.setRect(self.highlight_rect_demo)
                 elif cursor == "hand":
                     ...
                 elif cursor == "move":

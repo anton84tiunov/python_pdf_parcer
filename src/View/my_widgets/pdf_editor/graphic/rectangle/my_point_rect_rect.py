@@ -19,6 +19,7 @@ class MyPointRectRect(QtWidgets.QGraphicsRectItem):
         self.setCursor(QtCore.Qt.CursorShape.PointingHandCursor)
 
         self.setAcceptHoverEvents(True)
+        # self.set
 
     def mousePressEvent(self, event):
         pass

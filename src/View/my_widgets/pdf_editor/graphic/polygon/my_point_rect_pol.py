@@ -12,6 +12,8 @@ class MyPointRectPol(QtWidgets.QGraphicsRectItem):
         self.num_point: int = num_point
         self.root: QtWidgets = root
         self.el: QtWidgets = el
+        # self.setFlag(QtWidgets.QGraphicsItem.GraphicsItemFlag.ItemIgnoresTransformations, True)
+
         self.orig_cursor_position =  QtCore.QPointF()
         self.delete_attribute_my_point_rect: bool = True
         self.setZValue(999999999)
@@ -20,8 +22,7 @@ class MyPointRectPol(QtWidgets.QGraphicsRectItem):
         # self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         # self.setFlag(QtWidgets.QGraphicsItem.ItemSendsGeometryChanges, True)
         # self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
-
-
+        
         self.setAcceptHoverEvents(True)
 
     def mousePressEvent(self, event):
@@ -49,5 +50,10 @@ class MyPointRectPol(QtWidgets.QGraphicsRectItem):
                     # p[self.num_point] = QtCore.QPointF(x + dev_x, y + dev_y)
                     p[self.num_point] = updated_cursor_position
                     self.el.setPolygon(p)
-                
+                    # self.setPos(updated_cursor_position)
+                    # sc = self.root.tab_pdf_editor.graph_viev
+                    # self.setX(updated_cursor_position.x() * sc)
+                    # self.scenePos()(updated_cursor_position.y() * sc)
+                    # print(self.scenePos().x(), self.pos().x())
+                    # print(self.scenePos().y(), self.pos().y())
                 self.orig_cursor_position = copy.deepcopy(updated_cursor_position)

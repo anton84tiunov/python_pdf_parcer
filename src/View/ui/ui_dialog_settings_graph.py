@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dialog_settings_graphnVZRoi.ui'
+## Form generated from reading UI file 'dialog_settings_graphkwlMBF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.1
 ##
@@ -15,16 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
-    QDoubleSpinBox, QFormLayout, QGraphicsView, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QDoubleSpinBox,
+    QFormLayout, QGraphicsView, QGridLayout, QGroupBox,
+    QHBoxLayout, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_dialog_settins_el(object):
     def setupUi(self, dialog_settins_el):
         if not dialog_settins_el.objectName():
             dialog_settins_el.setObjectName(u"dialog_settins_el")
-        dialog_settins_el.resize(303, 367)
+        dialog_settins_el.resize(336, 382)
         self.horizontalLayout = QHBoxLayout(dialog_settins_el)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.verticalLayout = QVBoxLayout()
@@ -33,17 +33,6 @@ class Ui_dialog_settins_el(object):
         self.gr_box_pen.setObjectName(u"gr_box_pen")
         self.formLayout_2 = QFormLayout(self.gr_box_pen)
         self.formLayout_2.setObjectName(u"formLayout_2")
-        self.lbl_no_pen = QLabel(self.gr_box_pen)
-        self.lbl_no_pen.setObjectName(u"lbl_no_pen")
-
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.lbl_no_pen)
-
-        self.ch_box_no_pen = QCheckBox(self.gr_box_pen)
-        self.ch_box_no_pen.setObjectName(u"ch_box_no_pen")
-        self.ch_box_no_pen.setChecked(True)
-
-        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.ch_box_no_pen)
-
         self.lbl_pen_color = QLabel(self.gr_box_pen)
         self.lbl_pen_color.setObjectName(u"lbl_pen_color")
 
@@ -54,38 +43,10 @@ class Ui_dialog_settins_el(object):
 
         self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.btn_pen_color)
 
-        self.lbl_pen_width = QLabel(self.gr_box_pen)
-        self.lbl_pen_width.setObjectName(u"lbl_pen_width")
-
-        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.lbl_pen_width)
-
-        self.dbl_sp_box_width = QDoubleSpinBox(self.gr_box_pen)
-        self.dbl_sp_box_width.setObjectName(u"dbl_sp_box_width")
-
-        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.dbl_sp_box_width)
-
-        self.lbl_pen_style = QLabel(self.gr_box_pen)
-        self.lbl_pen_style.setObjectName(u"lbl_pen_style")
-
-        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.lbl_pen_style)
-
-        self.com_box_pen_sryle = QComboBox(self.gr_box_pen)
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.addItem("")
-        self.com_box_pen_sryle.setObjectName(u"com_box_pen_sryle")
-
-        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.com_box_pen_sryle)
-
         self.lbl_pen_cap_style = QLabel(self.gr_box_pen)
         self.lbl_pen_cap_style.setObjectName(u"lbl_pen_cap_style")
 
-        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.lbl_pen_cap_style)
+        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.lbl_pen_cap_style)
 
         self.com_box_pen_cap_style = QComboBox(self.gr_box_pen)
         self.com_box_pen_cap_style.addItem("")
@@ -94,12 +55,12 @@ class Ui_dialog_settins_el(object):
         self.com_box_pen_cap_style.addItem("")
         self.com_box_pen_cap_style.setObjectName(u"com_box_pen_cap_style")
 
-        self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.com_box_pen_cap_style)
+        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.com_box_pen_cap_style)
 
         self.lbl_pen_join_style = QLabel(self.gr_box_pen)
         self.lbl_pen_join_style.setObjectName(u"lbl_pen_join_style")
 
-        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.lbl_pen_join_style)
+        self.formLayout_2.setWidget(6, QFormLayout.LabelRole, self.lbl_pen_join_style)
 
         self.com_box_pen_join_style = QComboBox(self.gr_box_pen)
         self.com_box_pen_join_style.addItem("")
@@ -109,27 +70,55 @@ class Ui_dialog_settins_el(object):
         self.com_box_pen_join_style.addItem("")
         self.com_box_pen_join_style.setObjectName(u"com_box_pen_join_style")
 
-        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.com_box_pen_join_style)
+        self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.com_box_pen_join_style)
 
         self.lbl_pen_dash_pattern = QLabel(self.gr_box_pen)
         self.lbl_pen_dash_pattern.setObjectName(u"lbl_pen_dash_pattern")
 
-        self.formLayout_2.setWidget(6, QFormLayout.LabelRole, self.lbl_pen_dash_pattern)
+        self.formLayout_2.setWidget(7, QFormLayout.LabelRole, self.lbl_pen_dash_pattern)
 
         self.l_e_dash_pattern = QLineEdit(self.gr_box_pen)
         self.l_e_dash_pattern.setObjectName(u"l_e_dash_pattern")
 
-        self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.l_e_dash_pattern)
+        self.formLayout_2.setWidget(7, QFormLayout.FieldRole, self.l_e_dash_pattern)
 
         self.lbl_pen_dash_offset = QLabel(self.gr_box_pen)
         self.lbl_pen_dash_offset.setObjectName(u"lbl_pen_dash_offset")
 
-        self.formLayout_2.setWidget(7, QFormLayout.LabelRole, self.lbl_pen_dash_offset)
+        self.formLayout_2.setWidget(8, QFormLayout.LabelRole, self.lbl_pen_dash_offset)
 
         self.dbl_sp_box_dash_offset = QDoubleSpinBox(self.gr_box_pen)
         self.dbl_sp_box_dash_offset.setObjectName(u"dbl_sp_box_dash_offset")
 
-        self.formLayout_2.setWidget(7, QFormLayout.FieldRole, self.dbl_sp_box_dash_offset)
+        self.formLayout_2.setWidget(8, QFormLayout.FieldRole, self.dbl_sp_box_dash_offset)
+
+        self.dbl_sp_box_width = QDoubleSpinBox(self.gr_box_pen)
+        self.dbl_sp_box_width.setObjectName(u"dbl_sp_box_width")
+
+        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.dbl_sp_box_width)
+
+        self.lbl_pen_width = QLabel(self.gr_box_pen)
+        self.lbl_pen_width.setObjectName(u"lbl_pen_width")
+
+        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.lbl_pen_width)
+
+        self.lbl_pen_style = QLabel(self.gr_box_pen)
+        self.lbl_pen_style.setObjectName(u"lbl_pen_style")
+
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.lbl_pen_style)
+
+        self.com_box_pen_style = QComboBox(self.gr_box_pen)
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.addItem("")
+        self.com_box_pen_style.setObjectName(u"com_box_pen_style")
+
+        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.com_box_pen_style)
 
 
         self.verticalLayout.addWidget(self.gr_box_pen)
@@ -163,17 +152,6 @@ class Ui_dialog_settins_el(object):
         self.gr_box_brush.setObjectName(u"gr_box_brush")
         self.formLayout = QFormLayout(self.gr_box_brush)
         self.formLayout.setObjectName(u"formLayout")
-        self.lbl_no_brush = QLabel(self.gr_box_brush)
-        self.lbl_no_brush.setObjectName(u"lbl_no_brush")
-
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.lbl_no_brush)
-
-        self.ch_box_no_brush = QCheckBox(self.gr_box_brush)
-        self.ch_box_no_brush.setObjectName(u"ch_box_no_brush")
-        self.ch_box_no_brush.setChecked(True)
-
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.ch_box_no_brush)
-
         self.lbl_brush_color = QLabel(self.gr_box_brush)
         self.lbl_brush_color.setObjectName(u"lbl_brush_color")
 
@@ -187,7 +165,7 @@ class Ui_dialog_settins_el(object):
         self.lbl_brush_style = QLabel(self.gr_box_brush)
         self.lbl_brush_style.setObjectName(u"lbl_brush_style")
 
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.lbl_brush_style)
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.lbl_brush_style)
 
         self.com_box_brush_style = QComboBox(self.gr_box_brush)
         self.com_box_brush_style.addItem("")
@@ -211,7 +189,7 @@ class Ui_dialog_settins_el(object):
         self.com_box_brush_style.addItem("")
         self.com_box_brush_style.setObjectName(u"com_box_brush_style")
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.com_box_brush_style)
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.com_box_brush_style)
 
 
         self.verticalLayout_3.addWidget(self.gr_box_brush)
@@ -247,10 +225,10 @@ class Ui_dialog_settins_el(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.gr_view_priview = QGraphicsView(dialog_settins_el)
         self.gr_view_priview.setObjectName(u"gr_view_priview")
-        self.gr_view_priview.setMinimumSize(QSize(100, 100))
-        self.gr_view_priview.setMaximumSize(QSize(100, 100))
-        self.gr_view_priview.setSizeIncrement(QSize(100, 100))
-        self.gr_view_priview.setBaseSize(QSize(100, 100))
+        self.gr_view_priview.setMinimumSize(QSize(150, 150))
+        self.gr_view_priview.setMaximumSize(QSize(150, 150))
+        self.gr_view_priview.setSizeIncrement(QSize(150, 150))
+        self.gr_view_priview.setBaseSize(QSize(150, 150))
 
         self.gridLayout.addWidget(self.gr_view_priview, 0, 0, 1, 1)
 
@@ -269,21 +247,8 @@ class Ui_dialog_settins_el(object):
     def retranslateUi(self, dialog_settins_el):
         dialog_settins_el.setWindowTitle(QCoreApplication.translate("dialog_settins_el", u"settings", None))
         self.gr_box_pen.setTitle(QCoreApplication.translate("dialog_settins_el", u"pen", None))
-        self.lbl_no_pen.setText(QCoreApplication.translate("dialog_settins_el", u"no pen", None))
-        self.ch_box_no_pen.setText("")
         self.lbl_pen_color.setText(QCoreApplication.translate("dialog_settins_el", u"color", None))
         self.btn_pen_color.setText("")
-        self.lbl_pen_width.setText(QCoreApplication.translate("dialog_settins_el", u"width", None))
-        self.lbl_pen_style.setText(QCoreApplication.translate("dialog_settins_el", u"style", None))
-        self.com_box_pen_sryle.setItemText(0, QCoreApplication.translate("dialog_settins_el", u"NoPen", None))
-        self.com_box_pen_sryle.setItemText(1, QCoreApplication.translate("dialog_settins_el", u"SolidLine", None))
-        self.com_box_pen_sryle.setItemText(2, QCoreApplication.translate("dialog_settins_el", u"DashLine", None))
-        self.com_box_pen_sryle.setItemText(3, QCoreApplication.translate("dialog_settins_el", u"DotLine", None))
-        self.com_box_pen_sryle.setItemText(4, QCoreApplication.translate("dialog_settins_el", u"DashDotLine", None))
-        self.com_box_pen_sryle.setItemText(5, QCoreApplication.translate("dialog_settins_el", u"DashDotDotLine", None))
-        self.com_box_pen_sryle.setItemText(6, QCoreApplication.translate("dialog_settins_el", u"CustomDashLine", None))
-        self.com_box_pen_sryle.setItemText(7, QCoreApplication.translate("dialog_settins_el", u"MPenStyle", None))
-
         self.lbl_pen_cap_style.setText(QCoreApplication.translate("dialog_settins_el", u"cap", None))
         self.com_box_pen_cap_style.setItemText(0, QCoreApplication.translate("dialog_settins_el", u"FlatCap", None))
         self.com_box_pen_cap_style.setItemText(1, QCoreApplication.translate("dialog_settins_el", u"SquareCap", None))
@@ -299,12 +264,21 @@ class Ui_dialog_settins_el(object):
 
         self.lbl_pen_dash_pattern.setText(QCoreApplication.translate("dialog_settins_el", u"pattern", None))
         self.lbl_pen_dash_offset.setText(QCoreApplication.translate("dialog_settins_el", u"offset", None))
+        self.lbl_pen_width.setText(QCoreApplication.translate("dialog_settins_el", u"width", None))
+        self.lbl_pen_style.setText(QCoreApplication.translate("dialog_settins_el", u"style", None))
+        self.com_box_pen_style.setItemText(0, QCoreApplication.translate("dialog_settins_el", u"NoPen", None))
+        self.com_box_pen_style.setItemText(1, QCoreApplication.translate("dialog_settins_el", u"SolidLine", None))
+        self.com_box_pen_style.setItemText(2, QCoreApplication.translate("dialog_settins_el", u"DashLine", None))
+        self.com_box_pen_style.setItemText(3, QCoreApplication.translate("dialog_settins_el", u"DotLine", None))
+        self.com_box_pen_style.setItemText(4, QCoreApplication.translate("dialog_settins_el", u"DashDotLine", None))
+        self.com_box_pen_style.setItemText(5, QCoreApplication.translate("dialog_settins_el", u"DashDotDotLine", None))
+        self.com_box_pen_style.setItemText(6, QCoreApplication.translate("dialog_settins_el", u"CustomDashLine", None))
+        self.com_box_pen_style.setItemText(7, QCoreApplication.translate("dialog_settins_el", u"MPenStyle", None))
+
         self.btn_default.setText(QCoreApplication.translate("dialog_settins_el", u"default", None))
         self.btn_ok.setText(QCoreApplication.translate("dialog_settins_el", u"ok", None))
         self.btn_cancel.setText(QCoreApplication.translate("dialog_settins_el", u"cancel", None))
         self.gr_box_brush.setTitle(QCoreApplication.translate("dialog_settins_el", u"brush", None))
-        self.lbl_no_brush.setText(QCoreApplication.translate("dialog_settins_el", u"no brush", None))
-        self.ch_box_no_brush.setText("")
         self.lbl_brush_color.setText(QCoreApplication.translate("dialog_settins_el", u"color", None))
         self.btn_brush_color.setText("")
         self.lbl_brush_style.setText(QCoreApplication.translate("dialog_settins_el", u"style", None))

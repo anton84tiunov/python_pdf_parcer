@@ -101,7 +101,7 @@ class MyLeftToolBar(QtWidgets.QFrame):
 
     def text_changed(self, s):
         self.root.tab_pdf_editor.graph_scene.grid_step = int(s)
-        print(int(s))
+        # print(int(s))
 
 
     def disable_checked(self, check_btn: radio_buttom.MyRadioButton, cursor: str):

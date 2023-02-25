@@ -37,3 +37,5 @@ class MyMenuBar(QtWidgets.QFrame):
         self.spacer_menu_box2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.g_box.addItem(self.spacer_menu_box2, 5, 0, 1, 1)
 
+
+

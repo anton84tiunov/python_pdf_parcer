@@ -136,8 +136,9 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
-            settings.exec()
+            settings =  QtWidgets.QFontDialog.getFont()
+            if settings.exec():
+                print(settings)
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

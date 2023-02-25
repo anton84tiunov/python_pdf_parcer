@@ -12,7 +12,7 @@ import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
-import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_path as my_dialog_prop_path
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_pol as my_dialog_prop_pol
 
 
 
@@ -79,7 +79,15 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
                 # g.append(it)
                 # rect_it = QtWidgets.QGraphicsRectItem()
                 it_r = my_point_rect_pol.MyPointRectPol(self.root, self, ii, it)
+             
                 self.root.tab_pdf_editor.graph_scene.addItem(it_r)
+         
+                # widg = QtWidgets.QFrame()
+                # # widg.setGeometry(it.toRect())
+                # widg.setFixedSize(QtCore.QSize(10, 10))
+                # # widg.setSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed)
+                # self.root.tab_pdf_editor.graph_scene.addWidget(widg)
+                
                 # p.addRect(it)
                 # self.ch group().childItems
             # self.root.pdf_editor_scene.createItemGroup(g)
@@ -115,9 +123,12 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_prop_path.MyDialogPropPath (self.root, self.pen(), self.brush(), self.zValue, self.opacity())
+            settings =  my_dialog_prop_pol.MyDialogPropPol(self.root, self.pen(), self.brush(), self.zValue, self.opacity())
             if settings.exec():
-                print(settings.pen_sryle)
+                self.setPen(settings.pen)
+                self.setBrush(settings.brush)
+                # self.setZValue(settings.item_z_index)
+                # self.opacity(settings.item_opacity)
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

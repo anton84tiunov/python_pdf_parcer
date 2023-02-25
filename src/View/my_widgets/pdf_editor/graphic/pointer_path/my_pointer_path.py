@@ -117,7 +117,11 @@ class MyPainterPath(QtWidgets.QGraphicsPathItem):
         if selected_action == action_properties:
             settings =  my_dialog_prop_path.MyDialogPropPath (self.root, self.pen(), self.brush(), self.zValue, self.opacity())
             if settings.exec():
-                print(settings.val)
+                self.setPen(settings.pen)
+                self.setBrush(settings.brush)
+                # self.setZValue(settings.item_z_index)
+                # self.opacity(settings.item_opacity)
+
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>303</width>
-    <height>367</height>
+    <width>336</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,23 +22,6 @@
         <string>pen</string>
        </property>
        <layout class="QFormLayout" name="formLayout_2">
-        <item row="0" column="0">
-         <widget class="QLabel" name="lbl_no_pen">
-          <property name="text">
-           <string>no pen</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="ch_box_no_pen">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="lbl_pen_color">
           <property name="text">
@@ -53,25 +36,112 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="5" column="0">
+         <widget class="QLabel" name="lbl_pen_cap_style">
+          <property name="text">
+           <string>cap</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QComboBox" name="com_box_pen_cap_style">
+          <item>
+           <property name="text">
+            <string>FlatCap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SquareCap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RoundCap</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MPenCapStyle</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="lbl_pen_join_style">
+          <property name="text">
+           <string>join</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QComboBox" name="com_box_pen_join_style">
+          <item>
+           <property name="text">
+            <string>MiterJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BevelJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RoundJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SvgMiterJoin</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MPenJoinStyle</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="lbl_pen_dash_pattern">
+          <property name="text">
+           <string>pattern</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="l_e_dash_pattern"/>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="lbl_pen_dash_offset">
+          <property name="text">
+           <string>offset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_dash_offset"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_width"/>
+        </item>
+        <item row="3" column="0">
          <widget class="QLabel" name="lbl_pen_width">
           <property name="text">
            <string>width</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QDoubleSpinBox" name="dbl_sp_box_width"/>
-        </item>
-        <item row="3" column="0">
+        <item row="0" column="0">
          <widget class="QLabel" name="lbl_pen_style">
           <property name="text">
            <string>style</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QComboBox" name="com_box_pen_sryle">
+        <item row="0" column="1">
+         <widget class="QComboBox" name="com_box_pen_style">
           <item>
            <property name="text">
             <string>NoPen</string>
@@ -114,93 +184,6 @@
           </item>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="lbl_pen_cap_style">
-          <property name="text">
-           <string>cap</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QComboBox" name="com_box_pen_cap_style">
-          <item>
-           <property name="text">
-            <string>FlatCap</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>SquareCap</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>RoundCap</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>MPenCapStyle</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="lbl_pen_join_style">
-          <property name="text">
-           <string>join</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QComboBox" name="com_box_pen_join_style">
-          <item>
-           <property name="text">
-            <string>MiterJoin</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>BevelJoin</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>RoundJoin</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>SvgMiterJoin</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>MPenJoinStyle</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="lbl_pen_dash_pattern">
-          <property name="text">
-           <string>pattern</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="l_e_dash_pattern"/>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="lbl_pen_dash_offset">
-          <property name="text">
-           <string>offset</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QDoubleSpinBox" name="dbl_sp_box_dash_offset"/>
-        </item>
        </layout>
       </widget>
      </item>
@@ -239,23 +222,6 @@
         <string>brush</string>
        </property>
        <layout class="QFormLayout" name="formLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="lbl_no_brush">
-          <property name="text">
-           <string>no brush</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="ch_box_no_brush">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="lbl_brush_color">
           <property name="text">
@@ -270,14 +236,14 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="0" column="0">
          <widget class="QLabel" name="lbl_brush_style">
           <property name="text">
            <string>style</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="0" column="1">
          <widget class="QComboBox" name="com_box_brush_style">
           <item>
            <property name="text">
@@ -414,26 +380,26 @@
         <widget class="QGraphicsView" name="gr_view_priview">
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>150</width>
+           <height>150</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>150</width>
+           <height>150</height>
           </size>
          </property>
          <property name="sizeIncrement">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>150</width>
+           <height>150</height>
           </size>
          </property>
          <property name="baseSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>150</width>
+           <height>150</height>
           </size>
          </property>
         </widget>

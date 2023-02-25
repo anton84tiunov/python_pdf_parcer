@@ -49,7 +49,7 @@ def get_setting(path, section, setting):
         section=section, setting=setting, value=value
     )
     
-    print(msg)
+    # print(msg)
     return value
  
  

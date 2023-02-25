@@ -13,7 +13,7 @@ import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
-import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_path as my_dialog_prop_path
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_ell as my_dialog_prop_ell
 
 
 
@@ -33,7 +33,7 @@ class MyEllipse(QtWidgets.QGraphicsEllipseItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
         # self.setCursor(QtCore.Qt.CursorShape.SizeAllCursor)
         size_cursor = QtCore.QSize(32, 32)
-        self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_rectangle_itemt.png")
+        self.cursor_pix = QtGui.QPixmap(icon_svg_dir + "arrow_circle_itemt.png")
         self.cursor_scaled_pix = self.cursor_pix.scaled(size_cursor, QtCore.Qt.KeepAspectRatio)
         self.current_cursor = QtGui.QCursor(self.cursor_scaled_pix, 1, -1)
         self.setCursor(self.current_cursor)
@@ -131,8 +131,12 @@ class MyEllipse(QtWidgets.QGraphicsEllipseItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
-            settings.exec()
+            settings =  my_dialog_prop_ell.MyDialogPropEll(self.root, self.pen(), self.brush(), self.zValue, self.opacity())
+            if settings.exec():
+                self.setPen(settings.pen)
+                self.setBrush(settings.brush)
+                # self.setZValue(settings.item_z_index)
+                # self.opacity(settings.item_opacity)
 
         # elif selected_action == action_rotate:
         #     rot =  my_rotate.MyDialogRotatePath(self.root)
@@ -143,7 +147,7 @@ class MyEllipse(QtWidgets.QGraphicsEllipseItem):
         elif selected_action == action_scale:
             scl =  my_scale.MyDialogScalePath(self.root)
             if scl.exec_():
-                self.scale_centr(scl.val_scale)
+                self.scale_centr(scl.val_scale / 100)
 
         elif selected_action == action_cut:
             pass
@@ -255,12 +259,13 @@ class MyEllipse(QtWidgets.QGraphicsEllipseItem):
 
     def scale_centr(self, scale: float):
         x_centr, y_centr = self.get_centr_points()
-        p = self.rect()
+        p = copy.deepcopy(self.rect())
         w2 = p.width() / 2
         h2 = p.height() / 2
         p2 = QtCore.QRectF()
         p2.setTopLeft(QtCore.QPointF(x_centr - w2 * scale, y_centr - h2 * scale))
         p2.setBottomRight(QtCore.QPointF(x_centr + w2 * scale, y_centr + h2 * scale))
         self.setRect(p2)
+        
 
  

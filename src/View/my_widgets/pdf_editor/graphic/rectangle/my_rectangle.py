@@ -13,7 +13,7 @@ import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialo
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 import src.View.my_widgets.pdf_editor.graphic.ellipse.my_ellopse as my_ellopse
-import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_path as my_dialog_prop_path
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_rect as my_dialog_prop_rect
 
 
 
@@ -130,8 +130,12 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
-            settings.exec()
+            settings =  my_dialog_prop_rect.MyDialogPropRect (self.root, self.pen(), self.brush(), self.zValue, self.opacity())
+            if settings.exec():
+                self.setPen(settings.pen)
+                self.setBrush(settings.brush)
+                # self.setZValue(settings.item_z_index)
+                # self.opacity(settings.item_opacity)
 
         # elif selected_action == action_rotate:
         #     rot =  my_rotate.MyDialogRotatePath(self.root)
