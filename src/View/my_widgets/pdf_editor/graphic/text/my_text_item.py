@@ -138,7 +138,12 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
         if selected_action == action_properties:
             settings =  my_dialog_prop_text.MyDialogPropText(self.root,self.text, self.font(), self.defaultTextColor(), self.zValue(), self.opacity())
             if settings.exec():
-                print(settings)
+                self.setFont(settings.m_font)
+                self.setDefaultTextColor(settings.color)
+                self.setPlainText(settings.text)
+                self.setZValue(settings.item_z_index)
+                self.setOpacity(settings.item_opacity)
+
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)
@@ -156,7 +161,8 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
         elif selected_action == action_copy:
             pass
         elif selected_action == action_paste:
-            pass
+            self.root.tab_pdf_editor.graph_scene.paste_el(event)
+            
         elif selected_action == action_duplicate:
             pass
 

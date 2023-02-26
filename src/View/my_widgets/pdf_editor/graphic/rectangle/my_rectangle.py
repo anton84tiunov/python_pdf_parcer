@@ -149,7 +149,12 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
                 self.scale_centr(scl.val_scale / 100)
 
         elif selected_action == action_cut:
-            pass
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyRactangle(self.root, self.rect())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
+            self.root.tab_pdf_editor.graph_scene.removeItem(self)
+
         elif selected_action == action_copy:
             self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyRactangle(self.root, self.rect())
             self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
@@ -157,38 +162,8 @@ class MyRactangle(QtWidgets.QGraphicsRectItem):
             self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
 
         elif selected_action == action_paste:
-            if isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, MyRactangle):
-                rect_f = self.root.tab_pdf_editor.graph_scene.buffer_copy_item.rect()
-                w = copy.deepcopy(rect_f.width())
-                h = copy.deepcopy(rect_f.height())
-
-                rect_f.setX(copy.deepcopy(event.scenePos().x()))
-                rect_f.setY(copy.deepcopy(event.scenePos().y()))
-                rect_f.setWidth(w)
-                rect_f.setHeight(h)
-
-                rect_item = MyRactangle(self.root, rect_f)
-                rect_item.setPen(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.pen())
-                rect_item.setBrush(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.brush())
-                rect_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())
-                self.root.tab_pdf_editor.graph_scene.addItem(rect_item)
-            
-            elif isinstance(self.root.tab_pdf_editor.graph_scene.buffer_copy_item, my_ellopse.MyEllipse):
-                rect_f = self.root.tab_pdf_editor.graph_scene.buffer_copy_item.rect()
-                w = copy.deepcopy(rect_f.width())
-                h = copy.deepcopy(rect_f.height())
-
-                rect_f.setX(copy.deepcopy(event.scenePos().x()))
-                rect_f.setY(copy.deepcopy(event.scenePos().y()))
-                rect_f.setWidth(w)
-                rect_f.setHeight(h)
-
-                ellipse_item = my_ellopse.MyEllipse(self.root, rect_f)
-                ellipse_item.setPen(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.pen())
-                ellipse_item.setBrush(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.brush())
-                ellipse_item.setZValue(self.root.tab_pdf_editor.graph_scene.buffer_copy_item.zValue())
-                self.root.tab_pdf_editor.graph_scene.addItem(ellipse_item)
-        
+            self.root.tab_pdf_editor.graph_scene.paste_el(event)
+    
         elif selected_action == action_duplicate:
             pass
 

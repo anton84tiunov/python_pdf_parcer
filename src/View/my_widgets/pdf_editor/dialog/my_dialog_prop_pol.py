@@ -122,6 +122,7 @@ class MyDialogPropPol(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
 
     def update_priview(self):
         ...
+    
 
     # def go_end(self):       
     #     self.hide()

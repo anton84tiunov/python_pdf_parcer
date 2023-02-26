@@ -282,6 +282,9 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
                     # text_item.setRotation(self.rotate_decompocer(line.line_dir))
                     # text_item.setDefaultTextColor(QtGui.QColor(*span.span_color))
                     # text_item.setZValue(text.block_number)
+                    color, font = get_set_default_style.get_color_font()
+                    text_item.setDefaultTextColor(color)
+                    text_item.setFont(font)
                     self.addItem(text_item)
           
 
@@ -613,11 +616,71 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
             ...
         return super().mouseDoubleClickEvent(event)
 
+ 
+    def paste_el(self, event):
+        if isinstance(self.buffer_copy_item, my_rectangle.MyRactangle):
+            rect_f = self.buffer_copy_item.rect()
+            w = copy.deepcopy(rect_f.width())
+            h = copy.deepcopy(rect_f.height())
 
+            rect_f.setX(copy.deepcopy(event.scenePos().x()))
+            rect_f.setY(copy.deepcopy(event.scenePos().y()))
+            rect_f.setWidth(w)
+            rect_f.setHeight(h)
 
+            rect_item = my_rectangle.MyRactangle(self.root, rect_f)
+            rect_item.setPen(self.buffer_copy_item.pen())
+            rect_item.setBrush(self.buffer_copy_item.brush())
+            rect_item.setZValue(self.buffer_copy_item.zValue())
+            self.addItem(rect_item)
+        
+        elif isinstance(self.buffer_copy_item, my_ellopse.MyEllipse):
+            rect_f = self.buffer_copy_item.rect()
+            w = copy.deepcopy(rect_f.width())
+            h = copy.deepcopy(rect_f.height())
 
+            rect_f.setX(copy.deepcopy(event.scenePos().x()))
+            rect_f.setY(copy.deepcopy(event.scenePos().y()))
+            rect_f.setWidth(w)
+            rect_f.setHeight(h)
 
+            ellipse_item = my_ellopse.MyEllipse(self.root, rect_f)
+            ellipse_item.setPen(self.buffer_copy_item.pen())
+            ellipse_item.setBrush(self.buffer_copy_item.brush())
+            ellipse_item.setZValue(self.buffer_copy_item.zValue())
+            self.addItem(ellipse_item)
+    
+        elif isinstance(self.buffer_copy_item, my_pointer_path.MyPainterPath):
+            path_f = self.buffer_copy_item.path()
 
+            for ii in range(path_f.elementCount()):
+                x = path_f.elementAt(ii).x
+                y = path_f.elementAt(ii).y
+                dev_x = x + event.scenePos().x()
+                dev_y = y + event.scenePos().y()
+                path_f.setElementPositionAt(ii, dev_x, dev_y)
+
+            path_item = my_pointer_path.MyPainterPath(self.root, path_f)
+            path_item.setPen(self.buffer_copy_item.pen())
+            path_item.setBrush(self.buffer_copy_item.brush())
+            path_item.setZValue(self.buffer_copy_item.zValue())
+            self.addItem(path_item)
+
+        elif isinstance(self.buffer_copy_item, my_polygon.MyPolygon):
+            pol_f = self.buffer_copy_item.polygon()
+  
+            for ii in range(pol_f.count()):
+                x = pol_f.at(ii).x()
+                y = pol_f.at(ii).y()
+                dev_x = x + event.scenePos().x()
+                dev_y = y + event.scenePos().y()
+                pol_f[ii] = QtCore.QPointF(dev_x, dev_y)
+
+            pol_item = my_polygon.MyPolygon(self.root, pol_f)
+            pol_item.setPen(self.buffer_copy_item.pen())
+            pol_item.setBrush(self.buffer_copy_item.brush())
+            pol_item.setZValue(self.buffer_copy_item.zValue())
+            self.addItem(pol_item)
 
 
 

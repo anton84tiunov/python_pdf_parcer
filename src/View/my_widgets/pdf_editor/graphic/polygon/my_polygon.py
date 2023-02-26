@@ -148,11 +148,32 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
             self.flip_horizontally_centr()
 
         elif selected_action == action_cut:
-            pass
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyPolygon(self.root, self.polygon())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
+            self.root.tab_pdf_editor.graph_scene.removeItem(self)
+
         elif selected_action == action_copy:
-            pass
+            
+            x_centr, y_centr = self.get_centr_points()
+            p = self.polygon()
+
+            for ii in range(p.count()):
+                x = p.at(ii).x()
+                y = p.at(ii).y()
+                dev_x = x - x_centr
+                dev_y = y - y_centr
+                p[ii] = QtCore.QPointF(dev_x, dev_y)
+            
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyPolygon(self.root, p)
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
+        
         elif selected_action == action_paste:
-            pass
+            self.root.tab_pdf_editor.graph_scene.paste_el(event)
+
         elif selected_action == action_duplicate:
             pass
 

@@ -181,7 +181,8 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         elif selected_action == action_copy:
             pass
         elif selected_action == action_paste:
-            pass
+            self.root.tab_pdf_editor.graph_scene.paste_el(event)
+            
         elif selected_action == action_duplicate:
             pass
 

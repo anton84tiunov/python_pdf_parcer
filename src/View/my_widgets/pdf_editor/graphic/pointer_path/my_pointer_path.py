@@ -141,11 +141,38 @@ class MyPainterPath(QtWidgets.QGraphicsPathItem):
             self.flip_horizontally_centr()
 
         elif selected_action == action_cut:
-            pass
+            x_centr, y_centr = self.get_centr_points()
+            p = self.path()
+            for ii in range(p.elementCount()):
+                x = p.elementAt(ii).x
+                y = p.elementAt(ii).y
+                dev_x = x - x_centr
+                dev_y = y - y_centr
+                p.setElementPositionAt(ii, dev_x, dev_y)
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyPainterPath(self.root, p)
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
+            self.root.tab_pdf_editor.graph_scene.removeItem(self)
+
         elif selected_action == action_copy:
-            pass
+            x_centr, y_centr = self.get_centr_points()
+            p = self.path()
+            for ii in range(p.elementCount()):
+                x = p.elementAt(ii).x
+                y = p.elementAt(ii).y
+                dev_x = x - x_centr
+                dev_y = y - y_centr
+                p.setElementPositionAt(ii, dev_x, dev_y)
+            
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item =  MyPainterPath(self.root, p)
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setPen(self.pen())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setBrush(self.brush())
+            self.root.tab_pdf_editor.graph_scene.buffer_copy_item.setZValue(self.zValue() + 0.000001)
+        
         elif selected_action == action_paste:
-            pass
+            self.root.tab_pdf_editor.graph_scene.paste_el(event)
+
         elif selected_action == action_duplicate:
             pass
 

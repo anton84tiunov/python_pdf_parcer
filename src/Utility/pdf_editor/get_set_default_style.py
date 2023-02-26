@@ -4,7 +4,23 @@ import src.Utility.general.comfig.config as config
 
 
 conf_path = "configs/default_style_el_config.INI"
-        
+
+def get_color_font():
+    str_color = config.get_setting(conf_path, "text", "color")
+    str_size = config.get_setting(conf_path, "text", "size")
+    str_family = config.get_setting(conf_path, "text", "family")
+    str_bold = config.get_setting(conf_path, "text", "bold")
+    str_italic = config.get_setting(conf_path, "text", "italic")
+
+    color = QtGui.QColor(*tuple(map(float, str_color[1:-1].split(", "))))
+    m_font = QtGui.QFont()
+    m_font.setPointSizeF(float(str_size))
+    m_font.setFamily(str_family)
+    m_font.setBold(bool(str_bold))
+    m_font.setItalic(bool(str_italic))
+
+    return color, m_font
+
 
 def get_pen_brush(el: str):
     pen = QtGui.QPen()

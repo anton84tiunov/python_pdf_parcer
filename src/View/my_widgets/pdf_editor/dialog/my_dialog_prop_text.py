@@ -38,6 +38,21 @@ class MyDialogPropText(QtWidgets.QDialog, my_dialog_settings_text.Ui_Dialog):
         self.dbl_sp_box_z_index.setValue(self.item_z_index)
         self.dbl_sp_box_opacity.setValue(self.item_opacity)
 
+
+        self.btn_color.clicked.connect(self.get_color)
+        self.sp_box_size.valueChanged.connect(self.get_size)
+        self.ch_box_italic.toggled.connect(self.get_italic)
+        self.ch_box_bold.toggled.connect(self.get_bold)
+        self.l_e_text.textChanged.connect(self.get_text)
+        self.com_box_family.currentTextChanged.connect(self.get_family)
+        self.dbl_sp_box_opacity.valueChanged.connect(self.get_opacity)
+        self.dbl_sp_box_z_index.valueChanged.connect(self.get_z_index)
+
+        self.btn_default.clicked.connect(self.set_default)
+        self.btn_ok.clicked.connect(self.get_value)
+        self.btn_cancel.clicked.connect(self.get_exit)
+
+
         self.background_brush = QtGui.QBrush( QtGui.QColor(232, 235, 232), QtCore.Qt.SolidPattern)
 
         self.scene_priview = QtWidgets.QGraphicsScene()
@@ -77,5 +92,45 @@ class MyDialogPropText(QtWidgets.QDialog, my_dialog_settings_text.Ui_Dialog):
     def update_priview(self):
         ...
 
-  
+    def get_opacity(self, val):
+        self.item_opacity = val    
+
+    def get_z_index(self, val):
+        self.item_z_index = val
+
+    def get_color(self):
+        color_dialog = QtWidgets.QColorDialog()
+        self.color = color_dialog.getColor()
+        self.btn_color.setStyleSheet(f"background-color:{self.color.name()}")
+        self.text_item.setDefaultTextColor(self.color)
+
+    def get_size(self, size: float):
+        self.font_size = size
+        self.m_font.setPointSizeF(self.font_size)
+        self.text_item.setFont(self.m_font)
+
+    def get_italic(self, italic: bool):
+        self.font_italic = italic
+        self.m_font.setItalic(self.font_italic)
+        self.text_item.setFont(self.m_font)
+
+    def get_bold(self, bold: bool):
+        self.font_bold = bold
+        self.m_font.setBold(self.font_bold)
+        self.text_item.setFont(self.m_font)
+
+    def get_text(self, text: str):
+        self.text = text
+        self.text_item.setPlainText(self.text)
+
+    def get_family(self, family):
+        self.font_family = family
+        self.m_font.setFamily(self.font_family)
+        self.text_item.setFont(self.m_font)
+
+
+
+
+
+
                  
