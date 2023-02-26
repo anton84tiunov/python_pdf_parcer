@@ -4,7 +4,7 @@ from PySide6 import QtWidgets, QtGui,  QtCore
 
 import src.View.my_widgets.pdf_editor.graphic.rectangle.my_point_rect_rect as my_point_rect_rect
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
-import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_text as my_dialog_prop_text
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 import my_os_path as my_os_path
@@ -136,7 +136,7 @@ class MyTextItem(QtWidgets.QGraphicsTextItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  QtWidgets.QFontDialog.getFont()
+            settings =  my_dialog_prop_text.MyDialogPropText(self.root,self.text, self.font(), self.defaultTextColor(), self.zValue(), self.opacity())
             if settings.exec():
                 print(settings)
 

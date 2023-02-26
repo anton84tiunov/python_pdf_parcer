@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>336</width>
+    <width>410</width>
     <height>382</height>
    </rect>
   </property>
@@ -121,10 +121,18 @@
          </widget>
         </item>
         <item row="8" column="1">
-         <widget class="QDoubleSpinBox" name="dbl_sp_box_dash_offset"/>
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_dash_offset">
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QDoubleSpinBox" name="dbl_sp_box_width"/>
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_width">
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="lbl_pen_width">
@@ -351,15 +359,18 @@
         <string>item</string>
        </property>
        <layout class="QFormLayout" name="formLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="lbl_z_index">
-          <property name="text">
-           <string>zIndex</string>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_z_index">
+          <property name="minimum">
+           <double>-99999999.989999994635582</double>
+          </property>
+          <property name="maximum">
+           <double>99999999.989999994635582</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
           </property>
          </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="dbl_sp_box_z_index"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="lbl_box_opacity">
@@ -369,7 +380,21 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QDoubleSpinBox" name="dbl_sp_box_opacity"/>
+         <widget class="QDoubleSpinBox" name="dbl_sp_box_opacity">
+          <property name="maximum">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="lbl_z_index">
+          <property name="text">
+           <string>zIndex</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

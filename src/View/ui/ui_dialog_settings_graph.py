@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dialog_settings_graphkwlMBF.ui'
+## Form generated from reading UI file 'dialog_settings_graphEqBRyw.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.1
 ##
@@ -24,7 +24,7 @@ class Ui_dialog_settins_el(object):
     def setupUi(self, dialog_settins_el):
         if not dialog_settins_el.objectName():
             dialog_settins_el.setObjectName(u"dialog_settins_el")
-        dialog_settins_el.resize(336, 382)
+        dialog_settins_el.resize(410, 382)
         self.horizontalLayout = QHBoxLayout(dialog_settins_el)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.verticalLayout = QVBoxLayout()
@@ -89,11 +89,13 @@ class Ui_dialog_settins_el(object):
 
         self.dbl_sp_box_dash_offset = QDoubleSpinBox(self.gr_box_pen)
         self.dbl_sp_box_dash_offset.setObjectName(u"dbl_sp_box_dash_offset")
+        self.dbl_sp_box_dash_offset.setSingleStep(0.100000000000000)
 
         self.formLayout_2.setWidget(8, QFormLayout.FieldRole, self.dbl_sp_box_dash_offset)
 
         self.dbl_sp_box_width = QDoubleSpinBox(self.gr_box_pen)
         self.dbl_sp_box_width.setObjectName(u"dbl_sp_box_width")
+        self.dbl_sp_box_width.setSingleStep(0.100000000000000)
 
         self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.dbl_sp_box_width)
 
@@ -198,13 +200,11 @@ class Ui_dialog_settins_el(object):
         self.gr_box_item.setObjectName(u"gr_box_item")
         self.formLayout_3 = QFormLayout(self.gr_box_item)
         self.formLayout_3.setObjectName(u"formLayout_3")
-        self.lbl_z_index = QLabel(self.gr_box_item)
-        self.lbl_z_index.setObjectName(u"lbl_z_index")
-
-        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.lbl_z_index)
-
         self.dbl_sp_box_z_index = QDoubleSpinBox(self.gr_box_item)
         self.dbl_sp_box_z_index.setObjectName(u"dbl_sp_box_z_index")
+        self.dbl_sp_box_z_index.setMinimum(-99999999.989999994635582)
+        self.dbl_sp_box_z_index.setMaximum(99999999.989999994635582)
+        self.dbl_sp_box_z_index.setSingleStep(0.100000000000000)
 
         self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.dbl_sp_box_z_index)
 
@@ -215,8 +215,15 @@ class Ui_dialog_settins_el(object):
 
         self.dbl_sp_box_opacity = QDoubleSpinBox(self.gr_box_item)
         self.dbl_sp_box_opacity.setObjectName(u"dbl_sp_box_opacity")
+        self.dbl_sp_box_opacity.setMaximum(1.000000000000000)
+        self.dbl_sp_box_opacity.setSingleStep(0.100000000000000)
 
         self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.dbl_sp_box_opacity)
+
+        self.lbl_z_index = QLabel(self.gr_box_item)
+        self.lbl_z_index.setObjectName(u"lbl_z_index")
+
+        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.lbl_z_index)
 
 
         self.verticalLayout_3.addWidget(self.gr_box_item)
@@ -303,7 +310,7 @@ class Ui_dialog_settins_el(object):
         self.com_box_brush_style.setItemText(18, QCoreApplication.translate("dialog_settins_el", u"TexturePattern", None))
 
         self.gr_box_item.setTitle(QCoreApplication.translate("dialog_settins_el", u"item", None))
-        self.lbl_z_index.setText(QCoreApplication.translate("dialog_settins_el", u"zIndex", None))
         self.lbl_box_opacity.setText(QCoreApplication.translate("dialog_settins_el", u"opacity", None))
+        self.lbl_z_index.setText(QCoreApplication.translate("dialog_settins_el", u"zIndex", None))
     # retranslateUi
 

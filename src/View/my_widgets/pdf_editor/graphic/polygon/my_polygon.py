@@ -123,12 +123,12 @@ class MyPolygon(QtWidgets.QGraphicsPolygonItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_prop_pol.MyDialogPropPol(self.root, self.pen(), self.brush(), self.zValue, self.opacity())
+            settings =  my_dialog_prop_pol.MyDialogPropPol(self.root, self.pen(), self.brush(), self.zValue(), self.opacity())
             if settings.exec():
                 self.setPen(settings.pen)
                 self.setBrush(settings.brush)
-                # self.setZValue(settings.item_z_index)
-                # self.opacity(settings.item_opacity)
+                self.setZValue(settings.item_z_index)
+                self.setOpacity(settings.item_opacity)
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

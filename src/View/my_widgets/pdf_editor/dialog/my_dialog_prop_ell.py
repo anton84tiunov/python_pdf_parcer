@@ -47,7 +47,7 @@ class MyDialogPropEll(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
         self.dbl_sp_box_width.setValue(self.pen_width)
         self.dbl_sp_box_dash_offset.setValue(self.dash_offset)
         self.dbl_sp_box_opacity.setValue(self.item_opacity)
-        # self.dbl_sp_box_z_index.setValue(self.item_z_index)
+        self.dbl_sp_box_z_index.setValue(self.item_z_index)
      
 
 
@@ -68,7 +68,7 @@ class MyDialogPropEll(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
         self.dbl_sp_box_dash_offset.valueChanged.connect(self.get_dash_offset)
         # self.dbl_sp_box_dash_p.valueChanged.connect(self.get_dash_offset)
         self.dbl_sp_box_opacity.valueChanged.connect(self.get_opacity)
-        # self.dbl_sp_box_z_index.valueChanged.connect(self.get_z_index)
+        self.dbl_sp_box_z_index.valueChanged.connect(self.get_z_index)
         
         
         # self.l_e_dash_pattern.setValidator(QtGui.QValidator().)

@@ -50,7 +50,8 @@ class MyGraphicsScene(QtWidgets.QGraphicsScene):
         self.point_grid_step_cursor = QtCore.QPointF()
         self.old_point_grid_step_cursor = QtCore.QPointF()
         self.buffer_copy_item = QtWidgets.QWidget()
-
+        self.z_index_max: float = 1.0
+        self.z_index_min: float = 0.1
 
         # self.setSceneRect(0.0, 0.0, 200.0, 200.0)
         # self.is_0_open_file = True

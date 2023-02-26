@@ -68,8 +68,22 @@ class MainWindow(QtWidgets.QMainWindow):
     #     self.setStyleSheet(open("src/View/style/Clocker.qss", "r").read())
 
 
+    # def closeEvent(self, event: PySide6.QtGui.QCloseEvent) -> None:
+    #     return super().closeEvent(event)
 
+    def closeEvent(self, event):
+        reply = QtWidgets.QMessageBox.question(
+                    self, 
+                    "Exit", 
+                    "Are you sure to quit?", 
+                    QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                    QtWidgets.QMessageBox.No
+        )
 
+        if reply == QtWidgets.QMessageBox.Yes:
+            event.accept()
+        else:
+             event.ignore()
 
 
 
