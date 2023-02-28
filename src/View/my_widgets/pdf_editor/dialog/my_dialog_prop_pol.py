@@ -8,7 +8,7 @@ import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_graph as my_dial
 
 class MyDialogPropPol(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_settins_el):
     
-    def __init__(self, root: QtWidgets, pen: QtGui.QPen, brush: QtGui.QBrush, item_z_index: float, item_opacity: float, **kwargs):
+    def __init__(self, root: QtWidgets, pen: QtGui.QPen, brush: QtGui.QBrush, item_z_index: float, item_opacity: float, fill_rule: QtCore.Qt.FillRule, **kwargs):
         super().__init__(**kwargs)
         self.setupUi(self)
         self.root: QtWidgets = root
@@ -35,6 +35,7 @@ class MyDialogPropPol(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
 
         self.item_z_index: float = item_z_index
         self.item_opacity: float = item_opacity
+        self.fill_rule: QtCore.Qt.FillRule = fill_rule
 
         self.pol = QtGui.QPolygonF()
         self.pol.append(QtCore.QPointF(75.0, 5.0))
@@ -66,6 +67,8 @@ class MyDialogPropPol(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
         self.com_box_brush_style.setCurrentText(str(brush.style()).replace('BrushStyle.', ''))
         self.l_e_dash_pattern.textChanged.connect(self.get_dash_pattern)
         # self.l_e_dash_pattern.editingFinished.connect(self.get_dash_pattern)
+        self.com_box_lbl_fill_rule.currentTextChanged.connect(self.get_fill_rule)
+        self.com_box_lbl_fill_rule.setCurrentText(str(self.fill_rule).replace('FillRule.', ''))
         
         self.dbl_sp_box_width.valueChanged.connect(self.get_pen_width)
         self.dbl_sp_box_dash_offset.valueChanged.connect(self.get_dash_offset)
@@ -94,7 +97,8 @@ class MyDialogPropPol(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
         self.btn_ok.clicked.connect(self.get_value)
         self.btn_cancel.clicked.connect(self.get_exit)
         self.btn_default.clicked.connect(self.set_default)
-        
+        self.btn_save_to_file.clicked.connect(self.save_to_file)
+    
     
     def set_default(self):
         conf_pol = "configs/default_style_el_config.INI"
@@ -307,6 +311,14 @@ class MyDialogPropPol(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_sett
     #             self.get_dash_pattern("")
     #     return super().keyPressEvent(arg__1)            
             
-            
-        
+    def get_fill_rule(self, fill_rule: str):
+        f_rule = QtCore.Qt.FillRule
+
+        if fill_rule == "OddEvenFill":
+            self.fill_rule =  f_rule.OddEvenFill
+        elif fill_rule == "WindingFill":
+            self.fill_rule =  f_rule.WindingFill  
+              
+    def save_to_file(self):
+        print("save_to_file")   
                  

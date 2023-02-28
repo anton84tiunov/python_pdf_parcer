@@ -22,7 +22,8 @@ class TextLine():
         self.line_spans: typing.List[TextSpane] = [] #list[self.TextSpane]
         
 class TextModel():
-
+    """модель для хранения параметров необходимых для отрисовки
+    текста"""
     def __init__(self):
         self.block_number: typing.Union[typing.Int, None] = ...
         self.block_type: typing.Union[typing.Int, None] = ...

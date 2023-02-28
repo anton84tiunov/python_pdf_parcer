@@ -9,7 +9,7 @@ icon_svg_dir = my_os_path.icon_svg
 # import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.pointer_path.my_point_rect_path as my_point_rect_path
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
-import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
+# import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_path as my_dialog_prop_path
@@ -115,13 +115,14 @@ class MyPainterPath(QtWidgets.QGraphicsPathItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_prop_path.MyDialogPropPath (self.root, self.pen(), self.brush(), self.zValue(), self.opacity())
+            settings =  my_dialog_prop_path.MyDialogPropPath (self.root, self.pen(), self.brush(), self.zValue(), self.opacity(), self.path().fillRule())
             if settings.exec():
                 self.setPen(settings.pen)
                 self.setBrush(settings.brush)
                 self.setZValue(settings.item_z_index)
                 self.setOpacity(settings.item_opacity)
-
+                self.path().setFillRule(settings.fill_rule)
+                # self.setPath(self.path())
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

@@ -91,7 +91,8 @@ class MyDialogPropRect(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_set
         self.btn_ok.clicked.connect(self.get_value)
         self.btn_cancel.clicked.connect(self.get_exit)
         self.btn_default.clicked.connect(self.set_default)
-        
+        self.btn_save_to_file.clicked.connect(self.save_to_file)
+    
     
     def set_default(self):
         conf_rect = "configs/default_style_el_config.INI"
@@ -304,6 +305,7 @@ class MyDialogPropRect(QtWidgets.QDialog, my_dialog_settings_graph.Ui_dialog_set
     #             self.get_dash_pattern("")
     #     return super().keyPressEvent(arg__1)            
             
-            
+def save_to_file(self):
+        print("save_to_file")   
         
                  

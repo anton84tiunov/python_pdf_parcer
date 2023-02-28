@@ -3,8 +3,10 @@ import typing
 
 
 class DrawModel():
-
+    """модель для хранения параметров необходимых для отрисовки
+    графических фигур"""
     class ItemDraw():
+        """"""
         def __init__(self):
             self.draw: typing.Union[str, None]= None
             self.cords: list = []

@@ -7,7 +7,10 @@ import src.Model.general.image_model as imageModel
 
 
 class ConvertPdfElToModel():
-
+    """Класс для преобразования извлеченных элементов из 
+    src\Model\pdf_editor\extract_el_from_pdf_page.py
+    в экэемпляры классов моделей src.Model.general*.
+    """
     def convert_dashes(self, dashes: str) -> tuple[list[float], int]:
         list_str_dashes_pattern = "[]"
         str_dashes_offset = "0"

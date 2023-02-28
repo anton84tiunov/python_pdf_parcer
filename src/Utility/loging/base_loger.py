@@ -4,6 +4,7 @@ import logging.handlers
 # filemode='w'
 
 def init_loger(name):
+    """функция для инициализации loger для ведения лог файлов"""
     logger = logging.getLogger(name)
     FORMAT = 'asctime: %(asctime)s, name: %(name)s, levelname: %(levelname)s, message: %(message)s\n ------------------------------\n'
     logger.setLevel(logging.DEBUG)

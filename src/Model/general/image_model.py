@@ -14,7 +14,8 @@ class BaseImageModel():
 
 
 class ImageModel():
-
+    """модель для хранения параметров необходимых для отрисовки
+    изображений"""
     def __init__(self):
         self.img: tuple[int, int, int, int, int, str, str, str, str] = ...
         self.base_image: BaseImageModel = ...

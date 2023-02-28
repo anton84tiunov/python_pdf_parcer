@@ -9,7 +9,7 @@ icon_svg_dir = my_os_path.icon_svg
 # import src.View.my_window.main_window as main_window
 import src.View.my_widgets.pdf_editor.graphic.image.my_point_rect_image as my_point_rect_image
 import src.View.my_widgets.pdf_editor.graphic.my_contex_menu as my_contex_menu
-import src.View.my_widgets.pdf_editor.dialog.my_dialog_settings_path as my_dialog_settings_path
+import src.View.my_widgets.pdf_editor.dialog.my_dialog_prop_img as my_dialog_prop_img
 import src.View.my_widgets.pdf_editor.dialog.my_rotate as my_rotate
 import src.View.my_widgets.pdf_editor.dialog.my_scale as my_scale
 
@@ -162,8 +162,19 @@ class MyImage(QtWidgets.QGraphicsPixmapItem):
         selected_action = menu.exec_(event.screenPos())
 
         if selected_action == action_properties:
-            settings =  my_dialog_settings_path.MyDialogSettingsPath(self.root)
-            settings.exec()
+            my_dialog_prop_img
+            settings =  my_dialog_prop_img.MyDialogPropImg(self.root, self.pixmap(), self.zValue(), self.opacity())
+            if settings.exec():
+                print(settings)
+                # self.setZValue(settings.item_z_index)
+                # self.setOpacity(settings.item_opacity)
+
+            # img_path = QtWidgets.QFileDialog.getOpenFileName(self.root.tab_pdf_editor.graph_view, 'select image', "",'JPG(*.jpg);;PNG(*.png);;All(*)' )[0]
+            # if img_path != "":
+            #     # pos = copy.deepcopy(self.point_grid_step_cursor)
+            #     # pos = copy.deepcopy(self.point_grid_step_cursor)
+            #     pix = QtGui.QPixmap(img_path)
+            #     self.setPixmap(pix)
 
         elif selected_action == action_rotate:
             rot =  my_rotate.MyDialogRotatePath(self.root)

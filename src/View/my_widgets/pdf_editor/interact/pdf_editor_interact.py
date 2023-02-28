@@ -373,6 +373,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 elif isinstance(item, my_polygon.MyPolygon):
                     
                     page_item['i_type'] = "pol"
+                    page_item['fill_r'] = str(item.fillRule()).replace("FillRule.", "")
 
                     pol_el_group = []
                     pol = item.polygon()
@@ -622,6 +623,11 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
 
                         path = QtGui.QPainterPath()
 
+                        if data['items'][num_it]['fill_r'] == "OddEvenFill":
+                            path.setFillRule(QtCore.Qt.FillRule.OddEvenFill)
+                        if data['items'][num_it]['fill_r'] == "WindingFill":
+                            path.setFillRule(QtCore.Qt.FillRule.WindingFill)
+
                         for i in range(len(path_el_group)):
                             pt = path_el_group[i]
 
@@ -646,6 +652,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         pol_el_group = data['items'][num_it]['pol']
 
                         pol = QtGui.QPolygon()
+                        
 
                         for i in range(len(pol_el_group)):
                             pt = pol_el_group[i]
@@ -655,6 +662,10 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         pol_item = my_polygon.MyPolygon(self.root, pol)
                         pol_item.setPen(pen)
                         pol_item.setBrush(brush)
+                        if data['items'][num_it]['fill_r'] == "OddEvenFill":
+                            pol_item.setFillRule(QtCore.Qt.FillRule.OddEvenFill)
+                        if data['items'][num_it]['fill_r'] == "WindingFill":
+                            pol_item.setFillRule(QtCore.Qt.FillRule.WindingFill)
                         self.graph_scene.addItem(pol_item)
 
                     if data['items'][num_it]["i_type"] == "rect":
@@ -718,19 +729,4 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         self.graph_scene.addItem(img_item)
 
          
-                    # if not isinstance(item, (my_pointer_path.MyPainterPath , QtWidgets.QGraphicsLineItem)):
-                    #     brush: QtGui.QBrush = item.brush()
-
-                    #     page_item['brush_s'] = str(brush.style()).replace('BrushStyle.', '')
-                    #     page_item['brush_c'] = brush.color().getRgbF()
-
-
-        # items = self.graph_scene.items()
-        # for item in  items:
-        #     self.graph_scene.removeItem(item)
-        # self.graph_view.updateSceneRect(QtCore.QRectF(*el_rect))
-        # self.graph_scene.setSceneRect(QtCore.QRectF(*el_rect))
-
-
-
-
+       

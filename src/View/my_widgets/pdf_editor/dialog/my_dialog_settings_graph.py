@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dialog_settings_graphEqBRyw.ui'
+## Form generated from reading UI file 'dialog_settings_graphMAXMZM.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.1
 ##
@@ -24,7 +24,7 @@ class Ui_dialog_settins_el(object):
     def setupUi(self, dialog_settins_el):
         if not dialog_settins_el.objectName():
             dialog_settins_el.setObjectName(u"dialog_settins_el")
-        dialog_settins_el.resize(410, 382)
+        dialog_settins_el.resize(410, 386)
         self.horizontalLayout = QHBoxLayout(dialog_settins_el)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.verticalLayout = QVBoxLayout()
@@ -132,6 +132,11 @@ class Ui_dialog_settins_el(object):
 
         self.verticalLayout_4.addWidget(self.btn_default)
 
+        self.btn_save_to_file = QPushButton(dialog_settins_el)
+        self.btn_save_to_file.setObjectName(u"btn_save_to_file")
+
+        self.verticalLayout_4.addWidget(self.btn_save_to_file)
+
         self.btn_ok = QPushButton(dialog_settins_el)
         self.btn_ok.setObjectName(u"btn_ok")
 
@@ -225,6 +230,18 @@ class Ui_dialog_settins_el(object):
 
         self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.lbl_z_index)
 
+        self.com_box_lbl_fill_rule = QComboBox(self.gr_box_item)
+        self.com_box_lbl_fill_rule.addItem("")
+        self.com_box_lbl_fill_rule.addItem("")
+        self.com_box_lbl_fill_rule.setObjectName(u"com_box_lbl_fill_rule")
+
+        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.com_box_lbl_fill_rule)
+
+        self.lbl_fill_rule = QLabel(self.gr_box_item)
+        self.lbl_fill_rule.setObjectName(u"lbl_fill_rule")
+
+        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.lbl_fill_rule)
+
 
         self.verticalLayout_3.addWidget(self.gr_box_item)
 
@@ -283,6 +300,7 @@ class Ui_dialog_settins_el(object):
         self.com_box_pen_style.setItemText(7, QCoreApplication.translate("dialog_settins_el", u"MPenStyle", None))
 
         self.btn_default.setText(QCoreApplication.translate("dialog_settins_el", u"default", None))
+        self.btn_save_to_file.setText(QCoreApplication.translate("dialog_settins_el", u"save to file", None))
         self.btn_ok.setText(QCoreApplication.translate("dialog_settins_el", u"ok", None))
         self.btn_cancel.setText(QCoreApplication.translate("dialog_settins_el", u"cancel", None))
         self.gr_box_brush.setTitle(QCoreApplication.translate("dialog_settins_el", u"brush", None))
@@ -312,5 +330,9 @@ class Ui_dialog_settins_el(object):
         self.gr_box_item.setTitle(QCoreApplication.translate("dialog_settins_el", u"item", None))
         self.lbl_box_opacity.setText(QCoreApplication.translate("dialog_settins_el", u"opacity", None))
         self.lbl_z_index.setText(QCoreApplication.translate("dialog_settins_el", u"zIndex", None))
+        self.com_box_lbl_fill_rule.setItemText(0, QCoreApplication.translate("dialog_settins_el", u"OddEvenFill", None))
+        self.com_box_lbl_fill_rule.setItemText(1, QCoreApplication.translate("dialog_settins_el", u"WindingFill", None))
+
+        self.lbl_fill_rule.setText(QCoreApplication.translate("dialog_settins_el", u"fill_rule", None))
     # retranslateUi
 

@@ -7,6 +7,14 @@ import src.Model.general.draw_model as drawModel
 import src.Model.general.text_model as textModel
 import src.Model.general.image_model as imageModel
 class ExtractElFromPdfController():
+    """Класс для связи графики и логики.
+    Передает в src\View\my_widgets\pdf_editor\interact\pdf_editor_interact.py
+    данные о документе , странице и элементах на странице используя путь к файлу
+     и номер странице переданного из Gui.
+    Обращается к src\Model\pdf_editor\extract_el_from_pdf_page.py для извлечения
+    и к src\Model\pdf_editor\convert_pdf_el_to_model.py для преобразования данных 
+    в классы моделей src.Model.general*.
+     """
     def __init__(self, root):
         self.root = root
 
@@ -16,6 +24,7 @@ class ExtractElFromPdfController():
         self.logger = logging.getLogger('app.pdf_editor_controller')
 
     def page_count(self, path: str) -> int:
+        """возвращает количество страниц в документе"""
         try:
             doc = self.extr.get_doc(path)
             page_count = self.extr.get_doc_count_page(doc)
@@ -28,6 +37,9 @@ class ExtractElFromPdfController():
 
 
     def open_pdf(self, path: str, num_page: int) -> tuple[tuple, list[drawModel.DrawModel], list[textModel.TextModel], list[imageModel.ImageModel]]:
+        """возвращает данные страницв в виде
+        данных о размере страницы и элементов в виде 
+        списка обьектов классов моделей элементов."""
         try:
             doc = self.extr.get_doc(path)
             page = self.extr.get_page(doc, num_page)
