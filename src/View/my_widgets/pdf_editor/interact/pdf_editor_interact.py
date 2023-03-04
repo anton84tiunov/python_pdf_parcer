@@ -44,7 +44,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
         self.frame_menu.btn_save_qt.clicked.connect(self.save_qt)
         self.frame_menu.btn_open_qt.clicked.connect(self.open_qt_file)
 
-        self.frame_menu.btn_close_qt.clicked.connect(lambda: print(sys.getsizeof(self.graph_scene.items())))
+        self.frame_menu.btn_close_qt.clicked.connect(self.close_qt)
 
 
     def convert_even_odd(self, even_odd: bool) -> QtCore.Qt.FillRule:
@@ -728,5 +728,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         img_item.setPos(QtCore.QPointF(rect["x"], rect["y"]))
                         self.graph_scene.addItem(img_item)
 
-         
+    
+    
+    def close_qt(self):
+        self.graph_scene.clear()
        

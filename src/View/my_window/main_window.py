@@ -1,7 +1,7 @@
 import sys
 from PySide6 import QtWidgets, QtGui,  QtCore 
 import src.View.my_widgets.pdf_editor.interact.pdf_editor_interact as pdf_editor_tab
-import src.View.my_widgets.pdf_el.tab.pdf_el_tab as pdf_el_tab
+import src.View.my_widgets.pdf_el.interact.pdf_el_interact as pdf_el_tab
 import src.View.my_widgets.general.menu.menu_bar as menu_bar
 import my_os_path
 
@@ -53,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tabWidget.setSizePolicy(sizePolicy)
         self.tab_pdf_editor = pdf_editor_tab.PdfEditorInteract(self)
         self.tabWidget.addTab(self.tab_pdf_editor, "pdf_editor")
-        self.tab_pdf_el = pdf_el_tab.TabPdfEl()
+        self.tab_pdf_el = pdf_el_tab.PdfElInteract(self)
         self.tabWidget.addTab(self.tab_pdf_el, "pdf_el")
         self.setCentralWidget(self.centralwidget)
         

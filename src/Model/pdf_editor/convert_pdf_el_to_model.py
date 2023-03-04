@@ -1,4 +1,4 @@
-import re
+import re, copy
 from collections import OrderedDict
 import fitz
 import src.Model.general.draw_model as drawModel
@@ -83,15 +83,15 @@ class ConvertPdfElToModel():
                 p3 = (dr[1][0], dr[1][3])
                 if dr[2] > 0:
                     if draw_current == draw_start:
-                        point_start = p0
+                        point_start = copy.deepcopy(p0)
                     elif draw_current == draw_end:
-                        point_end = p3
+                        point_end = copy.deepcopy(p3)
                     draw_model.items.cords.append(("re", (p0, p1, p2, p3)))
                 elif dr[2] < 0:
                     if draw_current == draw_start:
-                        point_start = p0
+                        point_start = copy.deepcopy(p0)
                     elif draw_current == draw_end:
-                        point_end = p1
+                        point_end = copy.deepcopy(p1)
                     draw_model.items.cords.append(("re", (p0, p3, p2, p1)))
             if dr[0] == "qu":
                 qu = True
@@ -100,18 +100,18 @@ class ConvertPdfElToModel():
                 p2 = (dr[1][2][0], dr[1][2][1])
                 p3 = (dr[1][3][0], dr[1][3][1])
                 if draw_current == draw_start:
-                    point_start = p0
+                    point_start = copy.deepcopy(p0)
                 elif draw_current == draw_end:
-                    point_end = p3
+                    point_end = copy.deepcopy(p3)
                 draw_model.items.cords.append(("qu", (p0, p1, p2, p3, p0)))
             if dr[0] == "l":
                 l = True
                 p0 = (dr[1][0], dr[1][1])
                 p1 = (dr[2][0], dr[2][1])
                 if draw_current == draw_start:
-                    point_start = p0
+                    point_start = copy.deepcopy(p0)
                 elif draw_current == draw_end:
-                    point_end = p1
+                    point_end = copy.deepcopy(p1)
                 draw_model.items.cords.append(("l", (p0, p1)))
             if dr[0] == "c":
                 c = True
@@ -120,16 +120,18 @@ class ConvertPdfElToModel():
                 p2 = (dr[3][0], dr[3][1])
                 p3 = (dr[4][0], dr[4][1])
                 if draw_current == draw_start:
-                    point_start = p0
+                    point_start = copy.deepcopy(p0)
                 elif draw_current == draw_end:
-                    point_end = p3
+                    point_end = copy.deepcopy(p3)
                 draw_model.items.cords.append(("c", (p0, p1, p2, p3)))
             
             draw_current += 1
         # print(draw["closePath"])
         # if draw["closePath"]:
-            # draw_model.items.cords.append(("l", (point_start, point_end)))
+        #     draw_model.items.cords.append(("l", (point_start, point_end)))
+        
         draw_model.items.draw = "path"
+        # print(draw_model.items.cords)
             # print(point_start, point_end)
             # if point_start == point_end or draw["closePath"]:
             #     draw_model.items.draw = "pol"

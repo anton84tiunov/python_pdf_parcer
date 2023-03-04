@@ -984,3 +984,108 @@ asctime: 2023-02-28 17:56:11,091, name: app, levelname: DEBUG, message: logger i
 asctime: 2023-02-28 21:34:01,648, name: app, levelname: DEBUG, message: logger init
  ------------------------------
 
+asctime: 2023-02-28 22:18:41,555, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 22:39:09,037, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:03:09,298, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:17:30,783, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:29:53,108, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:31:06,780, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:55:30,809, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:26:06,889, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:26:08,242, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-02 23:28:44,562, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:28:45,818, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-02 23:33:11,105, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:33:11,901, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-02 23:34:57,431, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:34:58,125, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-03 00:10:27,850, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:10:28,489, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'list'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.list
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'list'
+asctime: 2023-03-03 00:14:58,561, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:14:59,231, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtGui' has no attribute 'QListWidget'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.protocol_listbox = QtGui.QListWidget()
+AttributeError: module 'PySide6.QtGui' has no attribute 'QListWidget'
+asctime: 2023-03-03 00:17:31,026, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:18:44,257, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:20:14,864, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:22:58,105, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:43:02,216, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 09:49:05,487, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:00:57,890, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:05:59,280, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:13:21,008, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:16:10,085, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
