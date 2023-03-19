@@ -517,18 +517,18 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                 pen =  QtGui.QPen()
                 brush = QtGui.QBrush()
 
-                for num_it in range(len(data['items'])):
+                for num_it in enumerate(data['items']):
                     
-                    if "pen_c" in data['items'][num_it]:
+                    if "pen_c" in num_it[1]:
              
 
-                        pen.setColor(QtGui.QColor.fromRgbF(*data['items'][num_it]['pen_c']))
-                        pen.setWidthF(data['items'][num_it]['pen_w'])
-                        pen.setDashOffset(data['items'][num_it]['pen_d_o'])
-                        pen.setDashPattern(data['items'][num_it]['pen_d_p'])
+                        pen.setColor(QtGui.QColor.fromRgbF(*num_it[1]['pen_c']))
+                        pen.setWidthF(num_it[1]['pen_w'])
+                        pen.setDashOffset(num_it[1]['pen_d_o'])
+                        pen.setDashPattern(num_it[1]['pen_d_p'])
                         
                         pen_join_style = QtCore.Qt.PenJoinStyle()
-                        p_j_s =  data['items'][num_it]['pen_j_s']
+                        p_j_s =  num_it[1]['pen_j_s']
                         if  p_j_s == "MiterJoin":
                             pen.setJoinStyle(pen_join_style.MiterJoin)
                         elif  p_j_s == "BevelJoin":
@@ -541,7 +541,7 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                             pen.setJoinStyle(pen_join_style.MPenJoinStyle)
                        
                         pen_cap_style = QtCore.Qt.PenCapStyle()
-                        p_c_s =  data['items'][num_it]['pen_c_s']
+                        p_c_s =  num_it[1]['pen_c_s']
                         if  p_c_s == "FlatCap":
                             pen.setCapStyle(pen_cap_style.FlatCap)
                         elif  p_c_s == "SquareCap":
@@ -551,10 +551,10 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         elif  p_c_s == "MPenCapStyle":
                             pen.setCapStyle(pen_cap_style.MPenCapStyle)
 
-                        pen.setMiterLimit(data['items'][num_it]['pen_m_l'])
+                        pen.setMiterLimit(num_it[1]['pen_m_l'])
                         
                         pen_style = QtCore.Qt.PenStyle()
-                        p_s =  data['items'][num_it]['pen_s']
+                        p_s =  num_it[1]['pen_s']
                         if p_s == "NoPen":
                             pen.setStyle(pen_style.NoPen)
                         elif p_s == "SolidLine":
@@ -572,11 +572,11 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         elif p_s == "MPenStyle":
                             pen.setStyle(pen_style.MPenStyle)
                     
-                    if "brush_c" in data['items'][num_it]:
+                    if "brush_c" in num_it[1]:
 
-                        brush.setColor(QtGui.QColor.fromRgbF(*data['items'][num_it]['brush_c']))
+                        brush.setColor(QtGui.QColor.fromRgbF(*num_it[1]['brush_c']))
                         brush_style = QtCore.Qt.BrushStyle()
-                        b_s =  data['items'][num_it]['brush_s']
+                        b_s =  num_it[1]['brush_s']
 
                         if b_s == "NoBrush":
                             brush.setStyle(brush_style.NoBrush)
@@ -617,15 +617,15 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         elif b_s == "TexturePattern":
                             brush.setStyle(brush_style.TexturePattern)
          
-                    if data['items'][num_it]["i_type"] == "path":
+                    if num_it[1]["i_type"] == "path":
              
-                        path_el_group = data['items'][num_it]['path']
+                        path_el_group = num_it[1]['path']
 
                         path = QtGui.QPainterPath()
 
-                        if data['items'][num_it]['fill_r'] == "OddEvenFill":
+                        if num_it[1]['fill_r'] == "OddEvenFill":
                             path.setFillRule(QtCore.Qt.FillRule.OddEvenFill)
-                        if data['items'][num_it]['fill_r'] == "WindingFill":
+                        if num_it[1]['fill_r'] == "WindingFill":
                             path.setFillRule(QtCore.Qt.FillRule.WindingFill)
 
                         for i in range(len(path_el_group)):
@@ -647,29 +647,29 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                             path_item.setBrush(brush)
                         self.graph_scene.addItem(path_item)
 
-                    if data['items'][num_it]["i_type"] == "pol":
+                    if num_it[1]["i_type"] == "pol":
                         
-                        pol_el_group = data['items'][num_it]['pol']
+                        pol_el_group = num_it[1]['pol']
 
                         pol = QtGui.QPolygon()
                         
 
-                        for i in range(len(pol_el_group)):
-                            pt = pol_el_group[i]
+                        for pt in enumerate(path_el_group):
+                            # pt = pol_el_group[i]
                             pol.append(QtCore.QPoint(pt['x'], pt['y']))
 
             
                         pol_item = my_polygon.MyPolygon(self.root, pol)
                         pol_item.setPen(pen)
                         pol_item.setBrush(brush)
-                        if data['items'][num_it]['fill_r'] == "OddEvenFill":
+                        if num_it[1]['fill_r'] == "OddEvenFill":
                             pol_item.setFillRule(QtCore.Qt.FillRule.OddEvenFill)
-                        if data['items'][num_it]['fill_r'] == "WindingFill":
+                        if num_it[1]['fill_r'] == "WindingFill":
                             pol_item.setFillRule(QtCore.Qt.FillRule.WindingFill)
                         self.graph_scene.addItem(pol_item)
 
-                    if data['items'][num_it]["i_type"] == "rect":
-                        rect_el_group = data['items'][num_it]['rect']
+                    if num_it[1]["i_type"] == "rect":
+                        rect_el_group = num_it[1]['rect']
 
                         rect = QtCore.QRectF()
                         rect.setX(rect_el_group['x'])
@@ -682,8 +682,8 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         rect_item.setBrush(brush)
                         self.graph_scene.addItem(rect_item)
 
-                    if data['items'][num_it]["i_type"] == "ell":
-                        ell_el_group = data['items'][num_it]['rect']
+                    if num_it[1]["i_type"] == "ell":
+                        # ell_el_group = num_it[1]['rect']
 
                         ell = QtCore.QRectF()
                         ell.setX(rect_el_group['x'])
@@ -696,35 +696,35 @@ class PdfEditorInteract(pdf_editor_tab.TabPdfEditor):
                         ell_item.setBrush(brush)
                         self.graph_scene.addItem(ell_item)
 
-                    if data['items'][num_it]["i_type"] == "txt":
+                    if num_it[1]["i_type"] == "txt":
 
-                        text_item = my_text_item.MyTextItem(self.root, data['items'][num_it]['text'])
+                        text_item = my_text_item.MyTextItem(self.root, num_it[1]['text'])
 
                         font_text = QtGui.QFont()
-                        font_text.setFamily(data['items'][num_it]['f_family'])
-                        font_text.setPixelSize(data['items'][num_it]['f_size'])
-                        font_text.setBold(data['items'][num_it]['f_bold'])
-                        font_text.setItalic(data['items'][num_it]['f_italic'])
+                        font_text.setFamily(num_it[1]['f_family'])
+                        font_text.setPixelSize(num_it[1]['f_size'])
+                        font_text.setBold(num_it[1]['f_bold'])
+                        font_text.setItalic(num_it[1]['f_italic'])
                         text_item.setFont(font_text)
-                        pos = data['items'][num_it]['pos']
+                        pos = num_it[1]['pos']
                         text_item.setPos(QtCore.QPoint(pos['x'], pos['y']))
-                        text_item.setRotation(data['items'][num_it]['rot'])
-                        text_item.setDefaultTextColor(QtGui.QColor(*data['items'][num_it]['color']))
+                        text_item.setRotation(num_it[1]['rot'])
+                        text_item.setDefaultTextColor(QtGui.QColor(*num_it[1]['color']))
                         # print("data['items'][num_it]['color']", type(data['items'][num_it]['color']), data['items'][num_it]['color'])
                         # print(data['items'][num_it]['color'])
                         
                         self.graph_scene.addItem(text_item)
 
-                    if data['items'][num_it]["i_type"] == "img":
+                    if num_it[1]["i_type"] == "img":
                         
-                        pixmap_bytes = data['items'][num_it]['img'].encode('ISO-8859-1')
+                        pixmap_bytes = num_it[1]['img'].encode('ISO-8859-1')
                         # convert bytes to QPixmap
                         ba = QtCore.QByteArray(pixmap_bytes)
                         pixmap = QtGui.QPixmap()
                         ok = pixmap.loadFromData(ba, "PNG")
                         assert ok
                         img_item = my_image.MyImage(self.root, pixmap)
-                        rect = data['items'][num_it]['rect']
+                        rect = num_it[1]['rect']
                         img_item.setPos(QtCore.QPointF(rect["x"], rect["y"]))
                         self.graph_scene.addItem(img_item)
 

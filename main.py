@@ -1,4 +1,5 @@
 import sys
+from numba import njit
 import src.Utility.general.comfig.config as config
 from PySide6 import QtWidgets, QtGui,  QtCore 
 # import src.View.style.win_style as my_style
@@ -11,6 +12,7 @@ win_icon = my_os_path.icon_ico + "icon.ico"
 
 win_style = "win_style"
 
+# @njit( parallel=True)
 def main():
 
     base_loger.init_loger('app')

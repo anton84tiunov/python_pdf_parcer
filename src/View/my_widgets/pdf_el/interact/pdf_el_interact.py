@@ -1,4 +1,5 @@
 import sys, re, math, json
+from numba import njit
 from collections import OrderedDict
 import pickle
 from PySide6 import QtWidgets, QtGui,  QtCore 
@@ -29,6 +30,7 @@ class PdfElInteract(pdf_el_tab.TabPdfEl):
         self.frame_menu.btn_open_qt.clicked.connect(self.open_qt)
         # self.frame_menu.btn_open_qt.click
 
+    # @njit( parallel=True)
     def open_qt(self):
         self.pdf_el_path_open_qt_file = QtWidgets.QFileDialog.getOpenFileName(self, 'Open pdf_ex', "",'Pdf_ex(*.pdf_ex);;All(*)' )[0]
         if self.pdf_el_path_open_qt_file != '':
@@ -39,30 +41,35 @@ class PdfElInteract(pdf_el_tab.TabPdfEl):
                 
                 self.list_widgets_graph_el.clear()
                 
-                for num_it in range(len(data['items'])):
+                for num_it in enumerate(data['items']):
                     list_item = QtWidgets.QListWidgetItem()
-                    list_item.setText(data['items'][num_it]["i_type"])
-                    # list_item.setIcon(QtGui.QIcon(QtGui.QPixmap()))
-                    self.list_widgets_graph_el.addItem(list_item)
+                    # list_item.setText(data['items'][num_it]["i_type"])
+                    # # list_item.setIcon(QtGui.QIcon(QtGui.QPixmap()))
+                    # self.list_widgets_graph_el.addItem(list_item)
 
-                    if data['items'][num_it]["i_type"] == "path":
-                        print("path")
+                    if num_it[1]["i_type"] == "path":
+                        list_item.setText(num_it[1]["i_type"])
+                        self.list_widgets_graph_el.addItem(list_item)
 
+                    elif num_it[1]["i_type"] == "pol":
+                        list_item.setText(num_it[1]["i_type"])
+                        self.list_widgets_graph_el.addItem(list_item)
 
-                    elif data['items'][num_it]["i_type"] == "pol":
-                        print("pol")
+                    elif num_it[1]["i_type"] == "rect":
+                        list_item.setText(num_it[1]["i_type"])
+                        self.list_widgets_graph_el.addItem(list_item)
 
-                    elif data['items'][num_it]["i_type"] == "rect":
-                        print("rect")
+                    elif num_it[1]["i_type"] == "ell":
+                        list_item.setText(num_it[1]["i_type"])
+                        self.list_widgets_graph_el.addItem(list_item)
 
-                    elif data['items'][num_it]["i_type"] == "ell":
-                        print("ell")
+                    elif num_it[1]["i_type"] == "text":
+                        list_item.setText(num_it[1]["i_type"])
+                        self.list_widgets_graph_el.addItem(list_item)
 
-                    elif data['items'][num_it]["i_type"] == "text":
-                        print("text")
-
-                    elif data['items'][num_it]["i_type"] == "img":
-                        print("img")
+                    elif num_it[1]["i_type"] == "img":
+                        list_item.setText(num_it[1]["i_type"])
+                        self.list_widgets_graph_el.addItem(list_item)
 
 
 
