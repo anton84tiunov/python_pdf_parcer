@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with "sPlan" (http://www.abacom-online.de) -->
+<svg version="1.1" baseProfile="full"
+xmlns="http://www.w3.org/2000/svg"
+width="567" height="570">
+<title>arrow_rect</title>
+<defs>
+<style type="text/css">
+<![CDATA[
+polyline {stroke-linecap:round; stroke-linejoin:round}
+polygon {stroke-linecap:round; stroke-linejoin:round}
+path {stroke-linecap:round; stroke-linejoin:round}
+circle {stroke-linecap:round; stroke-linejoin:round}
+]]>
+</style>
+</defs>
+<path fill="rgb(255,255,255)" stroke="none" stroke-width="2" style="stroke-linecap:square; stroke-linejoin:miter" d=" M 280 40 L 527 40 527 310 280 310 280 40" />
+<polygon points="40 290 230 450 130 460 160 510 140 520 110 470 40 530" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" stroke-width="10" />
+<path fill="rgb(255,255,255)" stroke="rgb(0,0,0)" stroke-width="10" style="stroke-linecap:square; stroke-linejoin:miter" d=" M 310 70 L 510 70 510 260 310 260 310 70" />
+</svg>

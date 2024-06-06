@@ -1,0 +1,1379 @@
+
+asctime: 2023-02-17 17:35:38,847, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:37:37,648, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:38:49,782, name: app, levelname: DEBUG, message: logger init
+asctime: 2023-02-17 17:42:13,207, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-17 17:43:40,216, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:46:43,649, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-17 17:47:01,650, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-17 17:48:41,024, name: app.pdf_editor_controller, levelname: ERROR, message: 'NoneType' object has no attribute 'bound'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Controller\pdf_editor\extract_el_from_pdf_controller.py", line 21, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\Model\pdf_editor\extract_el_from_pdf_page.py", line 142, in get_el
+    bound = page.bound()
+AttributeError: 'NoneType' object has no attribute 'bound'
+asctime: 2023-02-18 08:45:48,524, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:36:24,577, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:37:36,528, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:43:59,660, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:51:01,664, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 09:52:41,436, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:32:07,928, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:34:41,351, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:40:30,325, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:44:07,061, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:48:32,368, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:57:30,220, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 10:59:14,858, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:17:47,902, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:20:38,666, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:23:35,836, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:43:55,634, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 11:55:26,193, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:21:23,626, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:22:29,627, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:33:07,917, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:52:29,676, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 13:55:46,631, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:19:21,229, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:25:32,292, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:33:30,772, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:36:52,685, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:38:50,782, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:42:33,759, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:47:18,536, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:50:47,949, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:54:55,512, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 14:58:22,330, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 15:38:50,360, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 16:09:49,947, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 16:21:04,556, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 18:58:52,721, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:01:57,062, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:04:47,952, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:05:58,717, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:08:36,491, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-18 19:14:33,221, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 05:53:21,982, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 05:57:23,009, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 06:18:44,841, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 10:10:45,448, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 10:47:22,951, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 10:51:18,720, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 10:57:13,756, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 12:58:55,325, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 13:14:22,005, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 13:45:35,649, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 13:45:50,371, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 13:46:09,868, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 13:46:36,716, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:03:22,314, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:10:39,217, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:13:32,235, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:14:42,533, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:16:22,325, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:41:37,257, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:54:29,722, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 14:58:25,190, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 15:05:49,243, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 15:11:45,485, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 15:15:43,904, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 15:17:20,050, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 15:43:41,672, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 15:55:43,264, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:13:55,251, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:15:23,026, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:16:51,864, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:33:16,724, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:37:52,497, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:40:37,002, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:47:29,133, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:52:50,739, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 16:56:27,814, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 17:00:15,294, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 17:03:50,055, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 17:11:27,851, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 17:55:10,529, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 17:57:57,931, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 18:02:51,047, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 18:56:46,033, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 18:59:29,163, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 19:33:24,416, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 19:36:12,410, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 20:12:12,735, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 21:21:14,363, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 21:29:06,445, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 21:34:15,051, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 21:38:47,724, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 21:41:47,023, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-19 22:26:15,176, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-20 08:13:21,957, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-20 08:50:39,092, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-20 08:53:10,365, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-20 08:54:29,683, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-20 08:56:11,187, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-20 20:11:05,980, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-21 13:38:48,725, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-21 14:04:30,971, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-21 14:06:36,665, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-21 14:07:42,862, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:36:46,228, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:39:41,144, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:42:23,156, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:45:24,653, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:47:24,583, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:54:28,509, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:55:54,252, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 00:58:16,685, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 01:01:12,832, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 01:03:28,612, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 08:22:53,286, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 08:29:17,443, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 08:31:41,957, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 08:36:07,506, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 08:42:43,080, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 08:47:04,479, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:08:34,048, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:10:00,742, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:12:52,135, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:16:25,973, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:19:10,513, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:45:44,901, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 21:56:17,046, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-22 23:38:03,921, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 00:14:21,468, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 00:22:09,580, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 00:27:58,118, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 00:48:32,885, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 10:58:42,703, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 11:03:07,874, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 11:24:06,893, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 11:46:27,554, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 11:48:48,023, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 12:13:35,098, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 12:23:59,741, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 12:32:26,599, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 12:40:20,109, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 13:22:42,593, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 19:43:22,581, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 19:45:51,350, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 19:50:44,685, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 19:56:33,938, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 20:22:17,534, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 21:20:30,102, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 21:23:02,747, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 21:29:24,411, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 21:36:16,292, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 22:11:07,194, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 22:15:54,903, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 22:19:10,853, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 22:28:05,440, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 22:29:57,651, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 22:32:39,475, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 23:16:57,904, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 23:41:40,345, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 23:43:38,716, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 23:49:53,796, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 23:51:40,874, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-23 23:55:47,640, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 00:04:40,785, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 00:10:27,239, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 07:37:45,763, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 07:44:08,034, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 08:00:34,156, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 08:06:37,013, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 08:10:57,866, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 11:39:19,864, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 11:39:41,551, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 11:51:48,489, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 11:58:03,129, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 13:07:41,666, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 13:11:34,992, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 13:18:24,597, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 13:44:40,108, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 13:59:05,512, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 14:52:57,995, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 14:59:38,108, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 15:04:35,725, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 15:20:55,536, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 15:26:47,482, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 15:31:55,469, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 17:31:18,298, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 17:58:39,129, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 18:00:21,896, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 18:36:39,302, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 18:48:58,625, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:07:19,175, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:09:27,954, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:11:26,404, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:20:01,524, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:25:43,241, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:31:06,086, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:35:07,900, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:45:45,783, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 19:50:09,675, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 20:01:56,469, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 20:03:37,149, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 20:05:49,667, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 20:15:11,883, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 21:41:33,812, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 21:47:29,959, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-24 22:41:43,108, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 11:00:46,492, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:18:15,257, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:21:01,857, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:22:38,241, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:26:16,660, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:49:11,734, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:53:47,545, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 13:57:16,552, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 14:00:10,322, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 14:04:50,335, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 14:08:23,909, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:35:32,993, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:35:33,192, name: app.pdf_editor_tab, levelname: ERROR, message: 'PySide6.QtWidgets.QGraphicsScene.addWidget' called with wrong argument types:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(QGraphicsProxyWidget)
+Supported signatures:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(PySide6.QtWidgets.QWidget, PySide6.QtCore.Qt.WindowType = Default(Qt.WindowFlags))
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_editor\tab\pdf_editor_tab.py", line 53, in __init__
+    self.graph_scene = scene.MyGraphicsScene(self.root)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_editor\graphic\scene.py", line 64, in __init__
+    self.addWidget(widg)
+TypeError: 'PySide6.QtWidgets.QGraphicsScene.addWidget' called with wrong argument types:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(QGraphicsProxyWidget)
+Supported signatures:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(PySide6.QtWidgets.QWidget, PySide6.QtCore.Qt.WindowType = Default(Qt.WindowFlags))
+asctime: 2023-02-25 15:40:28,324, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:40:28,626, name: app.pdf_editor_tab, levelname: ERROR, message: 'PySide6.QtWidgets.QGraphicsScene.addWidget' called with wrong argument types:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(QGraphicsProxyWidget)
+Supported signatures:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(PySide6.QtWidgets.QWidget, PySide6.QtCore.Qt.WindowType = Default(Qt.WindowFlags))
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_editor\tab\pdf_editor_tab.py", line 53, in __init__
+    self.graph_scene = scene.MyGraphicsScene(self.root)
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_editor\graphic\scene.py", line 64, in __init__
+    self.addWidget(widg)
+TypeError: 'PySide6.QtWidgets.QGraphicsScene.addWidget' called with wrong argument types:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(QGraphicsProxyWidget)
+Supported signatures:
+  PySide6.QtWidgets.QGraphicsScene.addWidget(PySide6.QtWidgets.QWidget, PySide6.QtCore.Qt.WindowType = Default(Qt.WindowFlags))
+asctime: 2023-02-25 15:46:55,279, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:47:39,104, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:50:16,074, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:51:51,509, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:52:53,592, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 15:59:53,531, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:01:50,912, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:03:15,605, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:20:17,627, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:29:58,775, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:31:55,198, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:33:29,984, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 16:37:05,291, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 17:10:02,223, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 17:37:09,902, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 17:38:23,983, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 17:39:56,404, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 17:42:20,170, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 18:33:08,754, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:02:37,836, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:05:32,337, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:07:25,787, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:17:29,024, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:20:23,385, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:27:41,635, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:33:41,176, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 19:35:18,019, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 20:09:01,129, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 20:11:07,503, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 21:03:05,752, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 21:11:59,360, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 21:38:01,625, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 21:43:33,006, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 21:45:56,410, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 22:23:32,032, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 23:32:27,788, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 23:43:46,855, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 23:53:33,354, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-25 23:56:32,896, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 00:05:51,760, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 00:20:15,211, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 00:33:37,027, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 00:55:09,380, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 09:17:06,188, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:05:49,622, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:09:02,944, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:29:07,930, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:31:14,164, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:39:00,118, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:43:07,927, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 10:51:19,018, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 11:02:22,852, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 12:58:35,847, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 13:05:11,599, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 13:11:32,299, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 13:26:33,653, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 13:29:49,811, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 15:47:41,163, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 16:00:15,253, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 16:18:41,084, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 17:19:33,041, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 20:49:44,499, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 21:06:56,503, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 21:10:17,612, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 21:15:15,395, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 22:09:45,513, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 22:13:02,036, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 22:33:28,610, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 22:45:34,123, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 22:52:49,882, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-26 23:17:16,535, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 13:55:08,138, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 20:17:27,555, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 20:39:04,118, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 20:59:13,501, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 21:54:49,276, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 22:29:43,142, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 23:17:05,930, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-27 23:42:36,458, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 17:40:13,879, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 17:42:14,984, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 17:51:07,870, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 17:56:11,091, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 21:34:01,648, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 22:18:41,555, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 22:39:09,037, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:03:09,298, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:17:30,783, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:29:53,108, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:31:06,780, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-02-28 23:55:30,809, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:26:06,889, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:26:08,242, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-02 23:28:44,562, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:28:45,818, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-02 23:33:11,105, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:33:11,901, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-02 23:34:57,431, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-02 23:34:58,125, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'lis'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.lis
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'lis'
+asctime: 2023-03-03 00:10:27,850, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:10:28,489, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtWidgets' has no attribute 'list'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.list_view_pdf_el = QtWidgets.list
+AttributeError: module 'PySide6.QtWidgets' has no attribute 'list'
+asctime: 2023-03-03 00:14:58,561, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:14:59,231, name: app.pdf_el_tab, levelname: ERROR, message: module 'PySide6.QtGui' has no attribute 'QListWidget'
+ ------------------------------
+Traceback (most recent call last):
+  File "c:\python_proj\mvc_pdf_parcer_2\src\View\my_widgets\pdf_el\tab\pdf_el_tab.py", line 53, in __init__
+    self.protocol_listbox = QtGui.QListWidget()
+AttributeError: module 'PySide6.QtGui' has no attribute 'QListWidget'
+asctime: 2023-03-03 00:17:31,026, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:18:44,257, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:20:14,864, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:22:58,105, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-03 00:43:02,216, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 09:49:05,487, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:00:57,890, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:05:59,280, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:13:21,008, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 10:16:10,085, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 13:04:13,677, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 13:22:54,601, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-04 13:26:56,970, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-16 22:39:01,008, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-18 21:23:47,946, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-19 08:40:22,854, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-19 09:14:25,113, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-19 09:18:44,398, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-19 09:32:39,113, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-19 09:34:13,603, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2023-03-19 09:35:40,908, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-03-30 20:09:32,879, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-03-30 20:11:03,354, name: app.pdf_editor_controller, levelname: ERROR, message: too many values to unpack (expected 2)
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 46, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 150, in get_el
+    el["image"] = self.ex_image(doc, page)
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 70, in ex_image
+    image["bbox"], image["transform"] = page.get_image_bbox(img_name, transform=True)
+ValueError: too many values to unpack (expected 2)
+asctime: 2024-03-30 20:14:02,601, name: app.pdf_editor_controller, levelname: ERROR, message: too many values to unpack (expected 2)
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 46, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 150, in get_el
+    el["image"] = self.ex_image(doc, page)
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 70, in ex_image
+    image["bbox"], image["transform"] = page.get_image_bbox(img_name, transform=True)
+ValueError: too many values to unpack (expected 2)
+asctime: 2024-03-30 20:16:46,018, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-03-30 20:17:23,659, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-03-30 20:48:14,490, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-04-09 09:37:24,295, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-04-09 09:38:44,633, name: app.pdf_editor_controller, levelname: ERROR, message: too many values to unpack (expected 2)
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 47, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 150, in get_el
+    el["image"] = self.ex_image(doc, page)
+  File "/home/anton/my_projects/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 70, in ex_image
+    image["bbox"], image["transform"] = page.get_image_bbox(img_name, transform=True)
+ValueError: too many values to unpack (expected 2)
+asctime: 2024-04-09 11:46:38,101, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-04-09 14:34:34,344, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 00:23:35,657, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 00:37:51,567, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 00:40:14,093, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 00:43:31,816, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 00:44:45,102, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 00:45:37,313, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 07:47:04,070, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 07:59:10,680, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:02:53,488, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:03:33,955, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:22:20,037, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:23:13,793, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:25:54,755, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:27:10,953, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 08:31:31,576, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 21:09:43,546, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 21:12:19,163, name: app.pdf_editor_controller, levelname: ERROR, message: could not convert string to float: '[]'
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 49, in open_pdf
+    el_draw = self.conv.conv_draws(el["draw"])
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 110, in conv_draws
+    return [self.conv_draw(draw) for draw in draws]
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 110, in <listcomp>
+    return [self.conv_draw(draw) for draw in draws]
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 37, in conv_draw
+    draw_model.dashes = self.convert_dashes(draw["dashes"])
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 25, in convert_dashes
+    dashes_pattern = list(map(float, list_str_dashes_pattern)) if list_str_dashes_pattern else []
+ValueError: could not convert string to float: '[]'
+asctime: 2024-05-27 21:14:27,906, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 21:14:39,714, name: app.pdf_editor_controller, levelname: ERROR, message: 'ItemDraw' object has no attribute 'append'
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 49, in open_pdf
+    el_draw = self.conv.conv_draws(el["draw"])
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 113, in conv_draws
+    return [self.conv_draw(draw) for draw in draws]
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 113, in <listcomp>
+    return [self.conv_draw(draw) for draw in draws]
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/convert_pdf_el_to_model.py", line 56, in conv_draw
+    draw_model.items.append(("l", [p0, p1]))
+AttributeError: 'ItemDraw' object has no attribute 'append'
+asctime: 2024-05-27 21:15:22,129, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 23:19:08,748, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 23:28:38,218, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 23:49:48,845, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-27 23:52:18,714, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 00:04:51,604, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 00:08:22,441, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 00:10:56,593, name: app.pdf_editor_controller, levelname: ERROR, message: too many values to unpack (expected 2)
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 47, in open_pdf
+    el =  self.extr.get_el(doc, page)
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 150, in get_el
+    el["image"] = self.ex_image(doc, page)
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Model/pdf_editor/extract_el_from_pdf_page.py", line 70, in ex_image
+    image["bbox"], image["transform"] = page.get_image_bbox(img_name, transform=True)
+ValueError: too many values to unpack (expected 2)
+asctime: 2024-05-28 02:03:44,417, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 02:03:54,423, name: app.pdf_editor_controller, levelname: ERROR, message: 'ConvertPdfElToModel' object has no attribute 'conv_draws'
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 49, in open_pdf
+    el_draw = self.conv.conv_draws(el["draw"])
+AttributeError: 'ConvertPdfElToModel' object has no attribute 'conv_draws'
+asctime: 2024-05-28 11:27:44,158, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 11:27:56,769, name: app.pdf_editor_controller, levelname: ERROR, message: 'ConvertPdfElToModel' object has no attribute 'conv_draws'
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 49, in open_pdf
+    el_draw = self.conv.conv_draws(el["draw"])
+AttributeError: 'ConvertPdfElToModel' object has no attribute 'conv_draws'
+asctime: 2024-05-28 13:01:51,159, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 13:02:09,699, name: app.pdf_editor_controller, levelname: ERROR, message: 'ConvertPdfElToModel' object has no attribute 'conv_draws'
+ ------------------------------
+Traceback (most recent call last):
+  File "/home/anton/old_my_projects/my_proj/python/pyside/python_pdf_parser-master/src/Controller/pdf_editor/extract_el_from_pdf_controller.py", line 49, in open_pdf
+    el_draw = self.conv.conv_draws(el["draw"])
+AttributeError: 'ConvertPdfElToModel' object has no attribute 'conv_draws'
+asctime: 2024-05-28 13:02:33,532, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-05-28 13:35:21,513, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 00:24:42,828, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 00:44:50,600, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 01:02:28,743, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 01:05:55,933, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 01:46:35,589, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 08:40:41,640, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 09:51:01,076, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 09:52:12,291, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 10:20:53,172, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 12:05:02,600, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 12:08:28,446, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 12:42:45,251, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 12:46:04,582, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 12:47:32,634, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 13:05:26,590, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 13:16:10,052, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 13:24:31,563, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-03 17:41:28,550, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-04 23:10:27,150, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-04 23:24:20,866, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
+asctime: 2024-06-05 07:14:27,140, name: app, levelname: DEBUG, message: logger init
+ ------------------------------
+
